@@ -186,7 +186,7 @@ and no local keyword or CPC data.
   arithmetic on rows already in the file: no provider, price or count is added.
   Where a finding offers two fixes, take the one that claims less. _Verify:_ `grep -n "FACT (1 source" business/research/murcia-market.md | grep -v -c "FACT (1 source), provisional"` (must print 0) and `grep -c "Spain proxy" business/research/murcia-market.md`.
   Accept: each of F-021 to F-040 is addressed; every changed figure is listed in the report with old value, new value and the source read; §1–§3 are untouched.
-- [ ] **T6 — Local operating costs, access rules and financing landscape** (structural).
+- [x] **T6 — Local operating costs, access rules and financing landscape** (structural).
   Fill §8. Autónomo cuota for an existing alta moved to Región de Murcia, and whether
   the regional "cuota cero" aid applies to this case (state the eligibility condition
   read on the CARM source; do not conclude eligibility); Murcia low-emission zone (ZBE)
@@ -211,7 +211,9 @@ and no local keyword or CPC data.
   `specs/murcia-market/review/findings.md` at the lines it names (at the time of
   writing: F-007 confirm or relabel two attached sources; F-019 relabel the three
   "FACT (2 publications)" pedanía rows; F-020 relabel the 45–64 row and reword its
-  "two sources" verdict), plus any raised by T4–T6. _Verify:_ `grep -c "^| M[0-9]" business/research/murcia-market.md`.
+  "two sources" verdict), plus any raised by T4–T6. Also confirm at the source which
+  BORM publication of the Murcia mobility ordinance is in force (§8.2 cites 25-Apr-2024
+  while the linked PDF is named as a 2025 definitive approval) and correct the row. _Verify:_ `grep -c "^| M[0-9]" business/research/murcia-market.md`.
   Accept: Scenario: traceable headline — WHEN any row of the §9 table is picked THEN it names its section, its label and its source status, and a reader can reach the source URL in §10; the delta table covers every G-row of `granada-market.md` §7.
 
 ## Checks
@@ -247,6 +249,10 @@ and no local keyword or CPC data.
 - 2026-10-05 T5 reviewed, no Critical. Orchestrator decision: fix task T11 added
   before T6 for the T4/T5 findings (F-021 to F-040), so T7 keeps to the headline
   table, the source re-opening and F-007, F-019, F-020.
+- 2026-10-05 T5 committed (e13821d); T11 committed (cce5c0a), F-021 to F-040 fixed.
+- 2026-10-05 T6 reviewed, no Critical or Important. Open for T7: F-007, F-019, F-020,
+  F-041 to F-051, plus the reviewer's note to confirm which BORM publication of the
+  mobility ordinance is in force (§8.2).
 
 ## Evidence
 
@@ -261,6 +267,7 @@ and no local keyword or CPC data.
 | T4 | structural — `grep -c "^\| \*\*" business/research/murcia-market.md` (Scenario: sweep depth) | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `14` exit 0 (bold rows of §1–§3) | `34` exit 0 (14 + 20 provider rows); `git diff --numstat HEAD`: `158	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `33`; protected-files diff stat empty | none |
 | T5 | structural — `grep -c "^### [67]\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `8` exit 0; `git diff --numstat HEAD`: `239	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; no FACT label ends a line; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `46`; protected-files diff stat empty | none |
 | T11 | structural — `grep -n "FACT (1 source" business/research/murcia-market.md \| grep -v -c "FACT (1 source), provisional"`; `grep -c "Spain proxy" business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural) | `0` exit 1 (grep -c on zero matches); `3` exit 0; `git diff --numstat HEAD`: `89	52	business/research/murcia-market.md`, first hunk at line 556 (§1–§3 untouched) | Triangulation skipped: text fix pass; re-reads: Trends split cells 69/31 → 70/30 (Murcia), 62/38 → 63/37 (Andalucía), 51/49 → 50/50 (Valencia), index columns confirmed; AEMET 12 monthly rows confirmed, Year row is AEMET's published "Año" row; San Javier CREM 940 / 4,779 and INE 940 / 4,778 both confirmed; counts 20 → 17 profiled, 6 of 20 → 6 of 17, 13 → 10 quote-only, reputation 3 → 2; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `48`; protected-files diff stat empty | none |
+| T6 | structural — `grep -c "^### 8\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `6` exit 0; `git diff --numstat HEAD`: `148	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; no FACT label ends a line; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `56`; protected-files diff stat empty; 6 financing instruments with issuer-page conditions (ICREF Financia 100, CIMM-Emprende, Aválam, ENISA, ICO, MicroBank) plus Cuota Cero | none |
 
 ## Briefing
 

@@ -45,3 +45,9 @@
 - F-043 Minor open business/research/murcia-market.md:943 — "the reverse of the household search curve in §6.2" still assumes the summer search high that §6.2 now refuses to read
 - F-044 Minor open business/research/murcia-market.md:795 — carried keyword volume bands have no label; use the file's carried-by-reference pattern with the addendum's retrieval date
 - F-045 Minor open business/research/murcia-market.md:962 — "Cronoshare and Habitissimo run Murcia categories for mattress and upholstery cleaning" has no basis for a Habitissimo mattress category
+- F-046 Minor open business/research/murcia-market.md:1029 — parking reading "€0 to €2.70 per visit" is below the zona verde full-day €2.80 and ignores jobs longer than one ticket; drop the ceiling or scope it to one zona azul ticket
+- F-047 Minor open business/research/murcia-market.md:1022 — Sector B, zona verde and autónomo-pass rows are labelled "Base FACT" but show no base figure, so the ×1.21 cannot be recomputed
+- F-048 Minor open business/research/murcia-market.md:1062 — the €0.175/km column rounds half cents inconsistently (floating-point artefact); apply one rounding rule
+- F-049 Minor open business/research/murcia-market.md:1086 — "the outer belt towns (Ceutí, Santomera, Archena)" are inner belt in §1.6; use "the farther inner-belt towns"
+- F-050 Minor open business/research/murcia-market.md:1107 — ICO amount cell gives a share ("up to 100% of the financing need"), not an amount range
+- F-051 Minor open business/research/murcia-market.md:1113 — "the small amounts a launch needs" is a verdict word with no criterion; reword to "open to autónomos"
