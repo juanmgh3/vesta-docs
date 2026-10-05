@@ -1,0 +1,15 @@
+## Open findings
+No hay entradas `open`: `specs/murcia-market/review/findings.md` solo tiene la cabecera.
+
+## Important
+- `business/research/founder-inputs.md:146-147` — El item "Launch window" del Block 5 sigue diciendo `**UNDECIDED** — ... gated by the relocation decision (Block 4)` y no lleva marca de superseded. El addendum (`founder-inputs.md:200`, "No longer gated by relocation. CAPTURED.") lo sustituye en la práctica. La restricción del brief (`brief.md:40-41`, "superseded items are marked superseded and point to the addendum") cubre cualquier texto sustituido, no solo los tres que la tarea nombra. Además, la propia frase de alcance del addendum (`founder-inputs.md:194-195`, "Supersedes Block 4 and consolidated UNDECIDED items 2 and 4") deja fuera esta línea. Cómo falla: quien lea el archivo de arriba abajo encuentra el launch window como UNDECIDED y bloqueado por la mudanza en el Block 5 sin ningún aviso. Hay dos afirmaciones vigentes que se contradicen, y el modelo o el informe pueden tomar la equivocada. El ejecutor lo declaró como pendiente, pero lo mandó a "una tarea posterior" que no existe en `feature.md` (T2–T7 solo tocan `murcia-market.md`). Arreglarlo es añadir una línea de marca y ampliar la frase de alcance del addendum, sin borrar nada.
+
+## Minor
+- `business/research/founder-inputs.md:169` — FLAG-RESEARCH D ("Plausible operating zones per city (Madrid / Valencia)") sigue como encargo de investigación activo y sin marca. Ese encargo ahora lo cubren T3 / §2 para Murcia. Cómo falla: la lista de flags manda investigar zonas de dos ciudades que ya no aplican. También lo declaró el ejecutor, y tampoco tiene tarea de destino.
+
+## Cannot verify from diff
+- La restricción "nothing touched outside Scope" depende de `git status` en `diff.md:3-12`. Ahí solo aparecen `founder-inputs.md`, `murcia-market.md`, `feature.md` y artefactos de revisión y torq-flow (`.torq-flow/active`, `specs/murcia-market/review/*`), que no son producto. No tengo Bash para confirmar de forma independiente que `granada-market.md`, `economic-model*` y `business/bank` / `business/reports` están idénticos a HEAD.
+
+Lo demás está bien y lo he comprobado. En `founder-inputs.md` el diff solo tiene adiciones (`diff.md:20-54`, numstat 15/0). Las marcas apuntan al addendum. El addendum no contiene nombres ni datos personales. El esqueleto tiene exactamente diez `## N.`, y sus títulos coinciden con los de T2–T7 en `feature.md:66-142`. La cabecera reproduce el estándar de etiquetas, el método y la reutilización de `market-dossier.md` sin cambios. El ANALYSIS que añade ya forma parte del estándar en `market-dossier.md:24`, y T4 lo pide. Las citas a `market-dossier.md` §7 (`:469`, Operating zones) y a `trends-keywords-addendum.md` existen.
+
+Archivos: C:\Users\juanm\Documents\dev\vesta-docs\business\research\founder-inputs.md, C:\Users\juanm\Documents\dev\vesta-docs\business\research\murcia-market.md, C:\Users\juanm\Documents\dev\vesta-docs\specs\murcia-market\review\findings.md

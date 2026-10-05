@@ -111,6 +111,9 @@ Conventions in force (from the brief):
 
 ## Block 4 — City context
 
+> **SUPERSEDED 2026-10-05** — the operating city is resolved; see
+> "Addendum 2026-10-05 — operating city resolved" at the end of this file.
+
 - **Operating city.** **UNDECIDED.** Candidates: **Madrid, Valencia, possibly another
   city.**
 - **External determinant.** The choice depends on an **unresolved external relocation
@@ -151,8 +154,10 @@ Conventions in force (from the brief):
 
 1. Price posture / architecture — Phase 2 founder decision.
 2. Operating city + zone — gated by an external relocation.
+   **SUPERSEDED 2026-10-05** → Addendum 2026-10-05.
 3. Google Ads monthly budget — marketing report proposes a range.
 4. Launch window — gated by relocation.
+   **SUPERSEDED 2026-10-05** → Addendum 2026-10-05.
 5. Travel-cost model.
 
 **FLAG-RESEARCH (Phase 1, founder-requested):**
@@ -183,3 +188,13 @@ Conventions in force (from the brief):
 | Car insurance                        | €50/month                                                  | CAPTURED              |
 | Legal form                           | Autónomo (alta done; cuota TBD)                            | CAPTURED / TO-CONFIRM |
 | Projection horizon                   | 8 years                                                    | CAPTURED              |
+
+## Addendum 2026-10-05 — operating city resolved
+
+Stated by the founder on 2026-10-05. Supersedes Block 4 and consolidated UNDECIDED
+items 2 and 4; the superseded text above is kept as written.
+
+- **Operating base.** **Murcia capital.** CAPTURED.
+- **Service area.** "Murcia and surroundings". CAPTURED. The service radii are not
+  fixed here — research proposes them (`murcia-market.md` §1).
+- **Launch window.** No longer gated by relocation. CAPTURED.
