@@ -145,7 +145,7 @@ and no local keyword or CPC data.
   INE table the 1-Jul-2023 Spain population was actually read from (56934), keeping the
   series code. _Verify:_ `grep -n "FACT (1 source" business/research/murcia-market.md | grep -v -c "FACT (1 source), provisional"` (must print 0).
   Accept: the verify command prints 0; F-015 to F-018 are addressed; a numeric-token diff of the file before and after shows no figure changed except the table id 56940 → 56934.
-- [ ] **T4 — Competition sweep and local price map** (structural). Fill §4 and §5 at
+- [x] **T4 — Competition sweep and local price map** (structural). Fill §4 and §5 at
   Madrid/Valencia depth: at least 15 providers profiled, or every provider found plus
   an explicit statement that the field is exhausted and with which searches. Search
   terms logged (colchones, sofás, tapicerías, "a domicilio", Murcia, Molina, Alcantarilla,
@@ -240,6 +240,7 @@ and no local keyword or CPC data.
 | T3 | structural — `grep -c "^### [23]\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `6` exit 0; `git diff --numstat HEAD`: `265	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `11`; protected-files diff stat empty | none |
 | T9 | structural — `grep -c "provisional" business/research/murcia-market.md`; `grep -c "CONFLICTING" business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change counts `15` exit 0, `1` exit 0 (T3 uncommitted by design) | n/a (structural) | `18` exit 0; `3` exit 0 | Triangulation skipped: text fix pass; F-009 re-read INE 53689 confirms €48,806 / €18,142 (no cell changed); F-011 national dogs per inhabitant ≈0.20 → ≈0.19 (denominator 45,678,948 AEAT → 48,320,520 INE 56940, 1-Jul-2023); zone ratios recomputed (1.71, 1.37, 1.28, 1.17, 1.01, 0.90, 1.49, 1.69); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
 | T10 | structural — `grep -n "FACT (1 source" business/research/murcia-market.md \| grep -v -c "FACT (1 source), provisional"` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change count `16` exit 0 (T3/T9 uncommitted by design) | n/a (structural) | `0` exit 1 (grep -c on zero matches) | Triangulation skipped: text-only label sweep; numeric-token diff before/after: only `56940` → `56934` (×2), plus the `1` of each new "FACT (1 source)" label and `ECP320` (series code); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
+| T4 | structural — `grep -c "^\| \*\*" business/research/murcia-market.md` (Scenario: sweep depth) | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `14` exit 0 (bold rows of §1–§3) | `34` exit 0 (14 + 20 provider rows); `git diff --numstat HEAD`: `158	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `33`; protected-files diff stat empty | none |
 
 ## Briefing
 
