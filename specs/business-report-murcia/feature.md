@@ -109,7 +109,7 @@ case by someone who did the work, not as generated filler.
   and lists `business/reports/_src/` and the two build scripts. Additions only in
   `founder-inputs.md`. _Verify:_ `grep -c "Addendum 2026-10-06" business/research/founder-inputs.md` and `grep -c "business-report-murcia" README.md`.
   Accept: both counts are ≥1; `git diff --numstat HEAD -- business/research/founder-inputs.md` shows 0 deletions.
-- [ ] **T2 — Murcia economic model** (structural). Write `murcia-model.mjs`, derived from
+- [x] **T2 — Murcia economic model** (structural). Write `murcia-model.mjs`, derived from
   `economic-model-engine.mjs`, that computes and writes `murcia-model-tables.md`
   (markdown tables only) and `murcia-model-data.json` (the same numbers as data for the
   charts). Inputs, each with label and source, listed in `murcia-model.md` §1: prices
@@ -133,6 +133,19 @@ case by someone who did the work, not as generated filler.
   label from the economic report line.
   Running the script twice must produce identical files. _Verify:_ `node business/research/murcia-model.mjs && git diff --exit-code --stat -- business/research/murcia-model-tables.md business/research/murcia-model-data.json; echo "exit $?"`.
   Accept: Scenario: reproducible model — WHEN the script runs on a clean checkout THEN the tables and JSON are byte-identical to the committed ones (exit 0); every input row in `murcia-model.md` §1 has a label and a source file and section; the year-1 table starts at Oct-2026 and ends at Sep-2027.
+- [ ] **T9 — Model fix pass** (structural). In `murcia-model.mjs` and `murcia-model.md`,
+  close F-004 to F-008 at the lines the findings record names: (F-004) the cash trough
+  per scenario includes the Oct-2027 payment of the Jul–Sep IVA, so it is the lowest
+  cash point the founder must be able to cover; state it in §2; (F-005) §3 lists the
+  hire-trigger change (annual average) and says troughs are not comparable with the old
+  reports because of the IVA timing; I22 carries the caveat; (F-006) §2.6 states the
+  basis of the single-piece paid visit figure and names the pricing-decision §4.2 figure
+  with its different basis so the report can quote either knowingly; (F-007) the
+  owner-state milestone is re-checked every year Y5–Y8 and the table says in which
+  years it holds; (F-008) every figure in the JSON `market` block carries its label and
+  source section as fields, and the pack price keeps its "~" as an `approx` flag.
+  Regenerate the tables and JSON; the script stays deterministic. _Verify:_ `node business/research/murcia-model.mjs && node business/research/murcia-model.mjs && git status --short -- business/research/murcia-model-tables.md business/research/murcia-model-data.json; echo "exit $?"`.
+  Accept: F-004 to F-008 are addressed; the trough row for A × conservador is ≤ −974; the B × realista year-1 result is unchanged at 4,768 unless a fix changes an input, in which case the report lists old and new values.
 - [ ] **T3 — Report skeleton, build script and charts** (structural). Write
   `build-report.mjs`: reads `ch-*.html` in order from `_src/murcia/`, inlines
   `report.css` and `embedded-assets.css`, inlines the chart SVGs from `charts.html` where
@@ -220,3 +233,4 @@ case by someone who did the work, not as generated filler.
 | Task | Test | Layer | Safety net | RED | GREEN | Triangulate | Refactor |
 |---|---|---|---|---|---|---|---|
 | T1 | grep counts + numstat (structural) | docs | no package.json, no runner; baseline counts 0 / 0 (exit 1) | n/a (structural) | `grep -c "Addendum 2026-10-06"` → 2; `grep -c "business-report-murcia" README.md` → 2; numstat `20	0` | Triangulation skipped: structural docs task, verified by counts and 0-deletion numstat | none |
+| T2 | verify command + double-run sha256 (structural) | model script | no package.json, no runner; baseline verify `Error: Cannot find module '...\murcia-model.mjs'` (exit 1) | n/a (structural) | `node business/research/murcia-model.mjs && git diff --exit-code --stat -- …tables.md …data.json` → `exit 0` | Triangulation skipped: structural; outputs untracked so git diff is vacuous until commit — reproducibility shown by two runs with identical sha256 (tables `18129d61…`, json `88ad897d…`) | none |

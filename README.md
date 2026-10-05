@@ -26,7 +26,8 @@ Moved out of the vesta-web repo on 2026-07-08 to keep the web repo code-only.
 
 Replaced by `business-report-murcia` and not edited further:
 
-- `business/reports/economic-report.{html,pdf}` — economic report (Madrid/Valencia)
+- `business/reports/economic-report.{html,pdf}` — economic report
 - `business/reports/marketing-report.{html,pdf}` — marketing report (Madrid/Valencia)
 - `business/bank/bank-dossier.{html,pdf,docx}` — Granada bank financing dossier
 - `business/research/granada-market.md` and `business/research/bank-granada-scenario.mjs` — Granada research and bank scenario
+- `business/research/economic-model.md` and `business/research/economic-model-engine.mjs` — previous economic model, replaced by `murcia-model.mjs`
