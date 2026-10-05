@@ -37,7 +37,7 @@
 | I19 | CAC, paid channel | €71 central, band €36–111 | ESTIMATE / HYPOTHESIS | `market-dossier.md` §6.3; `economic-model.md` §1 I10 |
 | I20 | Operator 2 full-loaded cost | €1,860/mo | ESTIMATE | `economic-model.md` §1 I13 (TO-CONFIRM vs convenio de limpieza) |
 | I21 | Second machine | €2,300, bought in the year an operator joins | CAPTURED | `founder-inputs.md` Block 2 |
-| I22 | Operator trigger | utilisation ≥75% of capacity and cash ≥ 3 months of the new cost structure | PROPOSAL | `economic-model.md` §7 |
+| I22 | Operator trigger | utilisation ≥75% of capacity and cash ≥ 3 months of the new cost structure; caveat: tested on the year's average utilisation, not on 3 consecutive months as §7 states, so a year with a strong season can hold 3 months above 75% and still not trigger (§2.5, §3 item 11) | PROPOSAL | `economic-model.md` §7 |
 | I23 | Growth, years 4–8 | visits grow at half the Y2→Y3 rate in Y4, and the rate halves every year after | HYPOTHESIS | Rule set here from `economic-model.md` §4 visits (that file's §9 C6 left the rule open) |
 | I24 | IRPF and owner drawings | Not modelled; results are pre-IRPF and cash accumulates with no drawings | ASSUMPTION | `economic-model.md` §1 I15 |
 
@@ -81,7 +81,11 @@ price; net = gross ÷ 1.21. Result = net − consumables − travel − parking 
 Cash: the client pays gross; the IVA of each calendar quarter is paid in the month after
 it closes (Oct–Dec in Jan-2027, Jan–Mar in Apr-2027, Apr–Jun in Jul-2027); Jul–Sep is
 owed at year end (paid Oct-2027) and is netted out of year-end cash, which therefore
-equals the year's result. Trough = lowest month-end cash below zero, with no buffer.
+equals the year's result. Trough = the lowest cash point the founder must be able to
+cover with no buffer: the lowest of the twelve month-ends and of the Oct-2027 point,
+where the Jul–Sep IVA is paid (year-end cash net of IVA owed). The Oct-2027 point
+counts only that payment, not Oct-2027 trading. A trough dated Oct-2027 is that
+payment: in A × conservador it is −€974, below the −€923 Jul-2027 month-end.
 
 ### 2.5 Years 2–8 (tables T5, T6)
 
@@ -95,8 +99,11 @@ of a year, if served pieces ≥ 75% of that year's capacity (the annual average 
 for "3 consecutive months") and year-end cash ≥ 3 × (€356 + €1,860 × hired-after +
 that year's ads), one operator is hired for the next year.
 
-Founder→owner milestone: the first year in which the hired operators alone could
-carry the year's demand (hired × 88 ≥ demand pieces). "Owner-state result" is the
+Founder→owner milestone: the hired operators alone could carry the year's demand
+(hired × 88 ≥ demand pieces). It is re-checked every year with a hired operator, and
+T6 says in which years it holds ("Owner state holds") and in which it lapses, because
+demand keeps growing after the hire and no second hire is triggered. In realista × B it
+is first reached in Y5, holds in Y5–Y6 and lapses in Y7–Y8. "Owner-state result" is the
 year's result if the founder stopped cleaning that year (capacity = hired × 88). Since
 the founder's own hours carry no wage in the model, it equals the operating result
 whenever the hired capacity covers demand.
@@ -108,12 +115,26 @@ parking); per piece = per visit ÷ 1.8. Break-even pieces = monthly cost ÷ cont
 per piece; visits = pieces ÷ 1.8. Paid visits subtract the €71 CAC once per visit.
 Contribution margin = contribution per piece ÷ net price.
 
+Single-piece paid visit (T8): one piece at the architecture's average price per piece
+(I1–I3, service mix M1) ÷ 1.21, minus €1.5 consumables, minus €5.5 per visit (travel
+€4.5 + parking €1.0) and minus €71 CAC. For B: 72.50 ÷ 1.21 = 59.92 − 1.5 − 5.5 − 71 =
+−€18.08. `pricing-decision.md` §4.2 gives −€22.48 for the same notion on a different
+basis: one matrimonio at €69 (net €57.02), minus €1.5, minus the full €7 day trip
+(§3.5) and minus €71, no parking. The two figures answer different questions: the model's
+is an average paid piece in Murcia, §4.2's is a single matrimonio under the Phase-2
+cost table. The report can quote either, naming its basis.
+
 ### 2.7 Market block in the JSON
 
 `market` carries, for the report's charts, the price map of `murcia-market.md` §5
 (Murcia median and range, Madrid and Valencia ranges, Granada figures), the three price
 grids of `pricing-decision.md` §4.1–§4.3, and the service rings of `murcia-market.md`
-§1.7 with the travel range of §8.5. Values are copied as those files state them.
+§1.7 with the travel range of §8.5. Values are copied as those files state them. Every
+figure is an object `{ value, label, source }`: `label` is the evidence label the source
+gives it, verbatim, and `source` the file and section. A value the source prints with
+"~" or "≈" (the C packs, the ring households) carries `approx: true`; a cell the source
+leaves empty is `value: null` with the source's own label (e.g. "NOT FOUND in dossier").
+Text the source attaches to a cell goes in `note`.
 
 ## 3. What changed vs `economic-model.md`
 
@@ -136,6 +157,13 @@ grids of `pricing-decision.md` §4.1–§4.3, and the service rings of `murcia-m
    table's 76.6–78.5% divided by the gross price.
 10. **B2B** remains excluded from every table, as in `economic-model.md` §7 (demand
     HYPOTHESIS); it can only improve them.
+11. **Hire trigger on the annual average.** `economic-model.md` §7 fires on utilisation
+    ≥75% for 3 consecutive months; this annual model tests the year's average
+    utilisation instead (I22, §2.5).
+12. **Troughs are not comparable with the old reports.** The IVA timing of item 5 and
+    the Oct-2027 IVA payment counted in the trough (§2.4) move the low cash points; a
+    trough here and one in `economic-model.md` or the old reports measure different
+    things.
 
 ## 4. Verification
 

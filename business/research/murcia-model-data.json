@@ -475,8 +475,8 @@
           "net": 4010,
           "ads": 1800,
           "result": -974,
-          "trough": -923,
-          "troughMonth": "Jul-2027",
+          "trough": -974,
+          "troughMonth": "Oct-2027",
           "firstPositive": "Jun-2027",
           "cumPositive": null,
           "ivaOwedAtYearEnd": 355,
@@ -2177,8 +2177,8 @@
       "net": 4010,
       "ads": 1800,
       "result": -974,
-      "trough": -923,
-      "troughMonth": "Jul-2027",
+      "trough": -974,
+      "troughMonth": "Oct-2027",
       "firstPositive": "Jun-2027",
       "cumPositive": null,
       "ivaOwedAtYearEnd": 355,
@@ -2319,6 +2319,7 @@
             "machine": 0,
             "result": 2343,
             "cashEnd": 1369,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2338,6 +2339,7 @@
             "machine": 0,
             "result": 4747,
             "cashEnd": 6116,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2357,6 +2359,7 @@
             "machine": 0,
             "result": 6751,
             "cashEnd": 12867,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2376,6 +2379,7 @@
             "machine": 0,
             "result": 7919,
             "cashEnd": 20786,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2395,6 +2399,7 @@
             "machine": 0,
             "result": 8552,
             "cashEnd": 29338,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2414,6 +2419,7 @@
             "machine": 0,
             "result": 8882,
             "cashEnd": 38220,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2433,11 +2439,13 @@
             "machine": 0,
             "result": 9050,
             "cashEnd": 47270,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       },
       "B": {
         "scenario": "conservador",
@@ -2459,6 +2467,7 @@
             "machine": 0,
             "result": 5154,
             "cashEnd": 5293,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2478,6 +2487,7 @@
             "machine": 0,
             "result": 8496,
             "cashEnd": 13789,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2497,6 +2507,7 @@
             "machine": 0,
             "result": 11124,
             "cashEnd": 24914,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2516,6 +2527,7 @@
             "machine": 0,
             "result": 12657,
             "cashEnd": 37571,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2535,6 +2547,7 @@
             "machine": 0,
             "result": 13488,
             "cashEnd": 51058,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2554,6 +2567,7 @@
             "machine": 0,
             "result": 13920,
             "cashEnd": 64979,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2573,11 +2587,13 @@
             "machine": 0,
             "result": 14141,
             "cashEnd": 79119,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       },
       "C": {
         "scenario": "conservador",
@@ -2599,6 +2615,7 @@
             "machine": 0,
             "result": 6995,
             "cashEnd": 7863,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2618,6 +2635,7 @@
             "machine": 0,
             "result": 10950,
             "cashEnd": 18813,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2637,6 +2655,7 @@
             "machine": 0,
             "result": 13987,
             "cashEnd": 32800,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2656,6 +2675,7 @@
             "machine": 0,
             "result": 15759,
             "cashEnd": 48559,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2675,6 +2695,7 @@
             "machine": 0,
             "result": 16718,
             "cashEnd": 65277,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2694,6 +2715,7 @@
             "machine": 0,
             "result": 17218,
             "cashEnd": 82495,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2713,11 +2735,13 @@
             "machine": 0,
             "result": 17473,
             "cashEnd": 99969,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       }
     },
     "realista": {
@@ -2741,6 +2765,7 @@
             "machine": 0,
             "result": 12280,
             "cashEnd": 14377,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2760,6 +2785,7 @@
             "machine": 0,
             "result": 20826,
             "cashEnd": 35203,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2779,6 +2805,7 @@
             "machine": 0,
             "result": 27305,
             "cashEnd": 62508,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -2798,6 +2825,7 @@
             "machine": 2300,
             "result": 6599,
             "cashEnd": 69108,
+            "ownerStateHolds": true,
             "ownerStateResult": 6599,
             "hireDecidedForNextYear": false
           },
@@ -2817,6 +2845,7 @@
             "machine": 0,
             "result": 11060,
             "cashEnd": 80168,
+            "ownerStateHolds": true,
             "ownerStateResult": 11060,
             "hireDecidedForNextYear": false
           },
@@ -2836,6 +2865,7 @@
             "machine": 0,
             "result": 12197,
             "cashEnd": 92366,
+            "ownerStateHolds": false,
             "ownerStateResult": 12125,
             "hireDecidedForNextYear": false
           },
@@ -2855,11 +2885,16 @@
             "machine": 0,
             "result": 12780,
             "cashEnd": 105146,
+            "ownerStateHolds": false,
             "ownerStateResult": 12125,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": 5
+        "ownerYear": 5,
+        "ownerYears": [
+          5,
+          6
+        ]
       },
       "B": {
         "scenario": "realista",
@@ -2881,6 +2916,7 @@
             "machine": 0,
             "result": 19028,
             "cashEnd": 23796,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2900,6 +2936,7 @@
             "machine": 0,
             "result": 30386,
             "cashEnd": 54181,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -2919,6 +2956,7 @@
             "machine": 0,
             "result": 38856,
             "cashEnd": 93037,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -2938,6 +2976,7 @@
             "machine": 2300,
             "result": 19354,
             "cashEnd": 112391,
+            "ownerStateHolds": true,
             "ownerStateResult": 19354,
             "hireDecidedForNextYear": false
           },
@@ -2957,6 +2996,7 @@
             "machine": 0,
             "result": 24479,
             "cashEnd": 136870,
+            "ownerStateHolds": true,
             "ownerStateResult": 24479,
             "hireDecidedForNextYear": false
           },
@@ -2976,6 +3016,7 @@
             "machine": 0,
             "result": 25965,
             "cashEnd": 162835,
+            "ownerStateHolds": false,
             "ownerStateResult": 25870,
             "hireDecidedForNextYear": false
           },
@@ -2995,11 +3036,16 @@
             "machine": 0,
             "result": 26728,
             "cashEnd": 189562,
+            "ownerStateHolds": false,
             "ownerStateResult": 25870,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": 5
+        "ownerYear": 5,
+        "ownerYears": [
+          5,
+          6
+        ]
       },
       "C": {
         "scenario": "realista",
@@ -3021,6 +3067,7 @@
             "machine": 0,
             "result": 23445,
             "cashEnd": 29962,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -3040,6 +3087,7 @@
             "machine": 0,
             "result": 36643,
             "cashEnd": 66605,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": false
           },
@@ -3059,6 +3107,7 @@
             "machine": 0,
             "result": 46417,
             "cashEnd": 113022,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -3078,6 +3127,7 @@
             "machine": 2300,
             "result": 27702,
             "cashEnd": 140725,
+            "ownerStateHolds": true,
             "ownerStateResult": 27702,
             "hireDecidedForNextYear": false
           },
@@ -3097,6 +3147,7 @@
             "machine": 0,
             "result": 33263,
             "cashEnd": 173987,
+            "ownerStateHolds": true,
             "ownerStateResult": 33263,
             "hireDecidedForNextYear": false
           },
@@ -3116,6 +3167,7 @@
             "machine": 0,
             "result": 34978,
             "cashEnd": 208965,
+            "ownerStateHolds": false,
             "ownerStateResult": 34868,
             "hireDecidedForNextYear": false
           },
@@ -3135,11 +3187,16 @@
             "machine": 0,
             "result": 35857,
             "cashEnd": 244822,
+            "ownerStateHolds": false,
             "ownerStateResult": 34868,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": 5
+        "ownerYear": 5,
+        "ownerYears": [
+          5,
+          6
+        ]
       }
     },
     "optimista": {
@@ -3163,6 +3220,7 @@
             "machine": 0,
             "result": 24778,
             "cashEnd": 32432,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -3182,6 +3240,7 @@
             "machine": 2300,
             "result": 11842,
             "cashEnd": 44274,
+            "ownerStateHolds": false,
             "ownerStateResult": 7747,
             "hireDecidedForNextYear": false
           },
@@ -3201,6 +3260,7 @@
             "machine": 0,
             "result": 22331,
             "cashEnd": 66605,
+            "ownerStateHolds": false,
             "ownerStateResult": 10047,
             "hireDecidedForNextYear": false
           },
@@ -3220,6 +3280,7 @@
             "machine": 0,
             "result": 27108,
             "cashEnd": 93712,
+            "ownerStateHolds": false,
             "ownerStateResult": 10047,
             "hireDecidedForNextYear": false
           },
@@ -3239,6 +3300,7 @@
             "machine": 0,
             "result": 29695,
             "cashEnd": 123407,
+            "ownerStateHolds": false,
             "ownerStateResult": 10047,
             "hireDecidedForNextYear": false
           },
@@ -3258,6 +3320,7 @@
             "machine": 0,
             "result": 31043,
             "cashEnd": 154450,
+            "ownerStateHolds": false,
             "ownerStateResult": 10047,
             "hireDecidedForNextYear": false
           },
@@ -3277,11 +3340,13 @@
             "machine": 0,
             "result": 31731,
             "cashEnd": 186181,
+            "ownerStateHolds": false,
             "ownerStateResult": 10047,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       },
       "B": {
         "scenario": "optimista",
@@ -3303,6 +3368,7 @@
             "machine": 0,
             "result": 36025,
             "cashEnd": 48469,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -3322,6 +3388,7 @@
             "machine": 2300,
             "result": 26837,
             "cashEnd": 75305,
+            "ownerStateHolds": false,
             "ownerStateResult": 21493,
             "hireDecidedForNextYear": false
           },
@@ -3341,6 +3408,7 @@
             "machine": 0,
             "result": 39825,
             "cashEnd": 115130,
+            "ownerStateHolds": false,
             "ownerStateResult": 23793,
             "hireDecidedForNextYear": false
           },
@@ -3360,6 +3428,7 @@
             "machine": 0,
             "result": 46060,
             "cashEnd": 161190,
+            "ownerStateHolds": false,
             "ownerStateResult": 23793,
             "hireDecidedForNextYear": false
           },
@@ -3379,6 +3448,7 @@
             "machine": 0,
             "result": 49437,
             "cashEnd": 210627,
+            "ownerStateHolds": false,
             "ownerStateResult": 23793,
             "hireDecidedForNextYear": false
           },
@@ -3398,6 +3468,7 @@
             "machine": 0,
             "result": 51196,
             "cashEnd": 261823,
+            "ownerStateHolds": false,
             "ownerStateResult": 23793,
             "hireDecidedForNextYear": false
           },
@@ -3417,11 +3488,13 @@
             "machine": 0,
             "result": 52094,
             "cashEnd": 313916,
+            "ownerStateHolds": false,
             "ownerStateResult": 23793,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       },
       "C": {
         "scenario": "optimista",
@@ -3443,6 +3516,7 @@
             "machine": 0,
             "result": 43386,
             "cashEnd": 58965,
+            "ownerStateHolds": null,
             "ownerStateResult": null,
             "hireDecidedForNextYear": true
           },
@@ -3462,6 +3536,7 @@
             "machine": 2300,
             "result": 36653,
             "cashEnd": 95618,
+            "ownerStateHolds": false,
             "ownerStateResult": 30491,
             "hireDecidedForNextYear": false
           },
@@ -3481,6 +3556,7 @@
             "machine": 0,
             "result": 51277,
             "cashEnd": 146895,
+            "ownerStateHolds": false,
             "ownerStateResult": 32791,
             "hireDecidedForNextYear": false
           },
@@ -3500,6 +3576,7 @@
             "machine": 0,
             "result": 58466,
             "cashEnd": 205360,
+            "ownerStateHolds": false,
             "ownerStateResult": 32791,
             "hireDecidedForNextYear": false
           },
@@ -3519,6 +3596,7 @@
             "machine": 0,
             "result": 62360,
             "cashEnd": 267720,
+            "ownerStateHolds": false,
             "ownerStateResult": 32791,
             "hireDecidedForNextYear": false
           },
@@ -3538,6 +3616,7 @@
             "machine": 0,
             "result": 64388,
             "cashEnd": 332108,
+            "ownerStateHolds": false,
             "ownerStateResult": 32791,
             "hireDecidedForNextYear": false
           },
@@ -3557,11 +3636,13 @@
             "machine": 0,
             "result": 65423,
             "cashEnd": 397531,
+            "ownerStateHolds": false,
             "ownerStateResult": 32791,
             "hireDecidedForNextYear": false
           }
         ],
-        "ownerYear": null
+        "ownerYear": null,
+        "ownerYears": []
       }
     }
   },
@@ -3682,235 +3763,541 @@
       {
         "service": "Colchón individual",
         "n": 4,
-        "murciaMedian": 52.5,
-        "murciaMedianVat": 57,
-        "murciaRange": [
-          36,
-          59
-        ],
-        "madrid": [
-          35,
-          60
-        ],
-        "valencia": [
-          25,
-          55
-        ],
-        "granada": null,
-        "granadaNote": "desde €45, no size (Happy Clean)"
+        "murciaMedian": {
+          "value": 52.5,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 57,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            36,
+            59
+          ],
+          "label": "Range FACT (4 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            35,
+            60
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            25,
+            55
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": null,
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "desde €45, no size (Happy Clean)"
+        }
       },
       {
         "service": "Colchón matrimonio",
         "n": 4,
-        "murciaMedian": 67,
-        "murciaMedianVat": 70.8,
-        "murciaRange": [
-          60,
-          100
-        ],
-        "madrid": [
-          55,
-          90
-        ],
-        "valencia": [
-          60,
-          75
-        ],
-        "granada": null,
-        "granadaNote": "Clean-Home add-on only"
+        "murciaMedian": {
+          "value": 67,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 70.8,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            60,
+            100
+          ],
+          "label": "Range FACT (4 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            55,
+            90
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            60,
+            75
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": null,
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "Clean-Home add-on only"
+        }
       },
       {
         "service": "Colchón king",
         "n": 2,
-        "murciaMedian": null,
-        "murciaMedianVat": null,
-        "murciaRange": [
-          69,
-          120
-        ],
-        "madrid": [
-          75,
-          100
-        ],
-        "valencia": [
-          65,
-          100
-        ],
-        "granada": null,
-        "granadaNote": "Clean-Home add-on only, +€35"
+        "murciaMedian": {
+          "value": null,
+          "label": "no median (n < 3)",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": null,
+          "label": "no median (n < 3)",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            69,
+            120
+          ],
+          "label": "FACT (1 source), provisional per provider",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            75,
+            100
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            65,
+            100
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": null,
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "Clean-Home add-on only, +€35"
+        }
       },
       {
         "service": "Sofá 2 plazas",
         "n": 5,
-        "murciaMedian": 79,
-        "murciaMedianVat": 79,
-        "murciaRange": [
-          60,
-          90
-        ],
-        "madrid": [
-          60,
-          97
-        ],
-        "valencia": [
-          69,
-          89
-        ],
-        "granada": [
-          79,
-          79
-        ],
-        "granadaNote": "Clean-Home"
+        "murciaMedian": {
+          "value": 79,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 79,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            60,
+            90
+          ],
+          "label": "Range FACT (5 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            60,
+            97
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            69,
+            89
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": [
+            79,
+            79
+          ],
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "Clean-Home"
+        }
       },
       {
         "service": "Sofá 3 plazas",
         "n": 5,
-        "murciaMedian": 100,
-        "murciaMedianVat": 100,
-        "murciaRange": [
-          85,
-          120
-        ],
-        "madrid": [
-          90,
-          119
-        ],
-        "valencia": [
-          85,
-          119
-        ],
-        "granada": [
-          85,
-          85
-        ],
-        "granadaNote": "Clean-Home"
+        "murciaMedian": {
+          "value": 100,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 100,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            85,
+            120
+          ],
+          "label": "Range FACT (5 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            90,
+            119
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            85,
+            119
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": [
+            85,
+            85
+          ],
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "Clean-Home"
+        }
       },
       {
         "service": "Chaise longue / L",
         "n": 5,
-        "murciaMedian": 110,
-        "murciaMedianVat": 110,
-        "murciaRange": [
-          89,
-          180
-        ],
-        "madrid": [
-          120,
-          175
-        ],
-        "valencia": [
-          89,
-          190
-        ],
-        "granada": [
-          89,
-          99
-        ],
-        "granadaNote": "Clean-Home"
+        "murciaMedian": {
+          "value": 110,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 110,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            89,
+            180
+          ],
+          "label": "Range FACT (5 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            120,
+            175
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": [
+            89,
+            190
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §3.1 via murcia-market.md §5"
+        },
+        "granada": {
+          "value": [
+            89,
+            99
+          ],
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "Clean-Home"
+        }
       },
       {
         "service": "Sillón / butaca",
         "n": 3,
-        "murciaMedian": 40,
-        "murciaMedianVat": 40,
-        "murciaRange": [
-          30,
-          60
-        ],
-        "madrid": [
-          42,
-          50
-        ],
-        "valencia": null,
-        "granada": null,
-        "granadaNote": "desde €30 (Happy Clean)"
+        "murciaMedian": {
+          "value": 40,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 40,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            30,
+            60
+          ],
+          "label": "Range FACT (3 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": [
+            42,
+            50
+          ],
+          "label": "FACT — own sites",
+          "source": "market-dossier.md §2.1 via murcia-market.md §5"
+        },
+        "valencia": {
+          "value": null,
+          "label": "NOT FOUND in dossier",
+          "source": "murcia-market.md §5"
+        },
+        "granada": {
+          "value": null,
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "desde €30 (Happy Clean)"
+        }
       },
       {
         "service": "Silla",
         "n": 3,
-        "murciaMedian": 10,
-        "murciaMedianVat": 10,
-        "murciaRange": [
-          5,
-          20
-        ],
-        "madrid": null,
-        "valencia": null,
-        "granada": null,
-        "granadaNote": "desde €5 (Happy Clean)"
+        "murciaMedian": {
+          "value": 10,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaMedianVat": {
+          "value": 10,
+          "label": "medians ESTIMATE",
+          "source": "murcia-market.md §5"
+        },
+        "murciaRange": {
+          "value": [
+            5,
+            20
+          ],
+          "label": "Range FACT (3 sources)",
+          "source": "murcia-market.md §5"
+        },
+        "madrid": {
+          "value": null,
+          "label": "NOT FOUND in dossier",
+          "source": "murcia-market.md §5"
+        },
+        "valencia": {
+          "value": null,
+          "label": "NOT FOUND in dossier",
+          "source": "murcia-market.md §5"
+        },
+        "granada": {
+          "value": null,
+          "label": "FACT (1 source)",
+          "source": "granada-market.md §4 via murcia-market.md §5",
+          "note": "desde €5 (Happy Clean)"
+        }
       }
     ],
     "grids": {
       "A": {
-        "Colchón individual": 39,
-        "Colchón matrimonio": 55,
-        "Colchón king": 69,
-        "Sofá 3 plazas": 72,
-        "Sofá por plaza": 25,
-        "Pedido mínimo": 55
+        "Colchón individual": {
+          "value": 39,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        },
+        "Colchón matrimonio": {
+          "value": 55,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        },
+        "Colchón king": {
+          "value": 69,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        },
+        "Sofá 3 plazas": {
+          "value": 72,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        },
+        "Sofá por plaza": {
+          "value": 25,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        },
+        "Pedido mínimo": {
+          "value": 55,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.1"
+        }
       },
       "B": {
-        "Colchón individual": 49,
-        "Colchón matrimonio": 69,
-        "Colchón king": 89,
-        "Sofá 3 plazas": 95,
-        "Sofá por plaza": 32,
-        "Pedido mínimo": 70
+        "Colchón individual": {
+          "value": 49,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        },
+        "Colchón matrimonio": {
+          "value": 69,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        },
+        "Colchón king": {
+          "value": 89,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        },
+        "Sofá 3 plazas": {
+          "value": 95,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        },
+        "Sofá por plaza": {
+          "value": 32,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        },
+        "Pedido mínimo": {
+          "value": 70,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.2"
+        }
       },
       "C": {
-        "Colchón individual": [
-          49,
-          65,
-          79
-        ],
-        "Colchón matrimonio": [
-          69,
-          89,
-          109
-        ],
-        "Sofá 3 plazas": [
-          95,
-          119,
-          145
-        ],
-        "Pack Dormitorio": 149,
-        "Pack Casa": 200,
-        "Pedido mínimo": 79
+        "Colchón individual": {
+          "value": [
+            49,
+            65,
+            79
+          ],
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3"
+        },
+        "Colchón matrimonio": {
+          "value": [
+            69,
+            89,
+            109
+          ],
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3"
+        },
+        "Sofá 3 plazas": {
+          "value": [
+            95,
+            119,
+            145
+          ],
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3"
+        },
+        "Pack Dormitorio": {
+          "value": 149,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3",
+          "approx": true
+        },
+        "Pack Casa": {
+          "value": 200,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3",
+          "approx": true
+        },
+        "Pedido mínimo": {
+          "value": 79,
+          "label": "PROPOSAL",
+          "source": "pricing-decision.md §4.3",
+          "note": "or any pack"
+        }
       }
     },
     "rings": [
       {
         "ring": "R1",
         "scope": "Urban core, 24 barrios",
-        "population": 138997,
-        "households": 49600,
-        "travel": [
-          null,
-          3.5
-        ],
-        "travelNote": "core trips not routed; I6 €3.5 holds inside ≈10 km"
+        "population": {
+          "value": 138997,
+          "label": "FACT (1 source), provisional",
+          "source": "murcia-market.md §1.7"
+        },
+        "households": {
+          "value": 49600,
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §1.7",
+          "approx": true
+        },
+        "travel": {
+          "value": [
+            null,
+            3.5
+          ],
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §8.5",
+          "note": "core trips not routed; I6 €3.5 holds inside ≈10 km"
+        }
       },
       {
         "ring": "R2",
         "scope": "Municipality + inner belt",
-        "population": 704814,
-        "households": 250700,
-        "travel": [
-          2.8,
-          9.42
-        ],
-        "travelNote": "out-and-back at €0.175/km"
+        "population": {
+          "value": 704814,
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §1.7"
+        },
+        "households": {
+          "value": 250700,
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §1.7",
+          "approx": true
+        },
+        "travel": {
+          "value": [
+            2.8,
+            9.42
+          ],
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §8.5",
+          "note": "out-and-back at €0.175/km"
+        }
       },
       {
         "ring": "R3",
         "scope": "Outer ring (surcharge or minimum order)",
-        "population": 666428,
-        "households": 248500,
-        "travel": [
-          10.36,
-          27.55
-        ],
-        "travelNote": "out-and-back at €0.175/km"
+        "population": {
+          "value": 666428,
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §1.7"
+        },
+        "households": {
+          "value": 248500,
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §1.7",
+          "approx": true
+        },
+        "travel": {
+          "value": [
+            10.36,
+            27.55
+          ],
+          "label": "ESTIMATE",
+          "source": "murcia-market.md §8.5",
+          "note": "out-and-back at €0.175/km"
+        }
       }
     ]
   }

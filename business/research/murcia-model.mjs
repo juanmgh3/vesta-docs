@@ -97,6 +97,7 @@ const MONTHS = [
   "Aug-2027",
   "Sep-2027",
 ];
+const IVA_SETTLEMENT_MONTH = "Oct-2027";
 
 const fixedForMonth = (m) => (m <= FLAT_RATE_MONTHS_LEFT ? FIXED_FLAT : FIXED_FULL);
 const fixedForYear = (y) => {
@@ -145,6 +146,10 @@ function year1(scenKey, archKey) {
     if (cash < trough) {
       trough = cash;
       troughMonth = MONTHS[i];
+    }
+    if (i === 11 && cash - accrued < trough) {
+      trough = cash - accrued;
+      troughMonth = IVA_SETTLEMENT_MONTH;
     }
     rows.push({
       month: MONTHS[i],
@@ -207,7 +212,7 @@ function longRun(scenKey, archKey, endCashY1) {
   let hireNext = false;
   let visits = 0;
   let growth = (cfg.visits[1] / cfg.visits[0] - 1) / 2;
-  let ownerYear = null;
+  const ownerYears = [];
   const years = [];
   for (let y = 2; y <= MAX_YEAR; y++) {
     if (y === 2) visits = cfg.visits[0];
@@ -234,6 +239,8 @@ function longRun(scenKey, archKey, endCashY1) {
     );
     cash += r.result;
     let ownerResult = null;
+    const ownerHolds = hired > 0 ? hired * CAPACITY >= demand : null;
+    if (ownerHolds) ownerYears.push(y);
     if (hired > 0) {
       const ownerServed = Math.min(demand, hired * CAPACITY);
       ownerResult = yearResult(
@@ -245,7 +252,6 @@ function longRun(scenKey, archKey, endCashY1) {
         hired,
         newHire,
       ).result;
-      if (ownerYear === null && hired * CAPACITY >= demand) ownerYear = y;
     }
     const utilisation = served / capacity;
     const cashNeed =
@@ -267,11 +273,18 @@ function longRun(scenKey, archKey, endCashY1) {
       machine: r.machine,
       result: Math.round(r.result),
       cashEnd: Math.round(cash),
+      ownerStateHolds: ownerHolds,
       ownerStateResult: ownerResult === null ? null : Math.round(ownerResult),
       hireDecidedForNextYear: hireNext,
     });
   }
-  return { scenario: scenKey, arch: archKey, years, ownerYear };
+  return {
+    scenario: scenKey,
+    arch: archKey,
+    years,
+    ownerYear: ownerYears.length ? ownerYears[0] : null,
+    ownerYears,
+  };
 }
 
 const contribution = {};
@@ -340,27 +353,89 @@ for (const ak of Object.keys(ARCH)) {
   };
 }
 
+const fig = (value, label, source, extra = {}) => ({ value, label, source, ...extra });
+const S5 = "murcia-market.md §5";
+const MAD = "market-dossier.md §2.1 via murcia-market.md §5";
+const VAL = "market-dossier.md §3.1 via murcia-market.md §5";
+const GRA = "granada-market.md §4 via murcia-market.md §5";
+const MAD_VAL_LABEL = "FACT — own sites";
+const GRA_LABEL = "FACT (1 source)";
+const RANGE5 = "Range FACT (5 sources)";
+const MED = "medians ESTIMATE";
+const priceRow = (service, n, rangeLabel, medianLabel, median, medianVat, range, madrid, valencia, granada) => ({
+  service,
+  n,
+  murciaMedian: fig(median, medianLabel, S5),
+  murciaMedianVat: fig(medianVat, medianLabel, S5),
+  murciaRange: fig(range, rangeLabel, S5),
+  madrid: madrid === null ? fig(null, "NOT FOUND in dossier", S5) : fig(madrid, MAD_VAL_LABEL, MAD),
+  valencia: valencia === null ? fig(null, "NOT FOUND in dossier", S5) : fig(valencia, MAD_VAL_LABEL, VAL),
+  granada: fig(granada.value, GRA_LABEL, GRA, { note: granada.note }),
+});
+const gridFig = (value, sec, extra) => fig(value, "PROPOSAL", `pricing-decision.md ${sec}`, extra);
+const RING_SRC = "murcia-market.md §1.7";
+const TRAVEL_SRC = "murcia-market.md §8.5";
+
 const market = {
   source: "murcia-market.md §5 (price map), §1.7 and §8.5 (rings); pricing-decision.md §4 (grids)",
   priceMap: [
-    { service: "Colchón individual", n: 4, murciaMedian: 52.5, murciaMedianVat: 57.0, murciaRange: [36, 59], madrid: [35, 60], valencia: [25, 55], granada: null, granadaNote: "desde €45, no size (Happy Clean)" },
-    { service: "Colchón matrimonio", n: 4, murciaMedian: 67, murciaMedianVat: 70.8, murciaRange: [60, 100], madrid: [55, 90], valencia: [60, 75], granada: null, granadaNote: "Clean-Home add-on only" },
-    { service: "Colchón king", n: 2, murciaMedian: null, murciaMedianVat: null, murciaRange: [69, 120], madrid: [75, 100], valencia: [65, 100], granada: null, granadaNote: "Clean-Home add-on only, +€35" },
-    { service: "Sofá 2 plazas", n: 5, murciaMedian: 79, murciaMedianVat: 79, murciaRange: [60, 90], madrid: [60, 97], valencia: [69, 89], granada: [79, 79], granadaNote: "Clean-Home" },
-    { service: "Sofá 3 plazas", n: 5, murciaMedian: 100, murciaMedianVat: 100, murciaRange: [85, 120], madrid: [90, 119], valencia: [85, 119], granada: [85, 85], granadaNote: "Clean-Home" },
-    { service: "Chaise longue / L", n: 5, murciaMedian: 110, murciaMedianVat: 110, murciaRange: [89, 180], madrid: [120, 175], valencia: [89, 190], granada: [89, 99], granadaNote: "Clean-Home" },
-    { service: "Sillón / butaca", n: 3, murciaMedian: 40, murciaMedianVat: 40, murciaRange: [30, 60], madrid: [42, 50], valencia: null, granada: null, granadaNote: "desde €30 (Happy Clean)" },
-    { service: "Silla", n: 3, murciaMedian: 10, murciaMedianVat: 10, murciaRange: [5, 20], madrid: null, valencia: null, granada: null, granadaNote: "desde €5 (Happy Clean)" },
+    priceRow("Colchón individual", 4, "Range FACT (4 sources)", MED, 52.5, 57.0, [36, 59], [35, 60], [25, 55], { value: null, note: "desde €45, no size (Happy Clean)" }),
+    priceRow("Colchón matrimonio", 4, "Range FACT (4 sources)", MED, 67, 70.8, [60, 100], [55, 90], [60, 75], { value: null, note: "Clean-Home add-on only" }),
+    priceRow("Colchón king", 2, "FACT (1 source), provisional per provider", "no median (n < 3)", null, null, [69, 120], [75, 100], [65, 100], { value: null, note: "Clean-Home add-on only, +€35" }),
+    priceRow("Sofá 2 plazas", 5, RANGE5, MED, 79, 79, [60, 90], [60, 97], [69, 89], { value: [79, 79], note: "Clean-Home" }),
+    priceRow("Sofá 3 plazas", 5, RANGE5, MED, 100, 100, [85, 120], [90, 119], [85, 119], { value: [85, 85], note: "Clean-Home" }),
+    priceRow("Chaise longue / L", 5, RANGE5, MED, 110, 110, [89, 180], [120, 175], [89, 190], { value: [89, 99], note: "Clean-Home" }),
+    priceRow("Sillón / butaca", 3, "Range FACT (3 sources)", MED, 40, 40, [30, 60], [42, 50], null, { value: null, note: "desde €30 (Happy Clean)" }),
+    priceRow("Silla", 3, "Range FACT (3 sources)", MED, 10, 10, [5, 20], null, null, { value: null, note: "desde €5 (Happy Clean)" }),
   ],
   grids: {
-    A: { "Colchón individual": 39, "Colchón matrimonio": 55, "Colchón king": 69, "Sofá 3 plazas": 72, "Sofá por plaza": 25, "Pedido mínimo": 55 },
-    B: { "Colchón individual": 49, "Colchón matrimonio": 69, "Colchón king": 89, "Sofá 3 plazas": 95, "Sofá por plaza": 32, "Pedido mínimo": 70 },
-    C: { "Colchón individual": [49, 65, 79], "Colchón matrimonio": [69, 89, 109], "Sofá 3 plazas": [95, 119, 145], "Pack Dormitorio": 149, "Pack Casa": 200, "Pedido mínimo": 79 },
+    A: {
+      "Colchón individual": gridFig(39, "§4.1"),
+      "Colchón matrimonio": gridFig(55, "§4.1"),
+      "Colchón king": gridFig(69, "§4.1"),
+      "Sofá 3 plazas": gridFig(72, "§4.1"),
+      "Sofá por plaza": gridFig(25, "§4.1"),
+      "Pedido mínimo": gridFig(55, "§4.1"),
+    },
+    B: {
+      "Colchón individual": gridFig(49, "§4.2"),
+      "Colchón matrimonio": gridFig(69, "§4.2"),
+      "Colchón king": gridFig(89, "§4.2"),
+      "Sofá 3 plazas": gridFig(95, "§4.2"),
+      "Sofá por plaza": gridFig(32, "§4.2"),
+      "Pedido mínimo": gridFig(70, "§4.2"),
+    },
+    C: {
+      "Colchón individual": gridFig([49, 65, 79], "§4.3"),
+      "Colchón matrimonio": gridFig([69, 89, 109], "§4.3"),
+      "Sofá 3 plazas": gridFig([95, 119, 145], "§4.3"),
+      "Pack Dormitorio": gridFig(149, "§4.3", { approx: true }),
+      "Pack Casa": gridFig(200, "§4.3", { approx: true }),
+      "Pedido mínimo": gridFig(79, "§4.3", { note: "or any pack" }),
+    },
   },
   rings: [
-    { ring: "R1", scope: "Urban core, 24 barrios", population: 138997, households: 49600, travel: [null, 3.5], travelNote: "core trips not routed; I6 €3.5 holds inside ≈10 km" },
-    { ring: "R2", scope: "Municipality + inner belt", population: 704814, households: 250700, travel: [2.8, 9.42], travelNote: "out-and-back at €0.175/km" },
-    { ring: "R3", scope: "Outer ring (surcharge or minimum order)", population: 666428, households: 248500, travel: [10.36, 27.55], travelNote: "out-and-back at €0.175/km" },
+    {
+      ring: "R1",
+      scope: "Urban core, 24 barrios",
+      population: fig(138997, "FACT (1 source), provisional", RING_SRC),
+      households: fig(49600, "ESTIMATE", RING_SRC, { approx: true }),
+      travel: fig([null, 3.5], "ESTIMATE", TRAVEL_SRC, { note: "core trips not routed; I6 €3.5 holds inside ≈10 km" }),
+    },
+    {
+      ring: "R2",
+      scope: "Municipality + inner belt",
+      population: fig(704814, "ESTIMATE", RING_SRC),
+      households: fig(250700, "ESTIMATE", RING_SRC, { approx: true }),
+      travel: fig([2.8, 9.42], "ESTIMATE", TRAVEL_SRC, { note: "out-and-back at €0.175/km" }),
+    },
+    {
+      ring: "R3",
+      scope: "Outer ring (surcharge or minimum order)",
+      population: fig(666428, "ESTIMATE", RING_SRC),
+      households: fig(248500, "ESTIMATE", RING_SRC, { approx: true }),
+      travel: fig([10.36, 27.55], "ESTIMATE", TRAVEL_SRC, { note: "out-and-back at €0.175/km" }),
+    },
   ],
 };
 
@@ -436,7 +511,7 @@ const out = [];
 out.push("# Murcia model — generated tables");
 out.push("");
 out.push(
-  "Generated by `murcia-model.mjs`; do not edit by hand. Inputs and derivations: `murcia-model.md`. Euros; P&L net of IVA, pre-IRPF; cash gross with IVA remitted the month after each calendar quarter; starting cash €0, no loan.",
+  "Generated by `murcia-model.mjs`; do not edit by hand. Inputs and derivations: `murcia-model.md`. Euros; P&L net of IVA, pre-IRPF; cash gross with IVA remitted the month after each calendar quarter; starting cash €0, no loan. Cash trough = lowest cash point to cover, including the Oct-2027 payment of the Jul–Sep IVA (a trough dated Oct-2027 is that payment).",
 );
 out.push("");
 out.push("## T0. Derived per-visit inputs");
@@ -543,7 +618,7 @@ for (const sk of Object.keys(SCEN)) {
   out.push("");
   out.push(
     table(
-      ["Year", "Visits/mo", "Pieces/mo", "Operators", "Utilisation %", "Gross", "Operator cost", "Machine", "Result", "Cash end", "Owner-state result", "Hire for next year"],
+      ["Year", "Visits/mo", "Pieces/mo", "Operators", "Utilisation %", "Gross", "Operator cost", "Machine", "Result", "Cash end", "Owner state holds", "Owner-state result", "Hire for next year"],
       lr.years.map((y) => [
         `Y${y.year}`,
         fmt(y.visits, 1),
@@ -555,14 +630,24 @@ for (const sk of Object.keys(SCEN)) {
         fmt(y.machine),
         fmt(y.result),
         fmt(y.cashEnd),
+        y.ownerStateHolds === null ? "—" : y.ownerStateHolds ? "yes" : "no",
         fmt(y.ownerStateResult),
         y.hireDecidedForNextYear ? "yes" : "no",
       ]),
     ),
   );
   out.push("");
+  const lapsed = lr.years
+    .filter((y) => y.ownerStateHolds === false && lr.ownerYear !== null && y.year > lr.ownerYear)
+    .map((y) => `Y${y.year}`);
   out.push(
-    `Founder→owner milestone (hired operators alone carry demand): ${lr.ownerYear === null ? "not within Y8" : `Y${lr.ownerYear}`}.`,
+    `Founder→owner milestone (hired operators alone carry demand), re-checked every year: ${
+      lr.ownerYear === null
+        ? "not within Y8"
+        : `first reached Y${lr.ownerYear}; holds in ${lr.ownerYears.map((y) => `Y${y}`).join(", ")}${
+            lapsed.length ? `; lapses in ${lapsed.join(", ")}` : ""
+          }`
+    }.`,
   );
   out.push("");
 }

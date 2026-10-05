@@ -133,7 +133,7 @@ case by someone who did the work, not as generated filler.
   label from the economic report line.
   Running the script twice must produce identical files. _Verify:_ `node business/research/murcia-model.mjs && git diff --exit-code --stat -- business/research/murcia-model-tables.md business/research/murcia-model-data.json; echo "exit $?"`.
   Accept: Scenario: reproducible model — WHEN the script runs on a clean checkout THEN the tables and JSON are byte-identical to the committed ones (exit 0); every input row in `murcia-model.md` §1 has a label and a source file and section; the year-1 table starts at Oct-2026 and ends at Sep-2027.
-- [ ] **T9 — Model fix pass** (structural). In `murcia-model.mjs` and `murcia-model.md`,
+- [x] **T9 — Model fix pass** (structural). In `murcia-model.mjs` and `murcia-model.md`,
   close F-004 to F-008 at the lines the findings record names: (F-004) the cash trough
   per scenario includes the Oct-2027 payment of the Jul–Sep IVA, so it is the lowest
   cash point the founder must be able to cover; state it in §2; (F-005) §3 lists the
@@ -156,7 +156,8 @@ case by someone who did the work, not as generated filler.
   realista; cumulative cash by scenario; break-even pieces vs capacity per architecture;
   sensitivity grid; years 1–8 trajectory; price map Murcia vs Madrid/Valencia vs Granada
   (values from `murcia-market.md` §5 carried into the JSON by T2 as a `market` block or
-  hard-coded with their source in `murcia-model.md`); service rings (population and
+  hard-coded with their source in `murcia-model.md`; close F-009 by giving each Granada
+  row the label and section its source states); service rings (population and
   travel cost per ring). Write `ch-00-cover-toc.html` (cover with title "Informe de
   negocio — Grupo Vesta · Murcia", subtitle, "Documento interno · octubre 2026", chip
   legend; TOC with the 13 chapters and `.toc__page` placeholders "—") and the thirteen
@@ -234,3 +235,4 @@ case by someone who did the work, not as generated filler.
 |---|---|---|---|---|---|---|---|
 | T1 | grep counts + numstat (structural) | docs | no package.json, no runner; baseline counts 0 / 0 (exit 1) | n/a (structural) | `grep -c "Addendum 2026-10-06"` → 2; `grep -c "business-report-murcia" README.md` → 2; numstat `20	0` | Triangulation skipped: structural docs task, verified by counts and 0-deletion numstat | none |
 | T2 | verify command + double-run sha256 (structural) | model script | no package.json, no runner; baseline verify `Error: Cannot find module '...\murcia-model.mjs'` (exit 1) | n/a (structural) | `node business/research/murcia-model.mjs && git diff --exit-code --stat -- …tables.md …data.json` → `exit 0` | Triangulation skipped: structural; outputs untracked so git diff is vacuous until commit — reproducibility shown by two runs with identical sha256 (tables `18129d61…`, json `88ad897d…`) | none |
+| T9 | verify command + double-run sha256 (structural) | model script | baseline verify on committed T2 outputs: empty `git status --short`, `exit 0` | n/a (structural) | verify → ` M …murcia-model-data.json` / ` M …murcia-model-tables.md` / `exit 0` (intended regeneration); A × conservador trough `−974 (Oct-2027)`, B × realista Y1 result `4,768` unchanged | Triangulation skipped: structural; two runs give identical sha256 (tables `257d0335…`, json `46c4e569…`) | none |
