@@ -1,9 +1,32 @@
 # Vesta Docs
 
-Business documents for Grupo Vesta (reports, bank dossier, research, briefs).
+Business documents for Grupo Vesta (reports, research, briefs).
 Moved out of the vesta-web repo on 2026-07-08 to keep the web repo code-only.
 
-- `business/reports/` — marketing + economic reports (HTML/PDF) and the reusable template
-- `business/bank/` — bank financing dossier (HTML/PDF/DOCX)
+## Current deliverable
+
+- `business/reports/business-report-murcia.html` and `business/reports/business-report-murcia.pdf` —
+  the single business report for the Murcia launch (October 2026, no external
+  financing, no new purchases). It merges the economic and marketing reports.
+
+## Layout
+
+- `business/reports/` — the current report, the superseded reports and the reusable template
+- `business/reports/_template/` — `report.css`, `embedded-assets.css`, component docs and the
+  two build scripts:
+  - `build-charts.mjs` — reads `business/research/murcia-model-data.json`, writes the chart SVGs
+  - `build-report.mjs` — assembles the chapter fragments into the self-contained report HTML
+- `business/reports/_src/` — chapter fragments per report (`_src/murcia/ch-*.html`, `charts.html`)
 - `business/research/` — sourced research inputs + reproducible model scripts
+  (`murcia-market.md`, `murcia-model.mjs`, `founder-inputs.md`, `pricing-decision.md`)
+- `business/bank/` — bank financing dossier (superseded)
 - `briefs/` — the original assignment brief + starter prompts
+
+## Superseded, kept for history
+
+Replaced by `business-report-murcia` and not edited further:
+
+- `business/reports/economic-report.{html,pdf}` — economic report (Madrid/Valencia)
+- `business/reports/marketing-report.{html,pdf}` — marketing report (Madrid/Valencia)
+- `business/bank/bank-dossier.{html,pdf,docx}` — Granada bank financing dossier
+- `business/research/granada-market.md` and `business/research/bank-granada-scenario.mjs` — Granada research and bank scenario

@@ -146,6 +146,7 @@ Conventions in force (from the brief):
 - **Launch window.** **UNDECIDED** — operationally ready (equipment-wise), but the
   actual launch is gated by the relocation decision (Block 4).
   **SUPERSEDED 2026-10-05** → Addendum 2026-10-05.
+  **SUPERSEDED 2026-10-06** → Addendum 2026-10-06 (launch mid-October 2026).
 
 ---
 
@@ -201,3 +202,22 @@ It also supersedes the Block 5 "Launch window" item and FLAG-RESEARCH D.
 - **Service area.** "Murcia and surroundings". CAPTURED. The service radii are not
   fixed here — research proposes them (`murcia-market.md` §1).
 - **Launch window.** No longer gated by relocation. CAPTURED.
+
+## Addendum 2026-10-06 — launch and financing
+
+Stated by the founder on 2026-10-06. Supersedes the Block 5 "Launch window" item and
+the Addendum 2026-10-05 "Launch window" line; the superseded text above is kept as
+written. It also supersedes the Granada bank scenario (`bank-granada-scenario.mjs` and
+the bank dossier in `business/bank/`): no loan is sought.
+
+- **Launch.** Mid-October 2026; month 1 of the model = October 2026. CAPTURED.
+- **Financing.** No external financing — no loan, no credit line. CAPTURED.
+- **Purchases.** No new purchases at launch; the business operates with the equipment
+  already owned (Block 2: Hyla pack, drill, existing car). CAPTURED.
+- **Alta date and region.** TO-CONFIRM. The _alta_ is done (Block 2) but its date and
+  the region where it was filed are not recorded. Two consequences hang on it:
+  - **Tarifa plana months left** — how many reduced-cuota months remain before the
+    fixed cost steps up to the general quota.
+  - **Cuota Cero window** — whether the Región de Murcia Cuota Cero Ampliada aid
+    (`murcia-market.md` §8.1) is still within reach, which depends on where and when
+    the alta was filed.
