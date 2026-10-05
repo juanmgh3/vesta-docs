@@ -7,4 +7,11 @@
 - F-006 Minor fixed T9 business/research/murcia-model.md:108 — "single-piece paid visit" basis not stated; pricing-decision §4.2 gives −€22.48 for the same notion on another basis, the model gives −18.08
 - F-007 Minor fixed T9 business/research/murcia-model.mjs:248 — founder→owner milestone marked at Y5 and never re-checked; in Y7–Y8 demand exceeds hired capacity and the state lapses
 - F-008 Minor fixed T9 business/research/murcia-model.mjs:343 — JSON `market` block hand-copies price map, grids and rings with no per-figure label or source; "~€149" stored as 149
-- F-009 Minor open business/research/murcia-model.mjs:360 — Granada price-map rows all carry "FACT (1 source)" and "granada-market.md §4" from one constant; the Happy Clean anchors (colchón individual, sillón, silla) are graded differently in the source and silla appears only in §3
+- F-009 Minor fixed T3 business/research/murcia-model.mjs:360 — Granada price-map rows all carry "FACT (1 source)" and "granada-market.md §4" from one constant; the Happy Clean anchors (colchón individual, sillón, silla) are graded differently in the source and silla appears only in §3
+- F-010 Minor open business/reports/_template/build-charts.mjs:204 — sensitivity grid cells drawn as closed four-sided rects against the README's open-axes rule
+- F-011 Minor open business/reports/_template/build-charts.mjs:194 — "Demanda conservador" lacks gender agreement; SCEN_ES unused there
+- F-012 Minor open business/reports/_template/build-charts.mjs:290 — Murcia median mark drawn in teal (FACT colour) though it is ESTIMATE; caption calls it "mediana publicada"
+- F-013 Minor open business/reports/_template/build-charts.mjs:24 — euro ranges mix decimal precision ("2,8–9,42 €"); cent amounts need two decimals at both ends
+- F-014 Minor open business/reports/_template/build-charts.mjs:25 — month() prints "oct 27", readable as a day; use "oct. 2027"
+- F-015 Minor open business/reports/_template/build-charts.mjs:225 — three chart figures hard-coded (operators = 1, "24 barrios", "0,175 €/km") instead of read from a JSON field
+- F-016 Minor open business/reports/_src/murcia/ch-04-mercado.html:7 — chart-marker chips make the T5/T7 verify grep count >0 before prose exists; reviewers should count prose chips only

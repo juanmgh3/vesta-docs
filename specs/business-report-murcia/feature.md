@@ -146,7 +146,7 @@ case by someone who did the work, not as generated filler.
   source section as fields, and the pack price keeps its "~" as an `approx` flag.
   Regenerate the tables and JSON; the script stays deterministic. _Verify:_ `node business/research/murcia-model.mjs && node business/research/murcia-model.mjs && git status --short -- business/research/murcia-model-tables.md business/research/murcia-model-data.json; echo "exit $?"`.
   Accept: F-004 to F-008 are addressed; the trough row for A × conservador is ≤ −974; the B × realista year-1 result is unchanged at 4,768 unless a fix changes an input, in which case the report lists old and new values.
-- [ ] **T3 — Report skeleton, build script and charts** (structural). Write
+- [x] **T3 — Report skeleton, build script and charts** (structural). Write
   `build-report.mjs`: reads `ch-*.html` in order from `_src/murcia/`, inlines
   `report.css` and `embedded-assets.css`, inlines the chart SVGs from `charts.html` where
   a fragment has `<!-- chart:ID -->`, and writes `business-report-murcia.html`; no
@@ -210,6 +210,9 @@ case by someone who did the work, not as generated filler.
   pass like `CHECK.md`: extract text with `pdftotext -layout`, pick every figure in ch. 1,
   2, 7, 9 and 10 and trace it to its source file; check every chip label matches the
   source label; check no external URL, no placeholder, TOC page numbers match the PDF;
+  close F-010 to F-015 in `build-charts.mjs` (open grid cells, gender agreement,
+  estimate colour and caption for the Murcia median, two-decimal ranges, "oct. 2027"
+  month format, chart figures read from JSON fields) and rebuild;
   write `CHECK-murcia.md` with the result table and fix in place only what is a
   transcription error (report any other mismatch as a finding, do not rewrite prose).
   _Verify:_ `python -c "import pypdf,sys;r=pypdf.PdfReader('business/reports/business-report-murcia.pdf');print(len(r.pages))" && grep -c "Match" business/reports/CHECK-murcia.md; echo "exit $?"`.
@@ -236,3 +239,4 @@ case by someone who did the work, not as generated filler.
 | T1 | grep counts + numstat (structural) | docs | no package.json, no runner; baseline counts 0 / 0 (exit 1) | n/a (structural) | `grep -c "Addendum 2026-10-06"` → 2; `grep -c "business-report-murcia" README.md` → 2; numstat `20	0` | Triangulation skipped: structural docs task, verified by counts and 0-deletion numstat | none |
 | T2 | verify command + double-run sha256 (structural) | model script | no package.json, no runner; baseline verify `Error: Cannot find module '...\murcia-model.mjs'` (exit 1) | n/a (structural) | `node business/research/murcia-model.mjs && git diff --exit-code --stat -- …tables.md …data.json` → `exit 0` | Triangulation skipped: structural; outputs untracked so git diff is vacuous until commit — reproducibility shown by two runs with identical sha256 (tables `18129d61…`, json `88ad897d…`) | none |
 | T9 | verify command + double-run sha256 (structural) | model script | baseline verify on committed T2 outputs: empty `git status --short`, `exit 0` | n/a (structural) | verify → ` M …murcia-model-data.json` / ` M …murcia-model-tables.md` / `exit 0` (intended regeneration); A × conservador trough `−974 (Oct-2027)`, B × realista Y1 result `4,768` unchanged | Triangulation skipped: structural; two runs give identical sha256 (tables `257d0335…`, json `46c4e569…`) | none |
+| T3 | verify command + double-run sha256 (structural) | build scripts | model check `node business/research/murcia-model.mjs && git diff --exit-code --stat …` → `exit 0`; baseline verify `Error: Cannot find module '…\build-charts.mjs'` (exit 1) | n/a (structural) | build → `14 fragments, 8 svg`; `grep -c "<svg"` → 8; external-ref `grep -c` → 0 (grep's no-match `exit 1`) | Triangulation skipped: structural; two full runs (model + charts + report) give identical sha256 (charts `cc0e0d2a…`, report `58d8e8b4…`, json `9722af15…`, tables `257d0335…` unchanged); chapter titles diff TOC labels → exit 0; 7 captions carry a chip, 0 unfilled slots | sensitivity cells: trough text split onto two lines after a visual check showed overflow |

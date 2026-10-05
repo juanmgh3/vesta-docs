@@ -3799,8 +3799,8 @@
         },
         "granada": {
           "value": null,
-          "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "label": "FACT (1 source, weak — no size split)",
+          "source": "granada-market.md §4, §7 G9 via murcia-market.md §5",
           "note": "desde €45, no size (Happy Clean)"
         }
       },
@@ -3844,7 +3844,7 @@
         "granada": {
           "value": null,
           "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "source": "granada-market.md §3, §4 via murcia-market.md §5",
           "note": "Clean-Home add-on only"
         }
       },
@@ -3888,7 +3888,7 @@
         "granada": {
           "value": null,
           "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "source": "granada-market.md §3, §4 via murcia-market.md §5",
           "note": "Clean-Home add-on only, +€35"
         }
       },
@@ -3935,7 +3935,7 @@
             79
           ],
           "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "source": "granada-market.md §4, §7 G8 via murcia-market.md §5",
           "note": "Clean-Home"
         }
       },
@@ -3981,8 +3981,8 @@
             85,
             85
           ],
-          "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "label": "FACT (1 source; same brand FACT-graded in Valencia)",
+          "source": "granada-market.md §4, §7 G7 via murcia-market.md §5",
           "note": "Clean-Home"
         }
       },
@@ -4028,8 +4028,8 @@
             89,
             99
           ],
-          "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "label": "FACT (own site, this pass)",
+          "source": "granada-market.md §3 via murcia-market.md §5",
           "note": "Clean-Home"
         }
       },
@@ -4069,9 +4069,9 @@
         },
         "granada": {
           "value": null,
-          "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
-          "note": "desde €30 (Happy Clean)"
+          "label": "FACT (own site)",
+          "source": "granada-market.md §3, §4 via murcia-market.md §5",
+          "note": "desde €30 (Happy Clean); one data point, a directional signal only (§4)"
         }
       },
       {
@@ -4107,8 +4107,8 @@
         },
         "granada": {
           "value": null,
-          "label": "FACT (1 source)",
-          "source": "granada-market.md §4 via murcia-market.md §5",
+          "label": "FACT (own site)",
+          "source": "granada-market.md §3 via murcia-market.md §5",
           "note": "desde €5 (Happy Clean)"
         }
       }

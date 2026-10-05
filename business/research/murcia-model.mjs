@@ -357,9 +357,8 @@ const fig = (value, label, source, extra = {}) => ({ value, label, source, ...ex
 const S5 = "murcia-market.md §5";
 const MAD = "market-dossier.md §2.1 via murcia-market.md §5";
 const VAL = "market-dossier.md §3.1 via murcia-market.md §5";
-const GRA = "granada-market.md §4 via murcia-market.md §5";
 const MAD_VAL_LABEL = "FACT — own sites";
-const GRA_LABEL = "FACT (1 source)";
+const gra = (value, note, label, sec) => ({ value, note, label, source: `granada-market.md ${sec} via murcia-market.md §5` });
 const RANGE5 = "Range FACT (5 sources)";
 const MED = "medians ESTIMATE";
 const priceRow = (service, n, rangeLabel, medianLabel, median, medianVat, range, madrid, valencia, granada) => ({
@@ -370,7 +369,7 @@ const priceRow = (service, n, rangeLabel, medianLabel, median, medianVat, range,
   murciaRange: fig(range, rangeLabel, S5),
   madrid: madrid === null ? fig(null, "NOT FOUND in dossier", S5) : fig(madrid, MAD_VAL_LABEL, MAD),
   valencia: valencia === null ? fig(null, "NOT FOUND in dossier", S5) : fig(valencia, MAD_VAL_LABEL, VAL),
-  granada: fig(granada.value, GRA_LABEL, GRA, { note: granada.note }),
+  granada: fig(granada.value, granada.label, granada.source, { note: granada.note }),
 });
 const gridFig = (value, sec, extra) => fig(value, "PROPOSAL", `pricing-decision.md ${sec}`, extra);
 const RING_SRC = "murcia-market.md §1.7";
@@ -379,14 +378,14 @@ const TRAVEL_SRC = "murcia-market.md §8.5";
 const market = {
   source: "murcia-market.md §5 (price map), §1.7 and §8.5 (rings); pricing-decision.md §4 (grids)",
   priceMap: [
-    priceRow("Colchón individual", 4, "Range FACT (4 sources)", MED, 52.5, 57.0, [36, 59], [35, 60], [25, 55], { value: null, note: "desde €45, no size (Happy Clean)" }),
-    priceRow("Colchón matrimonio", 4, "Range FACT (4 sources)", MED, 67, 70.8, [60, 100], [55, 90], [60, 75], { value: null, note: "Clean-Home add-on only" }),
-    priceRow("Colchón king", 2, "FACT (1 source), provisional per provider", "no median (n < 3)", null, null, [69, 120], [75, 100], [65, 100], { value: null, note: "Clean-Home add-on only, +€35" }),
-    priceRow("Sofá 2 plazas", 5, RANGE5, MED, 79, 79, [60, 90], [60, 97], [69, 89], { value: [79, 79], note: "Clean-Home" }),
-    priceRow("Sofá 3 plazas", 5, RANGE5, MED, 100, 100, [85, 120], [90, 119], [85, 119], { value: [85, 85], note: "Clean-Home" }),
-    priceRow("Chaise longue / L", 5, RANGE5, MED, 110, 110, [89, 180], [120, 175], [89, 190], { value: [89, 99], note: "Clean-Home" }),
-    priceRow("Sillón / butaca", 3, "Range FACT (3 sources)", MED, 40, 40, [30, 60], [42, 50], null, { value: null, note: "desde €30 (Happy Clean)" }),
-    priceRow("Silla", 3, "Range FACT (3 sources)", MED, 10, 10, [5, 20], null, null, { value: null, note: "desde €5 (Happy Clean)" }),
+    priceRow("Colchón individual", 4, "Range FACT (4 sources)", MED, 52.5, 57.0, [36, 59], [35, 60], [25, 55], gra(null, "desde €45, no size (Happy Clean)", "FACT (1 source, weak — no size split)", "§4, §7 G9")),
+    priceRow("Colchón matrimonio", 4, "Range FACT (4 sources)", MED, 67, 70.8, [60, 100], [55, 90], [60, 75], gra(null, "Clean-Home add-on only", "FACT (1 source)", "§3, §4")),
+    priceRow("Colchón king", 2, "FACT (1 source), provisional per provider", "no median (n < 3)", null, null, [69, 120], [75, 100], [65, 100], gra(null, "Clean-Home add-on only, +€35", "FACT (1 source)", "§3, §4")),
+    priceRow("Sofá 2 plazas", 5, RANGE5, MED, 79, 79, [60, 90], [60, 97], [69, 89], gra([79, 79], "Clean-Home", "FACT (1 source)", "§4, §7 G8")),
+    priceRow("Sofá 3 plazas", 5, RANGE5, MED, 100, 100, [85, 120], [90, 119], [85, 119], gra([85, 85], "Clean-Home", "FACT (1 source; same brand FACT-graded in Valencia)", "§4, §7 G7")),
+    priceRow("Chaise longue / L", 5, RANGE5, MED, 110, 110, [89, 180], [120, 175], [89, 190], gra([89, 99], "Clean-Home", "FACT (own site, this pass)", "§3")),
+    priceRow("Sillón / butaca", 3, "Range FACT (3 sources)", MED, 40, 40, [30, 60], [42, 50], null, gra(null, "desde €30 (Happy Clean); one data point, a directional signal only (§4)", "FACT (own site)", "§3, §4")),
+    priceRow("Silla", 3, "Range FACT (3 sources)", MED, 10, 10, [5, 20], null, null, gra(null, "desde €5 (Happy Clean)", "FACT (own site)", "§3")),
   ],
   grids: {
     A: {
