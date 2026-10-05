@@ -145,6 +145,7 @@ Conventions in force (from the brief):
   when to hire the first operator, when to delegate the operation.
 - **Launch window.** **UNDECIDED** — operationally ready (equipment-wise), but the
   actual launch is gated by the relocation decision (Block 4).
+  **SUPERSEDED 2026-10-05** → Addendum 2026-10-05.
 
 ---
 
@@ -167,6 +168,7 @@ Conventions in force (from the brief):
 - **B.** Web hosting / running cost for a static, backend-less site.
 - **C.** Autónomo monthly cuota quantification (tarifa plana vs. general quota).
 - **D.** Plausible operating zones per city (Madrid / Valencia).
+  **SUPERSEDED 2026-10-05** → zone research now runs for Murcia in `murcia-market.md` §2.
 - **E.** Chile → EUR exchange rate at report date.
 
 **TO-CONFIRM / validate:**
@@ -193,6 +195,7 @@ Conventions in force (from the brief):
 
 Stated by the founder on 2026-10-05. Supersedes Block 4 and consolidated UNDECIDED
 items 2 and 4; the superseded text above is kept as written.
+It also supersedes the Block 5 "Launch window" item and FLAG-RESEARCH D.
 
 - **Operating base.** **Murcia capital.** CAPTURED.
 - **Service area.** "Murcia and surroundings". CAPTURED. The service radii are not

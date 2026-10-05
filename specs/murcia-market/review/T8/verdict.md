@@ -1,0 +1,17 @@
+## Open findings
+- F-001 — fixed — business/research/founder-inputs.md:148 adds the SUPERSEDED mark under Block 5 "Launch window", and :198 names that item in the addendum's scope. This is an added sentence, not a rewording, which the additions-only rule requires. The supersession matches the addendum at :203 ("No longer gated by relocation").
+- F-002 — fixed — business/research/founder-inputs.md:171 adds the SUPERSEDED mark under FLAG-RESEARCH D, pointing to `murcia-market.md` §2, as the brief asked.
+- F-003 — fixed — business/research/murcia-market.md:146-148 replaces the "CREM agrees" claim with "a republication is not a second source". :180-182 labels every ring population except Murcia, and every household size, "FACT (1 source), provisional". :202 does the same for R1's 138,997, and :203-204 names the provisional rows in the R2/R3 sums. :34 still mentions CREM, but only as a republication, not as confirmation.
+- F-004 — fixed — business/research/murcia-market.md:202 now reads ≈49,600 (÷2.8 municipal) only. :207-209 now agrees with :112 that the district values are not used to size R1. No ÷2.6 and no 49,600–53,500 is left in the file. The remaining 2.6 is the district range at :113 and the Granada ratio at :223.
+- F-005 — fixed — every FACT row (:34-36, 49-51, 61-69, 81-84, 119-122, 137) and both source notes (:110-111, :143-151) now carry "Retrieved 2026-10". :121-122 have the table 31123 URL. The prose FACTs at :91-93 and :193-195 are sourced and labelled provisional. Whether those sources are real is under Minor below.
+- F-006 — fixed — business/research/murcia-market.md:37 reads "Two publications of one register", and :180 is consistent with it.
+
+I recomputed the numbers. The inner belt sums to 225,409, so R2 is 704,814. The outer ring sums to 666,428. 138,997 ÷ 2.8 = 49,642, which rounds to ≈49,600 and fits "≈50,000" at :225. I compared every population, household-size, household-estimate, km, minute and percentage cell against T2's text (T2/diff.md): they are identical. The only change is the R1 upper bound, which the brief allowed to be dropped. founder-inputs.md shows 3 added lines and 0 deleted. The T8 evidence row in feature.md matches the report's final run (12 and 5).
+
+## Minor
+- business/research/murcia-market.md:91-93 and :193-195 — In both places a source was attached without being read. F-005 allowed "give a source … or relabel them", and the executor attached citations without reopening the tables. The report says so for the "highest in Spain" ranking (INE table 60134), and the same applies to the Torrevieja 34.9% and Los Alcázares 30.6% shares (ADRH tables 30841 and 31123). T2's report never says where these numbers came from. If table 60134 does not rank the regions, or the shares are not in those tables, the file shows a URL-backed FACT that its cited source does not contain. A plausible-looking source breaks the rule against filling in plausible values just as a made-up number would. It is labelled provisional and T7 re-checks it, so it does not block. The fix is for T7 to confirm both against the tables, or to relabel them HYPOTHESIS with the source NOT FOUND.
+
+## Cannot verify from diff
+- Whether INE table 60134 ranks Región de Murcia's 2.7 as the highest in Spain, and whether ADRH tables 30841 and 31123 publish the 34.9% and 30.6% one-person shares.
+
+Memory: I added one lesson line to C:\Users\juanm\.claude\agent-memory\reviewer-opus\feedback_review_heuristics.md.

@@ -63,7 +63,7 @@ and no local keyword or CPC data.
   label standard, method, what is reused from `market-dossier.md`) and the empty
   numbered sections 1–10 named as in T2–T7. _Verify:_ `grep -c "^## " business/research/murcia-market.md` and `grep -c "Addendum 2026-10-05" business/research/founder-inputs.md`.
   Accept: the skeleton has the ten `## N.` sections and the addendum exists; no prior line of `founder-inputs.md` is deleted (`git diff` shows additions and superseded marks only).
-- [ ] **T2 — Geography, population, households, service radii** (structural). Fill §1.
+- [x] **T2 — Geography, population, households, service radii** (structural). Fill §1.
   Murcia municipality population (INE Padrón, latest) with second source; split urban
   core vs pedanías (the municipality has ~54 pedanías; largest ones named with
   population); households from INE Censo 2021 / CREM directly, and average household
@@ -77,6 +77,23 @@ and no local keyword or CPC data.
   (outer ring, occasional or surcharge) with population and households each, and say
   which ring a single operator at 4 services/day can serve. _Verify:_ `grep -c "^### 1\." business/research/murcia-market.md`.
   Accept: population and household figures are FACT with two sources or declared provisional; household size and 45–65 share are Murcia-measured or explicitly NOT FOUND with the borrowed proxy shown; every ring row has population, km and minutes or NOT FOUND.
+- [x] **T8 — Fix pass on T1/T2 review findings** (structural). Text corrections only,
+  no new research, no figure changed. In `murcia-market.md` §1: (F-003) relabel every
+  ring population and household-size row that rests on one source as "FACT (1 source),
+  provisional", including R1's 138,997 in the radii table, and remove the claim that a
+  CREM republication of INE confirms a figure, so the file obeys its own rule in §1.1;
+  (F-004) drop the R1 upper bound derived from the district-level 2.6 divisor, or keep
+  it only as an explicitly labelled HYPOTHESIS proxy, and remove the contradiction with
+  the statement that the district table is not used to size R1; (F-005) add the
+  retrieval date (2026-10) to every FACT row, add the source URL to the 65+ share and
+  mean-age rows, and give a source to the prose FACTs (regional 2.7 "highest in Spain",
+  one-person shares for Torrevieja and Los Alcázares) or relabel them; (F-006) reword
+  the population verdict cell to "two publications of one register". In
+  `founder-inputs.md`: (F-001) add a superseded mark under the Block 5 "Launch window"
+  item and widen the addendum's scope sentence to name it; (F-002) add a superseded
+  mark under FLAG-RESEARCH D pointing to `murcia-market.md` §2. Additions only in
+  `founder-inputs.md`. _Verify:_ `grep -c "provisional" business/research/murcia-market.md` and `grep -c "SUPERSEDED 2026-10-05" business/research/founder-inputs.md`.
+  Accept: each of F-001 to F-006 is addressed at the lines the findings record names; no population, household, distance or percentage figure differs from the T2 text; `founder-inputs.md` diff has no deleted line.
 - [ ] **T3 — Income, premium zones and segment sizing** (structural). Fill §2 and §3.
   §2: net income per household and per person, INE ADRH latest, for Murcia
   municipality with second source, set against Granada, Valencia city, Madrid region
@@ -153,12 +170,19 @@ and no local keyword or CPC data.
 
 - 2026-10-05 approved (gated). Founder-side note at approval: the end deliverable is a
   complete, polished PDF built on this research; that PDF is the next feature.
+- 2026-10-05 T1 committed (e198c22).
+- 2026-10-05 stop at T2: reviewer raised open Critical F-003 (single-source ring
+  figures labelled plain FACT). T2 not committed; run halted for the human.
+- 2026-10-05 human decision: add a fix task and continue. Recorded as T8, placed
+  after T2 (the lint accepts only numeric task ids, so not "T2a").
 
 ## Evidence
 
 | Task | Test | Layer | Safety net | RED | GREEN | Triangulate | Refactor |
 |---|---|---|---|---|---|---|---|
 | T1 | structural — `grep -c "^## " business/research/murcia-market.md`; `grep -c "Addendum 2026-10-05" business/research/founder-inputs.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `grep: business/research/murcia-market.md: No such file or directory` exit 2, addendum count `0` exit 1 | `10` exit 0; `4` exit 0; `git diff --numstat HEAD`: `15	0	business/research/founder-inputs.md` | Triangulation skipped: structural skeleton, no behaviour to triangulate; TODO/TBD/lorem grep empty (exit 1) | none |
+| T2 | structural — `grep -c "^### 1\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `7` exit 0; `git diff --numstat HEAD`: `191	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `7` | none |
+| T8 | structural — `grep -c "provisional" business/research/murcia-market.md`; `grep -c "SUPERSEDED 2026-10-05" business/research/founder-inputs.md` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change counts `5` exit 0, `3` exit 0 | n/a (structural) | `12` exit 0; `5` exit 0; `git diff --numstat HEAD -- business/research/founder-inputs.md`: `3	0	business/research/founder-inputs.md` | Triangulation skipped: text-only fix pass; numeric-token diff before/after shows only added dates, table ids, URLs and § refs, plus the dropped R1 upper bound (`49,600–53,500` → `49,600`, `2.6` removed) per F-004; TODO/TBD/lorem grep empty (exit 1) | none |
 
 ## Briefing
 
