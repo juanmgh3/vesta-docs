@@ -159,7 +159,7 @@ and no local keyword or CPC data.
   with Murcia range, median where n≥3, and the Madrid/Valencia cluster and Granada
   figure beside it; density and white-space reading labelled ANALYSIS. _Verify:_ `grep -c "^| \*\*" business/research/murcia-market.md`.
   Accept: Scenario: sweep depth — WHEN the provider table is counted THEN it has ≥15 rows or an exhaustion statement listing the searches run; every price cell is a figure read on the provider's page with URL, or NOT FOUND.
-- [ ] **T5 — Demand signals, seasonality and acquisition** (structural). Fill §6 and
+- [x] **T5 — Demand signals, seasonality and acquisition** (structural). Fill §6 and
   §7. §6: Google Trends regional index for the core terms, Región de Murcia against
   Andalucía, Comunitat Valenciana, Madrid (method of `trends-keywords-addendum.md`);
   any Murcia-geo keyword volume or CPC obtainable from free tools, else NOT FOUND with
@@ -172,6 +172,20 @@ and no local keyword or CPC data.
   associations), each with what it is and why it is plausible, labelled HYPOTHESIS
   where untested. _Verify:_ `grep -c "^### [67]\." business/research/murcia-market.md`.
   Accept: every Trends or keyword figure states tool, geo filter and date, or is NOT FOUND; climate table has 12 months from AEMET; B2B counts are FACT with source or NOT FOUND.
+- [ ] **T11 — Fix pass on T4/T5 review findings** (structural). In `murcia-market.md`
+  §4–§7, close F-021 to F-040 at the lines `specs/murcia-market/review/findings.md`
+  names, each as that entry describes. Source re-reads are allowed only for these
+  three and each result is reported with what was read: (F-031) re-read Google Trends
+  for the regional table and state per column which request it came from (one
+  two-term comparison, or single-term requests), correcting any mis-transcribed cell;
+  (F-034) re-read the AEMET station page and say whether the Year row is AEMET's
+  published annual value or a sum of the monthly rows, correcting any mis-transcribed
+  monthly cell; (review note on §7.1) re-read the regional tourism register figure for
+  San Javier, which matches INE's count to the dwelling, and correct it or state that
+  both sources were read and agree. Everything else is wording, labels and
+  arithmetic on rows already in the file: no provider, price or count is added.
+  Where a finding offers two fixes, take the one that claims less. _Verify:_ `grep -n "FACT (1 source" business/research/murcia-market.md | grep -v -c "FACT (1 source), provisional"` (must print 0) and `grep -c "Spain proxy" business/research/murcia-market.md`.
+  Accept: each of F-021 to F-040 is addressed; every changed figure is listed in the report with old value, new value and the source read; §1–§3 are untouched.
 - [ ] **T6 — Local operating costs, access rules and financing landscape** (structural).
   Fill §8. Autónomo cuota for an existing alta moved to Región de Murcia, and whether
   the regional "cuota cero" aid applies to this case (state the eligibility condition
@@ -229,6 +243,10 @@ and no local keyword or CPC data.
 - 2026-10-05 T9 reviewed: F-008 to F-014 fixed; new open Critical F-015 (labelling,
   no figure in question). Under the standing authorization, fix task T10 added
   (whole-file label sweep, proven by a grep now also in Checks); run continues.
+- 2026-10-05 T3 + T9 + T10 committed (2e0abed); T4 committed (e76ee7d), no Critical.
+- 2026-10-05 T5 reviewed, no Critical. Orchestrator decision: fix task T11 added
+  before T6 for the T4/T5 findings (F-021 to F-040), so T7 keeps to the headline
+  table, the source re-opening and F-007, F-019, F-020.
 
 ## Evidence
 
@@ -241,6 +259,7 @@ and no local keyword or CPC data.
 | T9 | structural — `grep -c "provisional" business/research/murcia-market.md`; `grep -c "CONFLICTING" business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change counts `15` exit 0, `1` exit 0 (T3 uncommitted by design) | n/a (structural) | `18` exit 0; `3` exit 0 | Triangulation skipped: text fix pass; F-009 re-read INE 53689 confirms €48,806 / €18,142 (no cell changed); F-011 national dogs per inhabitant ≈0.20 → ≈0.19 (denominator 45,678,948 AEAT → 48,320,520 INE 56940, 1-Jul-2023); zone ratios recomputed (1.71, 1.37, 1.28, 1.17, 1.01, 0.90, 1.49, 1.69); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
 | T10 | structural — `grep -n "FACT (1 source" business/research/murcia-market.md \| grep -v -c "FACT (1 source), provisional"` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change count `16` exit 0 (T3/T9 uncommitted by design) | n/a (structural) | `0` exit 1 (grep -c on zero matches) | Triangulation skipped: text-only label sweep; numeric-token diff before/after: only `56940` → `56934` (×2), plus the `1` of each new "FACT (1 source)" label and `ECP320` (series code); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
 | T4 | structural — `grep -c "^\| \*\*" business/research/murcia-market.md` (Scenario: sweep depth) | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `14` exit 0 (bold rows of §1–§3) | `34` exit 0 (14 + 20 provider rows); `git diff --numstat HEAD`: `158	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `33`; protected-files diff stat empty | none |
+| T5 | structural — `grep -c "^### [67]\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `8` exit 0; `git diff --numstat HEAD`: `239	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; label grep `0` exit 1; no FACT label ends a line; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `46`; protected-files diff stat empty | none |
 
 ## Briefing
 

@@ -29,3 +29,14 @@
 - F-027 Minor open business/research/murcia-market.md:637 — reputation criterion "≥30 reviews on a local listing" counts Happy Clean's Torrevieja listing; as written it leaves two providers, not three
 - F-028 Minor open business/research/murcia-market.md:595 — two general cleaners with upholstery NOT FOUND and one snippet-only row with a non-standard label are counted in the "20 profiled"; 17 hold without them
 - F-029 Minor open business/research/murcia-market.md:682 — "a price set inside €79–100 … €55–70" is a price band, which the Constraints rule out, and blends individual and matrimonio medians
+- F-030 Important open business/research/murcia-market.md:923 — neighbourhood-association row claims to reach "the premium cluster of §2.2 (Santa María de Gracia, El Carmen, San Lorenzo)"; §2.2's cluster is centro, Vistalegre, La Flota; the test ordering at lines 927-928 rests on the wrong barrios
+- F-031 Important open business/research/murcia-market.md:706 — Trends split column and index columns cannot come from the single request cited at line 696 (index/split quotient differs by region beyond rounding); re-read or state the provenance per column
+- F-032 Important open business/research/murcia-market.md:821 — Spain search curve presented as Murcia demand in the climate reading and at line 908 ("the household curve"); each use needs "(Spain proxy)"
+- F-033 Minor open business/research/murcia-market.md:756 — "peak over trough ≈1.7×" and the July–September quarter rest on means of 3–5 values with no spread; state the spread or drop the added seasonal claim
+- F-034 Minor open business/research/murcia-market.md:802 — climate Year row does not follow from the monthly rows (sunshine 2,953 vs 2,967; mean daily min 12.21 vs 12.3); say whether it is AEMET's published annual value or fix the cell
+- F-035 Minor open business/research/murcia-market.md:813 — "least favourable month (December)" not singled out by the stated criterion; "mild" and "moderately humid" have no criterion
+- F-036 Minor open business/research/murcia-market.md:773 — "FACT (displayed band)" is not standard label wording, and the carried band drops the addendum's Ubersuggest 1.3K vs Ahrefs <100 conflict
+- F-037 Minor open business/research/murcia-market.md:925 — "Category existence FACT (1 source), provisional (§4.1 sources)" has no URL and no retrieval date
+- F-038 Minor open business/research/murcia-market.md:921 — "largest daily of the region" is a verdict with no source and no criterion
+- F-039 Minor open business/research/murcia-market.md:924 — word of mouth called "the dominant channel"; the dossier says "a dominant channel", rated MODERATE, from a home-repairs survey
+- F-040 Minor open business/research/murcia-market.md:696 — only 2 of the addendum's 9 core terms were read and nothing says why the others, including "ácaros", were dropped
