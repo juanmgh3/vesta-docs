@@ -274,6 +274,9 @@ and no local keyword or CPC data.
 - 2026-10-05 T6 committed (3e88eb6). T7 reviewed: F-007, F-019, F-020, F-041 to F-051
   fixed; new open Critical F-052 (population label, no figure in question). Under the
   standing authorization, fix task T12 added for F-052 to F-057; run continues.
+- 2026-10-05 T7 + T12 committed (77ca300); F-052 to F-057 fixed.
+- 2026-10-05 closed. All twelve tasks checked, Checks run clean. One finding left
+  open for the human: F-058 Minor (G4 note says "a quarter", the file's share is 29%).
 
 ## Evidence
 
