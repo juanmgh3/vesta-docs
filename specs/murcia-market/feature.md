@@ -39,6 +39,13 @@ and no local keyword or CPC data.
 - Primary statistical sources first: INE (Padrón, Censo 2021, ADRH) and CREM /
   Econet (Centro Regional de Estadística de Murcia). Newsroom citations of INE are a
   fallback, declared as a fallback.
+- Label wording is exact (added 2026-10-05 after two review stops): a FACT resting on
+  one source is always written "FACT (1 source), provisional"; a republication or
+  press release by the same body is not a second source; every FACT row and every
+  FACT stated in prose carries its URL and "Retrieved 2026-10"; the label is never
+  split across a line break and qualifiers go after it; a cross-check on a
+  different metric is named as such and never upgrades a label; a verdict word
+  (premium, dense, cheap) needs a stated criterion.
 - Incompatible geographic definitions are flagged, never blended or averaged.
 - National rates already graded in `market-dossier.md` (§5.1 allergy, §5.2 pets,
   §6.1–6.3 CPC/CVR, §9 admin costs) are reused by reference and re-researched only
@@ -94,7 +101,7 @@ and no local keyword or CPC data.
   mark under FLAG-RESEARCH D pointing to `murcia-market.md` §2. Additions only in
   `founder-inputs.md`. _Verify:_ `grep -c "provisional" business/research/murcia-market.md` and `grep -c "SUPERSEDED 2026-10-05" business/research/founder-inputs.md`.
   Accept: each of F-001 to F-006 is addressed at the lines the findings record names; no population, household, distance or percentage figure differs from the T2 text; `founder-inputs.md` diff has no deleted line.
-- [ ] **T3 — Income, premium zones and segment sizing** (structural). Fill §2 and §3.
+- [x] **T3 — Income, premium zones and segment sizing** (structural). Fill §2 and §3.
   §2: net income per household and per person, INE ADRH latest, for Murcia
   municipality with second source, set against Granada, Valencia city, Madrid region
   and national (same table as `granada-market.md` §6); income by district / census
@@ -107,6 +114,37 @@ and no local keyword or CPC data.
   Alergológica or SEAIC before falling back to national), pet-owning households
   (regional registry figure if one exists, else national ANFAAC anchor). _Verify:_ `grep -c "^### [23]\." business/research/murcia-market.md`.
   Accept: the income comparison table has all five geographies with labels; at least four zones are named with an income figure or NOT FOUND each; every segment product is labelled ESTIMATE with its rate and denominator shown.
+- [x] **T9 — Fix pass on T3 review findings** (structural). In `murcia-market.md`
+  §2–§3, at the lines the findings record names. (F-008) Relabel the Murcia income row
+  "FACT (1 source), provisional" and state that the AEAT cross-check supports only the
+  per-person ordering, not the per-household one. (F-009) Re-open the INE ADRH table at
+  its source for the Comunidad de Madrid net income per household and per person, 2023:
+  if the figure read differs from the cell, correct the cell and every gap computed
+  from it; if the source confirms €48,806, keep it, label the cell CONFLICTING against
+  `market-dossier.md` §5.3 (€43,037) and state which table, row and year was read; do
+  not edit `market-dossier.md`. (F-010) Apply the §1.1 republication rule to the
+  comparison rows: an INE press release is not a second source for an INE table; mark
+  National, Granada, Valencia and the AEAT row "FACT (1 source), provisional" unless a
+  second independent source is cited. (F-011) Recompute dogs per inhabitant with a
+  Spain-wide denominator from INE, cited, or flag the common-territory scope
+  explicitly; flag the same scope on the AEAT "National" column. (F-012) State one
+  criterion for zone verdicts (tie it to the file's 1.5× high-income cut-off) and apply
+  it to all eight zones; Vistalegre and La Flota must come out consistent with it.
+  (F-013) Correct the sentence on which cells of the ring summary are ESTIMATE.
+  (F-014) Correct the Valencia per-person gap to the computed figure. This is the only
+  task in this pass allowed new source reads, and only for F-009 and F-011. _Verify:_ `grep -c "provisional" business/research/murcia-market.md` and `grep -c "CONFLICTING" business/research/murcia-market.md`.
+  Accept: each of F-008 to F-014 is addressed at the lines the findings record names; no Murcia figure changes; any changed comparison figure is listed in the report with old value, new value and the source row read.
+- [x] **T10 — Label sweep of §1–§3** (structural). Text corrections only, no new
+  research, no figure changed. Whole-file sweep of `murcia-market.md`, not only the
+  lines the findings name: (F-015, F-016) every single-source FACT label, in tables,
+  captions and prose, reads exactly "FACT (1 source), provisional", with any qualifier
+  (source name, field-work year, "read directly") moved after it; the label is never
+  split across a line break, so a grep can prove it; a bare "FACT" in a caption that
+  covers single-source figures gets the full wording. (F-017) Name the AEAT mean
+  "common-territory mean" wherever it is compared, never "national". (F-018) Cite the
+  INE table the 1-Jul-2023 Spain population was actually read from (56934), keeping the
+  series code. _Verify:_ `grep -n "FACT (1 source" business/research/murcia-market.md | grep -v -c "FACT (1 source), provisional"` (must print 0).
+  Accept: the verify command prints 0; F-015 to F-018 are addressed; a numeric-token diff of the file before and after shows no figure changed except the table id 56940 → 56934.
 - [ ] **T4 — Competition sweep and local price map** (structural). Fill §4 and §5 at
   Madrid/Valencia depth: at least 15 providers profiled, or every provider found plus
   an explicit statement that the field is exhausted and with which searches. Search
@@ -155,13 +193,18 @@ and no local keyword or CPC data.
   parameter swap; a "Gaps and what closes them" list (shape of `market-dossier.md`
   §11), ranked by how much each gap moves the model. §10: sources appendix by section.
   Re-open every load-bearing FACT of §9 at its source and confirm the figure; record
-  the result per row. _Verify:_ `grep -c "^| M[0-9]" business/research/murcia-market.md`.
+  the result per row. Close every finding still `open` in
+  `specs/murcia-market/review/findings.md` at the lines it names (at the time of
+  writing: F-007 confirm or relabel two attached sources; F-019 relabel the three
+  "FACT (2 publications)" pedanía rows; F-020 relabel the 45–64 row and reword its
+  "two sources" verdict), plus any raised by T4–T6. _Verify:_ `grep -c "^| M[0-9]" business/research/murcia-market.md`.
   Accept: Scenario: traceable headline — WHEN any row of the §9 table is picked THEN it names its section, its label and its source status, and a reader can reach the source URL in §10; the delta table covers every G-row of `granada-market.md` §7.
 
 ## Checks
 
 - `grep -c "^## [0-9]" business/research/murcia-market.md`
 - `grep -c "NOT FOUND" business/research/murcia-market.md`
+- `grep -n "FACT (1 source" business/research/murcia-market.md | grep -v -c "FACT (1 source), provisional"`
 - `grep -c "https\?://" business/research/murcia-market.md`
 - `grep -n -i "TODO\|TBD\|lorem" business/research/murcia-market.md`
 - `git diff --stat HEAD -- business/research/granada-market.md business/research/economic-model.md business/bank business/reports`
@@ -175,6 +218,17 @@ and no local keyword or CPC data.
   figures labelled plain FACT). T2 not committed; run halted for the human.
 - 2026-10-05 human decision: add a fix task and continue. Recorded as T8, placed
   after T2 (the lint accepts only numeric task ids, so not "T2a").
+- 2026-10-05 T2 + T8 committed (d829447); F-001 to F-006 fixed, F-007 Minor open for T7.
+- 2026-10-05 stop at T3: reviewer raised open Critical F-008 (Murcia income row not
+  marked provisional, AEAT cross-check overstated). T3 not committed; run halted.
+- 2026-10-05 human decision: add fix task T9 and continue. Standing authorization
+  for the rest of this run: when an open Critical is about labelling or wording and
+  changes no figure, the orchestrator adds the fix task and continues without
+  stopping; a Critical that questions a figure or a source still stops the run.
+  The exact label wording was added to Constraints for T4–T7.
+- 2026-10-05 T9 reviewed: F-008 to F-014 fixed; new open Critical F-015 (labelling,
+  no figure in question). Under the standing authorization, fix task T10 added
+  (whole-file label sweep, proven by a grep now also in Checks); run continues.
 
 ## Evidence
 
@@ -183,6 +237,9 @@ and no local keyword or CPC data.
 | T1 | structural — `grep -c "^## " business/research/murcia-market.md`; `grep -c "Addendum 2026-10-05" business/research/founder-inputs.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `grep: business/research/murcia-market.md: No such file or directory` exit 2, addendum count `0` exit 1 | `10` exit 0; `4` exit 0; `git diff --numstat HEAD`: `15	0	business/research/founder-inputs.md` | Triangulation skipped: structural skeleton, no behaviour to triangulate; TODO/TBD/lorem grep empty (exit 1) | none |
 | T2 | structural — `grep -c "^### 1\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `7` exit 0; `git diff --numstat HEAD`: `191	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `7` | none |
 | T8 | structural — `grep -c "provisional" business/research/murcia-market.md`; `grep -c "SUPERSEDED 2026-10-05" business/research/founder-inputs.md` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change counts `5` exit 0, `3` exit 0 | n/a (structural) | `12` exit 0; `5` exit 0; `git diff --numstat HEAD -- business/research/founder-inputs.md`: `3	0	business/research/founder-inputs.md` | Triangulation skipped: text-only fix pass; numeric-token diff before/after shows only added dates, table ids, URLs and § refs, plus the dropped R1 upper bound (`49,600–53,500` → `49,600`, `2.6` removed) per F-004; TODO/TBD/lorem grep empty (exit 1) | none |
+| T3 | structural — `grep -c "^### [23]\." business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; tracked tree clean (`git diff --stat HEAD` empty) | n/a (structural); pre-change: `0` exit 1 | `6` exit 0; `git diff --numstat HEAD`: `265	0	business/research/murcia-market.md` | Triangulation skipped: structural research section, no behaviour; TODO/TBD/lorem grep empty (exit 1); `NOT FOUND` count `11`; protected-files diff stat empty | none |
+| T9 | structural — `grep -c "provisional" business/research/murcia-market.md`; `grep -c "CONFLICTING" business/research/murcia-market.md` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change counts `15` exit 0, `1` exit 0 (T3 uncommitted by design) | n/a (structural) | `18` exit 0; `3` exit 0 | Triangulation skipped: text fix pass; F-009 re-read INE 53689 confirms €48,806 / €18,142 (no cell changed); F-011 national dogs per inhabitant ≈0.20 → ≈0.19 (denominator 45,678,948 AEAT → 48,320,520 INE 56940, 1-Jul-2023); zone ratios recomputed (1.71, 1.37, 1.28, 1.17, 1.01, 0.90, 1.49, 1.69); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
+| T10 | structural — `grep -n "FACT (1 source" business/research/murcia-market.md \| grep -v -c "FACT (1 source), provisional"` | docs | n/a — docs repo, no package.json / tsc / eslint; pre-change count `16` exit 0 (T3/T9 uncommitted by design) | n/a (structural) | `0` exit 1 (grep -c on zero matches) | Triangulation skipped: text-only label sweep; numeric-token diff before/after: only `56940` → `56934` (×2), plus the `1` of each new "FACT (1 source)" label and `ECP320` (series code); TODO/TBD/lorem grep empty (exit 1); protected-files diff stat empty | none |
 
 ## Briefing
 
