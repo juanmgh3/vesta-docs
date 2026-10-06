@@ -4,4 +4,148 @@
     <p class="eyebrow">Costes</p>
     <h2 class="chapter-header__title">Costes por servicio y costes fijos</h2>
   </header>
+
+  <p class="lead">
+    Vesta tiene un coste de material casi nulo y un coste de viaje que depende de a dónde
+    vaya. Este capítulo pone cifra a cada servicio y a cada mes, y es la base del modelo del
+    capítulo siguiente.
+  </p>
+
+  <h3>Lo que cuesta cada servicio</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 9.1. Coste directo de una visita, estrategia B, mezcla de servicios del modelo.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Concepto</th>
+        <th scope="col" class="num">Por visita</th>
+        <th scope="col">Base</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Consumibles</th><td class="num">1,5 € por pieza</td><td>Cepillos y productos; el agua y la luz las pone el cliente</td></tr>
+      <tr><th scope="row">Desplazamiento</th><td class="num">4,5 €</td><td>Ida y vuelta a 0,175 €/km; banda 3,5–6,0 € según a dónde se vaya</td></tr>
+      <tr><th scope="row">Aparcamiento</th><td class="num">1,0 €</td><td>Un tique de zona azul en el 40 % de los trabajos</td></tr>
+      <tr><th scope="row">Captación, si viene de un anuncio</th><td class="num">71 €</td><td>Banda 36–111 €; cero si viene por recomendación</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Consumibles <span class="chip chip--fact">Fact</span>; desplazamiento y aparcamiento
+    <span class="chip chip--estimate">Estimate</span>, con el reparto de trabajos por
+    distancia y la cuota de trabajos en zona azul como hipótesis
+    <span class="chip chip--hypothesis">Hypothesis</span>; captación
+    <span class="chip chip--estimate">Estimate</span>.
+  </p>
+  <p>
+    El modelo antiguo contaba 3,5 € por visita, que es
+    lo que cuesta ir y volver a un punto a 10 kilómetros
+    <span class="chip chip--estimate">Estimate</span>. Eso cubre el casco, El Palmar (2,80 €)
+    y Alcantarilla (3,05 €), pero no Molina de Segura ni Sangonera (4,4–4,5 €) ni los
+    pueblos del fondo del cinturón, Ceutí, Santomera y Archena (7,1–9,4 €)
+    <span class="chip chip--estimate">Estimate</span>. El modelo nuevo supone que la mitad
+    de los trabajos caen cerca, un tercio largo en Molina y las pedanías grandes y un 15 %
+    en el fondo del cinturón <span class="chip chip--hypothesis">Hypothesis</span>, y de ahí
+    salen los 4,5 €. Si se trabaja sobre todo el casco, baja a 3,5; si se trabaja sobre todo
+    el cinturón, sube a 6. Encadenar dos trabajos en la misma zona comparte tramos del
+    viaje, así que la cifra es un techo por trabajo. El coste de combustible solo, a
+    los precios de octubre de 2026 en las gasolineras del municipio (1,80 € la gasolina,
+    1,89 € el gasóleo) <span class="chip chip--estimate">Estimate</span> y con un consumo
+    supuesto de 6 litros a los 100, es de 0,11 € por kilómetro
+    <span class="chip chip--hypothesis">Hypothesis</span>; el 0,175 € que usa el modelo
+    incluye el desgaste del coche.
+  </p>
+  <p>
+    El aparcamiento no estaba en el modelo antiguo. En el centro, durante las horas del
+    estacionamiento regulado, un tique cuesta hasta 1,90 € en el casco histórico y hasta
+    2,70 € en el anillo siguiente <span class="chip chip--estimate">Estimate</span>; fuera de
+    esas horas y de esos sectores es gratis. Suponiendo que cuatro de cada diez trabajos
+    caen en zona de pago, sale 1 € por visita <span class="chip chip--estimate">Estimate</span>.
+    Un trabajo largo en el casco histórico no cabe en un tique de 90 minutos; ese coste
+    extra no está calculado y se evita citando fuera del horario.
+  </p>
+
+  <h3>Lo que deja cada pieza</h3>
+  <p>
+    Un precio medio de 72,50 € con IVA son 59,92 € sin él, y 58,42 € quitando el material.
+    Con 1,8 piezas por visita, que es lo que supone el escenario realista, y 5,5 € de viaje
+    y aparcamiento por visita, cada visita deja 99,65 € y cada pieza, con su parte de viaje,
+    55,36 €, un 92 % del precio neto <span class="chip chip--estimate">Estimate</span>. Ese
+    margen tan alto es verdad y a la vez engaña, porque lo que falta en la cuenta es el
+    cliente: una visita de una pieza a un cliente de anuncio pierde 18,08 € y una de dos
+    gana 40,33 € <span class="chip chip--estimate">Estimate</span>.
+  </p>
+
+  <h3>Los fijos, mes a mes</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 9.2. Costes fijos mensuales.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Concepto</th>
+        <th scope="col" class="num">Con tarifa plana</th>
+        <th scope="col" class="num">Después</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Cuota de autónomo</th><td class="num">80 €</td><td class="num">250 €</td></tr>
+      <tr><th scope="row">Gestor</th><td class="num">30 €</td><td class="num">30 €</td></tr>
+      <tr><th scope="row">Seguro del coche</th><td class="num">50 €</td><td class="num">50 €</td></tr>
+      <tr><th scope="row">Seguro de responsabilidad civil</th><td class="num">25 €</td><td class="num">25 €</td></tr>
+      <tr><th scope="row">Web</th><td class="num">1 €</td><td class="num">1 €</td></tr>
+      <tr><th scope="row">Total</th><td class="num">186 €</td><td class="num">356 €</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Cuota, gestor, seguro del coche y web <span class="chip chip--fact">Fact</span>; la
+    responsabilidad civil es una estimación a partir de las pólizas que se ofrecen a
+    autónomos de limpieza <span class="chip chip--estimate">Estimate</span>, y los totales
+    heredan esa etiqueta <span class="chip chip--estimate">Estimate</span>. La cuota de 250 € es el
+    centro de la banda de 205 a 300 € que corresponde a los tramos de ingresos bajos
+    <span class="chip chip--fact">Fact</span>. El modelo supone que la tarifa plana dura
+    hasta junio de 2027 y que la cuota sube en julio
+    <span class="chip chip--hypothesis">Hypothesis</span>; si los ingresos del primer año
+    quedan por debajo del salario mínimo, como indica el escenario realista, la tarifa plana
+    se prorroga doce meses más <span class="chip chip--fact">Fact</span> y ese salto no
+    llegaría hasta 2028. Los anuncios no son un coste fijo y van aparte, de 150 a 400 € al
+    mes en el primer año.
+  </p>
+  <p>
+    Lo que no entra. El IRPF, porque depende de la situación personal del socio fundador y
+    de otras rentas; todo lo que sigue es antes de IRPF. Las retiradas del propio fundador,
+    así que la caja del modelo es la del negocio, no la de la casa. Y el IVA, que se cobra
+    al cliente y se ingresa a Hacienda cada trimestre; el modelo lo paga en enero, abril,
+    julio y octubre, y eso tira de la caja esos meses.
+  </p>
+
+  <h3>Cuánto hay que vender para cubrirlo</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 9.3. Punto de equilibrio en piezas y visitas al mes, estrategia B, 1,8 piezas por visita.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Para cubrir</th>
+        <th scope="col" class="num">€ al mes</th>
+        <th scope="col" class="num">Piezas</th>
+        <th scope="col" class="num">Visitas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Solo los fijos, con tarifa plana</th><td class="num">186 €</td><td class="num">3,4</td><td class="num">1,9</td></tr>
+      <tr><th scope="row">Fijos y 300 € de anuncios, con tarifa plana</th><td class="num">486 €</td><td class="num">8,8</td><td class="num">4,9</td></tr>
+      <tr><th scope="row">Fijos y 300 € de anuncios, después</th><td class="num">656 €</td><td class="num">11,8</td><td class="num">6,6</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Todo <span class="chip chip--estimate">Estimate</span>. Cubrir la estructura cuesta
+    menos de un día de trabajo al mes. Con anuncios, cinco visitas al mes; cuando suba la
+    cuota, siete. La capacidad son 88 piezas al mes <span class="chip chip--fact">Fact</span>,
+    así que el equilibrio está en torno al 10 % de lo que puede hacer una persona. El
+    problema es llenar la agenda.
+  </p>
+
+  <aside class="callout">
+    <p class="callout__label">Lo que importa de este capítulo</p>
+    <p>
+      5,5 € por visita de viaje y aparcamiento, 1,5 € por pieza de material, 186 € al mes de
+      estructura y 71 € por cada cliente que llega de un anuncio. Nueve piezas al mes cubren
+      fijos y anuncios.
+    </p>
+  </aside>
 </section>
