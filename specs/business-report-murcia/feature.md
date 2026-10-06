@@ -68,7 +68,9 @@ case by someone who did the work, not as generated filler.
   re-graded. What is unknown is said as unknown, with what would resolve it.
 - Numbers come only from `murcia-market.md`, `murcia-model.md` /
   `murcia-model-tables.md`, `pricing-decision.md`, `marketing-research-addendum.md`,
-  `market-dossier.md` (national rates only) and `founder-inputs.md`. The report never
+  `market-dossier.md` (national rates only), `founder-inputs.md` and
+  `aids-and-eu-branding.md` (Juan's research note of 2026-10-06 on aids and the Kit
+  Digital publicity obligation; read, not edited). The report never
   contains a figure that is not in one of those files; prose is written around the
   tables, not the other way round.
 - Decisions carried into the model, each stated in the report as a recommendation open
@@ -164,7 +166,7 @@ case by someone who did the work, not as generated filler.
   `ch-NN-*.html` fragments each containing only its `.chapter` header (numeral, eyebrow,
   title) so the build runs end to end before prose exists. _Verify:_ `node business/reports/_template/build-charts.mjs && node business/reports/_template/build-report.mjs && grep -c "<svg" business/reports/business-report-murcia.html && grep -c 'href="http\|src="http\|url(http' business/reports/business-report-murcia.html; echo "exit $?"`.
   Accept: the build runs without error, the output has ≥7 inline SVG charts, zero external URL references, and the chapter headers appear in TOC order; every chart carries a `.figure-caption` with source and chip placeholder filled by the fragment.
-- [ ] **T4 — Chapters 1–3: resumen, arranque, empresa** (structural). Orchestrator
+- [x] **T4 — Chapters 1–3: resumen, arranque, empresa** (structural). Orchestrator
   writes `ch-01-resumen.html`, `ch-02-arranque.html`, `ch-03-empresa.html`. Ch. 1: the
   eight things the founder must know, each with its figure and chip, one page or two.
   Ch. 2: the first fortnight — opening prices per piece under the recommended
@@ -174,8 +176,22 @@ case by someone who did the work, not as generated filler.
   first offer, minimum order); the alta-date check and the Cuota Cero window. Ch. 3:
   the company and the service (catalogue, equipment owned, capacity, duration range,
   drying, operator solo, the path from operator to owner), from `founder-inputs.md`.
-  _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-01-resumen.html business/reports/_src/murcia/ch-02-arranque.html business/reports/_src/murcia/ch-03-empresa.html && grep -n -i "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[123]*.html; echo "exit $?"`.
+  _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-01-resumen.html business/reports/_src/murcia/ch-02-arranque.html business/reports/_src/murcia/ch-03-empresa.html && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[123]*.html; echo "exit $?"`.
   Accept: Scenario: traceable chapter — WHEN any figure in ch. 1–3 is picked THEN it appears with the same value and label in one of the source files named in Constraints; no placeholder text remains; the build still runs.
+- [x] **T10 — Prose fix pass on chapters 1–3** (structural). Orchestrator closes
+  F-017 to F-027 at the lines the findings record names: repair the placeholder grep in
+  this document; correct the minimum-order row (no published minimum in Murcia; 60–70 €
+  is Madrid's norm); re-grade every chip to its source label (ESTIMATE for the sweep
+  counts, SER tariffs, the autónomo pass and the 186 € / 356 € fixed costs; ANALYSIS for
+  the travel and method norms); add the specialist criterion to the review count; drop
+  the chip from the PROPOSAL grid; remove the unsourced review projection; fix the
+  Cartagena / Lorca round-trip times; restate the alta date as already done by July
+  2026 with eligibility left open and the domicile-change case NOT FOUND; add the tarifa
+  plana extension; make the owner state Y5–Y6 with the lapse from Y7; chip the unchipped
+  figures; complete the Cuota Cero conditions; cut the filler lines and the repeated
+  "no X sino Y"; fold in `aids-and-eu-branding.md` (three alta-gated aid lines, the
+  Kit Digital bono held and its NextGenerationEU logo obligation). _Verify:_ `node business/reports/_template/build-report.mjs && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[123]*.html; echo "exit $?"`.
+  Accept: every finding F-017 to F-027 is addressed at its line; no figure outside the sources named in Constraints remains; the build runs.
 - [ ] **T5 — Chapters 4–6: mercado, competencia, público** (structural). Orchestrator
   writes `ch-04-mercado.html` (rings with population, households, drive times and
   travel cost; income and the premium sections; the segment per ring; the ring chart),
@@ -183,7 +199,7 @@ case by someone who did the work, not as generated filler.
   policy, reviews and trust signals; the price map chart; what is missing in Murcia and
   what is not, with the sweep caveat), `ch-06-publico.html` (45–65, allergy, pets, trust
   cues and messages per segment from `marketing-research-addendum.md` R1–R4, adapted to
-  Murcia's zones and B2B pool). _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-04-mercado.html business/reports/_src/murcia/ch-05-competencia.html business/reports/_src/murcia/ch-06-publico.html && grep -n -i "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[456]*.html; echo "exit $?"`.
+  Murcia's zones and B2B pool). _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-04-mercado.html business/reports/_src/murcia/ch-05-competencia.html business/reports/_src/murcia/ch-06-publico.html && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[456]*.html; echo "exit $?"`.
   Accept: Scenario: traceable chapter — WHEN any figure in ch. 4–6 is picked THEN it appears with the same value and label in `murcia-market.md` or the addendum; every competitor named is in `murcia-market.md` §4.2; no placeholder text remains.
 - [ ] **T6 — Chapters 7–9: precios, captación, costes** (structural). Orchestrator
   writes `ch-07-precios.html` (three architectures with the Murcia medians beside, the
@@ -192,7 +208,7 @@ case by someone who did the work, not as generated filler.
   local channels as hypotheses to test in order, the Spain-proxy seasonality caveat),
   `ch-09-costes.html` (cost per service: consumables, travel by ring, parking; fixed
   costs timeline with the tarifa plana assumption; contribution per piece and per visit;
-  the IVA wedge; IRPF not modelled). _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-07-precios.html business/reports/_src/murcia/ch-08-captacion.html business/reports/_src/murcia/ch-09-costes.html && grep -n -i "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[789]*.html; echo "exit $?"`.
+  the IVA wedge; IRPF not modelled). _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-07-precios.html business/reports/_src/murcia/ch-08-captacion.html business/reports/_src/murcia/ch-09-costes.html && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-0[789]*.html; echo "exit $?"`.
   Accept: Scenario: traceable chapter — WHEN any figure in ch. 7–9 is picked THEN it appears with the same value and label in `pricing-decision.md`, `murcia-model.md` / tables or `murcia-market.md`; no placeholder text remains.
 - [ ] **T7 — Chapters 10–13: proyecciones, crecimiento, riesgos, glosario** (structural).
   Orchestrator writes `ch-10-proyecciones.html` (year 1 month by month from October 2026
@@ -202,7 +218,7 @@ case by someone who did the work, not as generated filler.
   separate market), `ch-12-riesgos.html` (assumptions list with what resolves each,
   gaps from `murcia-market.md` §9.3, RC, alta date, single-source figures), and
   `ch-13-glosario-fuentes.html` (terms; sources by chapter pointing to the research
-  files and their URLs). Fill the TOC page numbers after a render pass. _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-10-proyecciones.html business/reports/_src/murcia/ch-11-crecimiento.html business/reports/_src/murcia/ch-12-riesgos.html && grep -n -i "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-1[0-3]*.html; echo "exit $?"`.
+  files and their URLs). Fill the TOC page numbers after a render pass. _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-10-proyecciones.html business/reports/_src/murcia/ch-11-crecimiento.html business/reports/_src/murcia/ch-12-riesgos.html && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-1[0-3]*.html; echo "exit $?"`.
   Accept: Scenario: traceable chapter — WHEN any figure in ch. 10–11 is picked THEN it appears in `murcia-model-tables.md`; every assumption in ch. 12 names what would resolve it; the TOC has no "—" placeholder left.
 - [ ] **T8 — Render, check and ship** (structural). Render the PDF with the README's
   headless-Chrome recipe (absolute `file://` URL, `--virtual-time-budget`,
@@ -223,7 +239,7 @@ case by someone who did the work, not as generated filler.
 - `node business/research/murcia-model.mjs && git diff --exit-code --stat -- business/research/murcia-model-tables.md business/research/murcia-model-data.json`
 - `node business/reports/_template/build-charts.mjs && node business/reports/_template/build-report.mjs && git diff --exit-code --stat -- business/reports/business-report-murcia.html`
 - `grep -c 'href="http\|src="http\|url(http' business/reports/business-report-murcia.html`
-- `grep -n -i "TODO\|TBD\|lorem" business/reports/business-report-murcia.html`
+- `grep -n "TODO\|TBD\|lorem" business/reports/business-report-murcia.html`
 - `python -c "import pypdf;r=pypdf.PdfReader('business/reports/business-report-murcia.pdf');print(len(r.pages))"`
 - `git diff --stat HEAD -- business/research/economic-model.md business/research/economic-model-engine.mjs business/research/granada-market.md business/bank business/reports/economic-report.html business/reports/marketing-report.html`
 
@@ -231,6 +247,17 @@ case by someone who did the work, not as generated filler.
 
 - 2026-10-06 ungated (Juan's word). Decisions carried: launch mid-October 2026, no
   financing, no purchases; prose written by the orchestrator per CLAUDE.md.
+- 2026-10-06 T1 (adbb06f), T2 (32f7420), T9 (1c7dc66), T3 committed; no Critical so far.
+- 2026-10-06 T4 written by the orchestrator (ch. 1–3). Verify greps made case-sensitive
+  because `-i` matched the Spanish word "todo".
+- 2026-10-06 T4 reviewed: three Critical (F-017 mangled grep, F-018 wrong-geography
+  minimum, F-019 chips above source label) plus F-020 to F-027. All label or wording,
+  no figure in question. Fixed by the orchestrator as T10 under the same rule Juan set
+  on 2026-10-05 for labelling Criticals; run continues.
+- 2026-10-06 T10 reviewed: F-017 to F-026 fixed, no Critical. F-028, F-029 (aid-condition
+  summary sentences; Kit Digital logos as instruction) and F-030 raised; fixes applied in
+  the same pass before commit, left `open` for the T5 reviewer to confirm. Juan's note
+  `aids-and-eu-branding.md` (untracked, his) added to the allowed sources.
 
 ## Evidence
 
@@ -240,3 +267,5 @@ case by someone who did the work, not as generated filler.
 | T2 | verify command + double-run sha256 (structural) | model script | no package.json, no runner; baseline verify `Error: Cannot find module '...\murcia-model.mjs'` (exit 1) | n/a (structural) | `node business/research/murcia-model.mjs && git diff --exit-code --stat -- …tables.md …data.json` → `exit 0` | Triangulation skipped: structural; outputs untracked so git diff is vacuous until commit — reproducibility shown by two runs with identical sha256 (tables `18129d61…`, json `88ad897d…`) | none |
 | T9 | verify command + double-run sha256 (structural) | model script | baseline verify on committed T2 outputs: empty `git status --short`, `exit 0` | n/a (structural) | verify → ` M …murcia-model-data.json` / ` M …murcia-model-tables.md` / `exit 0` (intended regeneration); A × conservador trough `−974 (Oct-2027)`, B × realista Y1 result `4,768` unchanged | Triangulation skipped: structural; two runs give identical sha256 (tables `257d0335…`, json `46c4e569…`) | none |
 | T3 | verify command + double-run sha256 (structural) | build scripts | model check `node business/research/murcia-model.mjs && git diff --exit-code --stat …` → `exit 0`; baseline verify `Error: Cannot find module '…\build-charts.mjs'` (exit 1) | n/a (structural) | build → `14 fragments, 8 svg`; `grep -c "<svg"` → 8; external-ref `grep -c` → 0 (grep's no-match `exit 1`) | Triangulation skipped: structural; two full runs (model + charts + report) give identical sha256 (charts `cc0e0d2a…`, report `58d8e8b4…`, json `9722af15…`, tables `257d0335…` unchanged); chapter titles diff TOC labels → exit 0; 7 captions carry a chip, 0 unfilled slots | sensitivity cells: trough text split onto two lines after a visual check showed overflow |
+| T4 | build + chip count + placeholder grep | docs | n/a (prose) | n/a | build ok; chips 19/23/15; grep exit 1 | none | none |
+| T10 | build + placeholder grep | docs | n/a (prose) | n/a | build ok; grep exit 1 | none | none |
