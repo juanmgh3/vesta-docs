@@ -16,15 +16,19 @@ const c = (x) => +x.toFixed(1);
 const decimals = (x) => (String(x).split(".")[1] ?? "").length;
 const num = (x, d = decimals(x)) => {
   const [int, frac] = Math.abs(x).toFixed(d).split(".");
-  const grouped = int.length > 4 ? int.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : int;
+  const grouped = int.length > 3 ? int.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : int;
   const body = frac ? `${grouped},${frac}` : grouped;
   return x < 0 ? `−${body}` : body;
 };
 const eur = (x) => `${num(x)} €`;
-const range = ([lo, hi]) => (lo === hi ? eur(lo) : `${num(lo)}–${num(hi)} €`);
+const range = ([lo, hi]) => {
+  if (lo === hi) return eur(lo);
+  const d = Number.isInteger(lo) && Number.isInteger(hi) ? 0 : 2;
+  return `${num(lo, d)}–${num(hi, d)} €`;
+};
 const month = (m) => {
   const [mm, yy] = m.split("-");
-  return `${MONTH_ES[mm]} ${yy.slice(2)}`;
+  return `${MONTH_ES[mm]}. ${yy}`;
 };
 const when = (m) => (DATA.meta.months.includes(m) ? month(m) : `${month(m)}, pago IVA`);
 
@@ -84,7 +88,9 @@ function y1Result() {
     const bot = y(Math.min(0, r.result));
     body.push(rect(r.result < 0 ? "chart__bar--neg" : "chart__bar", x, top, bw, bot - top));
     body.push(text("chart__value", x + bw / 2, r.result < 0 ? bot + 14 : top - 5, num(r.result), "middle"));
-    body.push(text("chart__label", x + bw / 2, B + 22, month(r.month), "middle"));
+    const [mm, yy] = month(r.month).split(" ");
+    body.push(text("chart__label", x + bw / 2, B + 18, mm, "middle"));
+    body.push(text("chart__label", x + bw / 2, B + 31, yy, "middle"));
   });
   return figure(
     "y1-result",
@@ -97,7 +103,7 @@ function y1Result() {
 }
 
 function cashScenarios() {
-  const labels = [...DATA.meta.months.map(month), "oct 27, IVA"];
+  const labels = [...DATA.meta.months.map(month), `${month("Oct-2027")}, IVA`];
   const series = ["optimista", "realista", "conservador"].map((k) => {
     const run = DATA.year1[k].B;
     return { k, pts: [...run.rows.map((r) => r.cash), run.summary.endCash], s: run.summary };
@@ -191,7 +197,7 @@ function sensitivity() {
   const maxPos = Math.max(...env.map((e) => e.result), 0);
   const maxNeg = Math.max(...env.map((e) => -e.result), 0);
   const body = [];
-  scen.forEach((s, j) => body.push(text("chart__axis-label", L + j * cw + 10, T - 10, `Demanda ${s}`)));
+  scen.forEach((s, j) => body.push(text("chart__axis-label", L + j * cw + 10, T - 10, SCEN_ES[s])));
   ["A", "B", "C"].forEach((a, i) => {
     const yc = T + i * ch;
     body.push(text("chart__value", 0, yc + ch / 2 + 4, ARCH_ES[a]));
@@ -201,7 +207,7 @@ function sensitivity() {
       const span = cw - 24;
       const zero = xc + 10 + (span * maxNeg) / (maxNeg + maxPos);
       const w = (span * Math.abs(e.result)) / (maxNeg + maxPos);
-      body.push(rect("chart__grid", xc + 2, yc + 2, cw - 4, ch - 4));
+      body.push(line("chart__grid", xc + 2, yc + 2, xc + cw - 2, yc + 2));
       body.push(text("chart__value", xc + 10, yc + 22, `Resultado ${eur(e.result)}`));
       body.push(rect(e.result < 0 ? "chart__bar--neg" : "chart__bar", e.result < 0 ? zero - w : zero, yc + 32, w, 10));
       body.push(line("chart__axis", zero, yc + 28, zero, yc + 46));
@@ -221,8 +227,9 @@ function sensitivity() {
 
 function trajectory() {
   const y1 = DATA.year1.realista.B.summary;
+  const y2 = DATA.longRun.realista.B.years[0];
   const years = [
-    { year: 1, result: y1.result, operators: 1, owner: null },
+    { year: 1, result: y1.result, operators: y2.operators - y2.newHire, owner: null },
     ...DATA.longRun.realista.B.years.map((y) => ({ year: y.year, result: y.result, operators: y.operators, owner: y.ownerStateHolds })),
   ];
   const H = 300;
@@ -287,7 +294,7 @@ function priceMap() {
     const [lo, hi] = r.murciaRange.value;
     body.push(rect("chart__bar--aqua", x(lo), sub(0) - 4, x(hi) - x(lo), 8));
     const med = r.murciaMedian.value;
-    if (med !== null) body.push(rect("chart__bar", x(med) - 1.25, sub(0) - 6, 2.5, 12));
+    if (med !== null) body.push(rect("chart__bar--estimate", x(med) - 1.25, sub(0) - 6, 2.5, 12));
     body.push(text("chart__label", W - R + 8, sub(0) + 4, med === null ? `${range([lo, hi])} · sin mediana` : `${range([lo, hi])} · med. ${eur(med)}`));
     body.push(...other(r.madrid.value, sub(1)));
     body.push(...other(r.valencia.value, sub(2)));
@@ -298,18 +305,20 @@ function priceMap() {
     H,
     "Precios publicados por pieza en Murcia frente a Madrid, Valencia y Granada",
     body,
-    "Precios publicados por pieza: rango de Murcia (barra) y mediana publicada (marca), frente a los rangos de Madrid y Valencia y las cifras de Granada. Bases de IVA mezcladas, como se publican.",
+    "Precios publicados por pieza: rango de Murcia (barra) y mediana estimada (marca dorada), frente a los rangos de Madrid y Valencia y las cifras de Granada. Bases de IVA mezcladas, como se publican.",
     "murcia-market.md §5 (Madrid y Valencia: market-dossier.md §2.1 y §3.1; Granada: granada-market.md §3–§4)",
   );
 }
 
 function rings() {
+  const rs = DATA.market.rings;
+  const barrios = rs[0].scope.match(/(\d+) barrios/)[1];
+  const perKm = +rs.find((r) => r.travel.note?.includes("/km")).travel.note.match(/€([\d.]+)\/km/)[1];
   const scope = {
-    R1: ["Núcleo urbano,", "24 barrios"],
+    R1: ["Núcleo urbano,", `${barrios} barrios`],
     R2: ["Municipio +", "primer cinturón"],
     R3: ["Anillo exterior:", "recargo o pedido mínimo"],
   };
-  const rs = DATA.market.rings;
   const T = 40;
   const rh = 54;
   const H = T + rs.length * rh;
@@ -337,7 +346,7 @@ function rings() {
     H,
     "Anillos de servicio: población y coste de desplazamiento por visita",
     body,
-    "Anillos de servicio: población y coste de ida y vuelta por visita a 0,175 €/km. Verde: dato de una fuente; dorado: estimación.",
+    `Anillos de servicio: población y coste de ida y vuelta por visita a ${num(perKm)} €/km. Verde: dato de una fuente; dorado: estimación.`,
     "murcia-market.md §1.7 y §8.5",
   );
 }

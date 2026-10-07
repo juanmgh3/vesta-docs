@@ -68,7 +68,7 @@ case by someone who did the work, not as generated filler.
   re-graded. What is unknown is said as unknown, with what would resolve it.
 - Numbers come only from `murcia-market.md`, `murcia-model.md` /
   `murcia-model-tables.md`, `pricing-decision.md`, `marketing-research-addendum.md`,
-  `market-dossier.md` (national rates only), `founder-inputs.md` and
+  `market-dossier.md` (national rates only), `founder-inputs.md`, `rc-insurance-quote.md` and
   `aids-and-eu-branding.md` (Juan's research note of 2026-10-06 on aids and the Kit
   Digital publicity obligation; read, not edited). The report never
   contains a figure that is not in one of those files; prose is written around the
@@ -245,7 +245,7 @@ case by someone who did the work, not as generated filler.
   minor wording and chip items; name the research files in ch. 13; unify "conservador".
   _Verify:_ `node business/reports/_template/build-report.mjs && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-1[0-3]*.html; echo "exit $?"`.
   Accept: F-043 to F-051 addressed at their lines; no model figure changed; the build runs.
-- [ ] **T8 — Render, check and ship** (structural). Render the PDF with the README's
+- [x] **T8 — Render, check and ship** (structural). Render the PDF with the README's
   headless-Chrome recipe (absolute `file://` URL, `--virtual-time-budget`,
   `--no-pdf-header-footer`); confirm page count ≥40 and size ≥1 MB; run a number-trace
   pass like `CHECK.md`: extract text with `pdftotext -layout`, pick every figure in ch. 1,
@@ -259,12 +259,20 @@ case by someone who did the work, not as generated filler.
   _Verify:_ `python -c "import pypdf,sys;r=pypdf.PdfReader('business/reports/business-report-murcia.pdf');print(len(r.pages))" && grep -c "Match" business/reports/CHECK-murcia.md; echo "exit $?"`.
   Accept: Scenario: shipped PDF — WHEN the PDF is opened THEN it has ≥40 pages, a cover without page number, numbered content pages and a TOC with no "—" placeholder left whose numbers match; `CHECK-murcia.md` traces ≥30 figures with zero unexplained mismatches.
 
+- [x] **T14 — Pre-ship fixes** (structural). Orchestrator: thousands separator in
+  `build-charts.mjs` (`int.length > 3`); `rc-insurance-quote.md` added to the allowed
+  sources (it was already named in ch. 13); ch. 9 ads sentence scoped to the realista
+  scenario; ch. 13 legend covers founder-declared figures; `CHECK-murcia.md` coverage
+  claim corrected and §7 added; Checks placeholder grep strips data URIs; rebuild,
+  re-render, re-check the TOC. _Verify:_ `node business/reports/_template/build-charts.mjs && node business/reports/_template/build-report.mjs && grep -c "4.768 €" business/reports/_src/murcia/charts.html; echo "exit $?"`.
+  Accept: charts print four-digit euros with the thousands point; the PDF re-renders with the same TOC page numbers or the TOC is updated to match.
+
 ## Checks
 
 - `node business/research/murcia-model.mjs && git diff --exit-code --stat -- business/research/murcia-model-tables.md business/research/murcia-model-data.json`
 - `node business/reports/_template/build-charts.mjs && node business/reports/_template/build-report.mjs && git diff --exit-code --stat -- business/reports/business-report-murcia.html`
 - `grep -c 'href="http\|src="http\|url(http' business/reports/business-report-murcia.html`
-- `grep -n "TODO\|TBD\|lorem" business/reports/business-report-murcia.html`
+- `sed -E 's#data:[^;,]+;base64,[A-Za-z0-9+/=]+##g' business/reports/business-report-murcia.html | grep -n "TODO\|TBD\|lorem"`
 - `python -c "import pypdf;r=pypdf.PdfReader('business/reports/business-report-murcia.pdf');print(len(r.pages))"`
 - `git diff --stat HEAD -- business/research/economic-model.md business/research/economic-model-engine.mjs business/research/granada-market.md business/bank business/reports/economic-report.html business/reports/marketing-report.html`
 
@@ -298,6 +306,11 @@ case by someone who did the work, not as generated filler.
   the conservative scenario, one unsupported ppv claim, chips above source, Cartagena
   contradiction, "da para vivir", ZBE date), F-051 Minor. Fixed by the orchestrator as T13;
   the T7 Accept clause on TOC page numbers moved to T8, where the render happens.
+- 2026-10-07 T8 executed and reviewed: PDF rendered (54 pages), TOC matches, 58 figures
+  traced; F-010 to F-015 fixed; F-043 to F-051 confirmed fixed. Reviewer's pre-ship items
+  (F-052 thousands separator, F-053 insurance source, F-054 check coverage) fixed by the
+  orchestrator as T14 with a re-render; TOC unchanged. F-016 left to the human (marker
+  chips, no remaining effect); F-034, F-042, F-056 open on style only.
 
 ## Evidence
 
@@ -315,3 +328,6 @@ case by someone who did the work, not as generated filler.
 | T12 | build + placeholder grep | docs | n/a (prose) | n/a | build ok; grep exit 1 | none | none |
 | T7 | build + chip count + placeholder grep | docs | n/a (prose) | n/a | build ok; chips 20/19/27/5; grep exit 1; TOC page numbers left for T8's render pass | none | none |
 | T13 | build + placeholder grep | docs | n/a (prose) | n/a | build ok; grep exit 1 | none | none |
+| T8 | verify command + TOC/footer match + 58-row number trace (structural) | render + check | Checks run first: model and build `exit 0`, external refs `0`, placeholder grep hits only base64 font data, PDF `FileNotFoundError` (not yet rendered), superseded files unchanged | n/a (structural) | `54` pages, 1,441,364 bytes; `grep -c "Match"` → `81`; `exit 0` | Triangulation skipped: structural; 13/13 TOC entries equal the opening page and printed footer, pages 2–54 footers sequential, cover unnumbered | y1-result month labels split onto two lines after a render showed "oct. 2026" labels colliding |
+| T8 | render + TOC check + number trace (structural) | PDF | model regen exit 0; charts+report regen exit 0; refs 0; PDF missing (exit 1) | n/a (structural) | 54 pages, 1,441,364 bytes; TOC 13/13 match; CHECK-murcia.md 58 rows traced, 81 Match; charts fixed F-010–F-015 | Triangulation skipped: structural; two builds give the same sha256 (html 62e46db0…, charts 56e9328a…) | sensitivity trough labels and month labels split on two lines after a visual check |
+| T14 | rebuild + re-render + TOC re-check | PDF | n/a | n/a | `grep -c "4.768 €" charts.html` → 3; re-render 54 pages, 1,441,489 bytes; TOC 13/13 still match (3, 6, 10, 12, 18, 26, 29, 33, 36, 39, 46, 48, 51) | none | none |

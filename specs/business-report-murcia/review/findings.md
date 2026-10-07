@@ -8,12 +8,12 @@
 - F-007 Minor fixed T9 business/research/murcia-model.mjs:248 — founder→owner milestone marked at Y5 and never re-checked; in Y7–Y8 demand exceeds hired capacity and the state lapses
 - F-008 Minor fixed T9 business/research/murcia-model.mjs:343 — JSON `market` block hand-copies price map, grids and rings with no per-figure label or source; "~€149" stored as 149
 - F-009 Minor fixed T3 business/research/murcia-model.mjs:360 — Granada price-map rows all carry "FACT (1 source)" and "granada-market.md §4" from one constant; the Happy Clean anchors (colchón individual, sillón, silla) are graded differently in the source and silla appears only in §3
-- F-010 Minor open business/reports/_template/build-charts.mjs:204 — sensitivity grid cells drawn as closed four-sided rects against the README's open-axes rule
-- F-011 Minor open business/reports/_template/build-charts.mjs:194 — "Demanda conservador" lacks gender agreement; SCEN_ES unused there
-- F-012 Minor open business/reports/_template/build-charts.mjs:290 — Murcia median mark drawn in teal (FACT colour) though it is ESTIMATE; caption calls it "mediana publicada"
-- F-013 Minor open business/reports/_template/build-charts.mjs:24 — euro ranges mix decimal precision ("2,8–9,42 €"); cent amounts need two decimals at both ends
-- F-014 Minor open business/reports/_template/build-charts.mjs:25 — month() prints "oct 27", readable as a day; use "oct. 2027"
-- F-015 Minor open business/reports/_template/build-charts.mjs:225 — three chart figures hard-coded (operators = 1, "24 barrios", "0,175 €/km") instead of read from a JSON field
+- F-010 Minor fixed T8 business/reports/_template/build-charts.mjs:204 — sensitivity grid cells drawn as closed four-sided rects against the README's open-axes rule
+- F-011 Minor fixed T8 business/reports/_template/build-charts.mjs:194 — "Demanda conservador" lacks gender agreement; SCEN_ES unused there
+- F-012 Minor fixed T8 business/reports/_template/build-charts.mjs:290 — Murcia median mark drawn in teal (FACT colour) though it is ESTIMATE; caption calls it "mediana publicada"
+- F-013 Minor fixed T8 business/reports/_template/build-charts.mjs:24 — euro ranges mix decimal precision ("2,8–9,42 €"); cent amounts need two decimals at both ends
+- F-014 Minor fixed T8 business/reports/_template/build-charts.mjs:25 — month() prints "oct 27", readable as a day; use "oct. 2027"
+- F-015 Minor fixed T8 business/reports/_template/build-charts.mjs:225 — three chart figures hard-coded (operators = 1, "24 barrios", "0,175 €/km") instead of read from a JSON field
 - F-016 Minor open business/reports/_src/murcia/ch-04-mercado.html:7 — chart-marker chips make the T5/T7 verify grep count >0 before prose exists; reviewers should count prose chips only
 - F-017 Critical fixed T10 specs/business-report-murcia/feature.md:177 — placeholder grep in the T4–T7 Verify lines and Checks was mangled by a sed into a pattern that can never match; restored to `grep -n "TODO\|TBD\|lorem"`
 - F-018 Critical fixed T10 business/reports/_src/murcia/ch-02-arranque.html:65 — "Pedido mínimo" row showed Madrid's 60–70 € as the Murcia median and called it the market norm; Murcia publishes no minimum except one mattress as base
@@ -50,3 +50,8 @@
 - F-049 Important fixed T13 business/reports/_src/murcia/ch-10-proyecciones.html:206 — "el segundo año ya da para vivir de ello" unsourced; now states 19,028 € before IRPF
 - F-050 Important fixed T13 business/reports/_src/murcia/ch-12-riesgos.html:149 — ZBE "asunto de 2028" applied Molina's date to Murcia; now "en Murcia no hay fecha; en Molina, 2028"
 - F-051 Minor fixed T13 business/reports/_src/murcia/ch-10-proyecciones.html:25 — Y4–Y8 figures under Hypothesis; ads on a fixed schedule; "IVA de octubre a diciembre"; callout "la caja"; chips on 250,700 and three in four; "conservador" naming unified; "otro operario"; "por encima del 75 %"; the cost of slowing paid acquisition stated; capacity chip Fact in ch-12; "casi todos se resuelven"; re-check sentence scoped; RC condition; "riesgo más concreto"; glossary Kit Digital three elements and SER sectors; sources name the research files; filler lines cut; T7 Accept TOC clause moved to T8 (fixes applied after the T7 review, to be confirmed by the T8 reviewer)
+- F-052 Important fixed T14 business/reports/_template/build-charts.mjs:19 — four-digit euro figures printed without the thousands point in the charts ("4768 €") while prose prints "4.768 €"; threshold changed to `int.length > 3`
+- F-053 Important fixed T14 business/reports/_src/murcia/ch-02-arranque.html:125 — the 99–120 € insurance figure comes from rc-insurance-quote.md, which was not in the Constraints' source list; the file is now listed (ch. 13 already named it)
+- F-054 Important fixed T14 business/reports/CHECK-murcia.md:14 — coverage claim "every traced figure matches" overstated a table built only of matching rows; wording corrected and §7 added listing the post-review fixes
+- F-055 Minor fixed T14 business/reports/_src/murcia/ch-09-costes.html:107 — ads sentence scoped to the realista scenario; ch. 13 legend covers founder-declared figures; Checks placeholder grep strips data URIs
+- F-056 Minor open business/reports/_src/murcia/ch-06-publico.html:65 — residual "X, no Y" contrasts across ch. 6–12 (style only; the content of every finding is closed)
