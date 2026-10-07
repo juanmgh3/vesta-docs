@@ -311,6 +311,10 @@ case by someone who did the work, not as generated filler.
   (F-052 thousands separator, F-053 insurance source, F-054 check coverage) fixed by the
   orchestrator as T14 with a re-render; TOC unchanged. F-016 left to the human (marker
   chips, no remaining effect); F-034, F-042, F-056 open on style only.
+- 2026-10-07 closed. Checks: model regeneration exit 0; charts and report regeneration
+  exit 0; external references 0; placeholder grep (data URIs stripped) exit 1; PDF 54 pages;
+  protected files unchanged. Open for the human: F-016 (marker chips, no effect), F-034,
+  F-042, F-056 (style only).
 
 ## Evidence
 
