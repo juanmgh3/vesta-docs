@@ -235,7 +235,16 @@ case by someone who did the work, not as generated filler.
   gaps from `murcia-market.md` §9.3, RC, alta date, single-source figures), and
   `ch-13-glosario-fuentes.html` (terms; sources by chapter pointing to the research
   files and their URLs). Fill the TOC page numbers after a render pass. _Verify:_ `node business/reports/_template/build-report.mjs && grep -c "chip--" business/reports/_src/murcia/ch-10-proyecciones.html business/reports/_src/murcia/ch-11-crecimiento.html business/reports/_src/murcia/ch-12-riesgos.html && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-1[0-3]*.html; echo "exit $?"`.
-  Accept: Scenario: traceable chapter — WHEN any figure in ch. 10–11 is picked THEN it appears in `murcia-model-tables.md`; every assumption in ch. 12 names what would resolve it; the TOC has no "—" placeholder left.
+  Accept: Scenario: traceable chapter — WHEN any figure in ch. 10–11 is picked THEN it appears in `murcia-model-tables.md`; every assumption in ch. 12 names what would resolve it.
+- [x] **T13 — Prose fix pass on chapters 10–13** (structural). Orchestrator closes F-043 to
+  F-051 at the lines the findings record names: correct the A conservador sentence (ads,
+  not fixed costs, sink the year); replace the ppv 1.5 claim with the derived figure; drop
+  the "no gap changes the sign" claim and state the CAC case; call the hire rule a
+  proposal and chip Y4–Y8 outcomes Hypothesis; separate Cartagena's chips; rewrite the
+  Cartagena base sentence and the callout; remove "da para vivir"; fix the ZBE date; the
+  minor wording and chip items; name the research files in ch. 13; unify "conservador".
+  _Verify:_ `node business/reports/_template/build-report.mjs && grep -n "TODO\|TBD\|lorem" business/reports/_src/murcia/ch-1[0-3]*.html; echo "exit $?"`.
+  Accept: F-043 to F-051 addressed at their lines; no model figure changed; the build runs.
 - [ ] **T8 — Render, check and ship** (structural). Render the PDF with the README's
   headless-Chrome recipe (absolute `file://` URL, `--virtual-time-budget`,
   `--no-pdf-header-footer`); confirm page count ≥40 and size ≥1 MB; run a number-trace
@@ -248,7 +257,7 @@ case by someone who did the work, not as generated filler.
   write `CHECK-murcia.md` with the result table and fix in place only what is a
   transcription error (report any other mismatch as a finding, do not rewrite prose).
   _Verify:_ `python -c "import pypdf,sys;r=pypdf.PdfReader('business/reports/business-report-murcia.pdf');print(len(r.pages))" && grep -c "Match" business/reports/CHECK-murcia.md; echo "exit $?"`.
-  Accept: Scenario: shipped PDF — WHEN the PDF is opened THEN it has ≥40 pages, a cover without page number, numbered content pages and a TOC whose numbers match; `CHECK-murcia.md` traces ≥30 figures with zero unexplained mismatches.
+  Accept: Scenario: shipped PDF — WHEN the PDF is opened THEN it has ≥40 pages, a cover without page number, numbered content pages and a TOC with no "—" placeholder left whose numbers match; `CHECK-murcia.md` traces ≥30 figures with zero unexplained mismatches.
 
 ## Checks
 
@@ -284,6 +293,11 @@ case by someone who did the work, not as generated filler.
   label or attribution items), F-042 Minor. Fixed by the orchestrator as T12; run continues.
 - 2026-10-06 T7 written by the orchestrator (ch. 10–13). TOC page numbers stay "—" until
   T8 renders the PDF, because they can only be read from the rendered pages.
+- 2026-10-07 T7 reviewed: F-035 to F-041 confirmed fixed; F-034 and F-042 open on the
+  "X, no Y" style item only; no Critical; F-043 to F-050 Important (one false claim about
+  the conservative scenario, one unsupported ppv claim, chips above source, Cartagena
+  contradiction, "da para vivir", ZBE date), F-051 Minor. Fixed by the orchestrator as T13;
+  the T7 Accept clause on TOC page numbers moved to T8, where the render happens.
 
 ## Evidence
 
@@ -300,3 +314,4 @@ case by someone who did the work, not as generated filler.
 | T6 | build + chip count + placeholder grep | docs | n/a (prose) | n/a | build ok; chips 18/28/22; grep exit 1 | none | none |
 | T12 | build + placeholder grep | docs | n/a (prose) | n/a | build ok; grep exit 1 | none | none |
 | T7 | build + chip count + placeholder grep | docs | n/a (prose) | n/a | build ok; chips 20/19/27/5; grep exit 1; TOC page numbers left for T8's render pass | none | none |
+| T13 | build + placeholder grep | docs | n/a (prose) | n/a | build ok; grep exit 1 | none | none |

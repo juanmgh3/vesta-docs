@@ -4,9 +4,207 @@
     <p class="eyebrow">Proyecciones</p>
     <h2 class="chapter-header__title">Proyecciones</h2>
   </header>
+
+  <p class="lead">
+    El modelo recalcula el negocio mes a mes desde octubre de 2026 con los precios de la
+    estrategia B, los costes del capítulo 9 y tres curvas de demanda, una conservadora, una
+    realista y una optimista. Ninguna es una previsión; son el rango honesto de cómo arranca
+    un negocio así con un solo operador <span class="chip chip--estimate">Estimate</span>.
+    No hay préstamo, no hay caja inicial y todo es antes de IRPF.
+  </p>
+
+  <h3>Cómo está montado</h3>
+  <p>
+    Cada mes entran clientes por dos vías, los de anuncios y los que llegan por
+    recomendación o repiten. En el escenario realista los de anuncios van de 2 en octubre a
+    6 en septiembre y los demás de 0 a 12, con una media de 1,8 piezas por visita; en el
+    conservador, de 1 a 2 y de 0 a 7, con 1,5 piezas; en el optimista, de 3 a 10 y de 1 a 18,
+    con 2 piezas <span class="chip chip--estimate">Estimate</span>. Esas curvas son las
+    mismas que se usaron en julio; no dependen de la ciudad y la demanda que implican está
+    muy por debajo de los 250.700 hogares del área <span class="chip chip--estimate">Estimate</span>, así que el límite es la
+    captación. El gasto en anuncios sigue un calendario fijado de antemano, de 150 € en
+    octubre a 400 € desde junio en el escenario realista. El cliente paga con IVA y el IVA de cada trimestre se
+    ingresa el mes siguiente, en enero, abril, julio y octubre; por eso la caja de esos meses
+    da un tirón hacia abajo. La capacidad de 88 piezas al mes no se alcanza nunca en el
+    primer año; el mes más cargado del optimista son 56.
+  </p>
+
+  <h3>Año uno, mes a mes</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 10.1. Año uno, estrategia B, escenario realista. Euros; resultado sin IVA y antes de IRPF; caja con el IVA ingresado cada trimestre.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Mes</th>
+        <th scope="col" class="num">Visitas</th>
+        <th scope="col" class="num">Piezas</th>
+        <th scope="col" class="num">Facturado</th>
+        <th scope="col" class="num">Anuncios</th>
+        <th scope="col" class="num">Resultado</th>
+        <th scope="col" class="num">Caja</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Oct 2026</th><td class="num">2</td><td class="num">3,6</td><td class="num">261</td><td class="num">150</td><td class="num neg">−137</td><td class="num neg">−91</td></tr>
+      <tr><th scope="row">Nov 2026</th><td class="num">4</td><td class="num">7,2</td><td class="num">522</td><td class="num">200</td><td class="num pos">13</td><td class="num">12</td></tr>
+      <tr><th scope="row">Dic 2026</th><td class="num">4</td><td class="num">7,2</td><td class="num">522</td><td class="num">250</td><td class="num neg">−37</td><td class="num">65</td></tr>
+      <tr><th scope="row">Ene 2027</th><td class="num">6</td><td class="num">10,8</td><td class="num">783</td><td class="num">300</td><td class="num pos">112</td><td class="num">86</td></tr>
+      <tr><th scope="row">Feb 2027</th><td class="num">7</td><td class="num">12,6</td><td class="num">914</td><td class="num">300</td><td class="num pos">212</td><td class="num">456</td></tr>
+      <tr><th scope="row">Mar 2027</th><td class="num">9</td><td class="num">16,2</td><td class="num">1.175</td><td class="num">350</td><td class="num pos">361</td><td class="num">1.021</td></tr>
+      <tr><th scope="row">Abr 2027</th><td class="num">10</td><td class="num">18,0</td><td class="num">1.305</td><td class="num">350</td><td class="num pos">461</td><td class="num">1.210</td></tr>
+      <tr><th scope="row">May 2027</th><td class="num">11</td><td class="num">19,8</td><td class="num">1.436</td><td class="num">350</td><td class="num pos">560</td><td class="num">2.019</td></tr>
+      <tr><th scope="row">Jun 2027</th><td class="num">13</td><td class="num">23,4</td><td class="num">1.697</td><td class="num">400</td><td class="num pos">709</td><td class="num">3.023</td></tr>
+      <tr><th scope="row">Jul 2027</th><td class="num">14</td><td class="num">25,2</td><td class="num">1.827</td><td class="num">400</td><td class="num pos">639</td><td class="num">3.209</td></tr>
+      <tr><th scope="row">Ago 2027</th><td class="num">16</td><td class="num">28,8</td><td class="num">2.088</td><td class="num">400</td><td class="num pos">838</td><td class="num">4.410</td></tr>
+      <tr><th scope="row">Sep 2027</th><td class="num">18</td><td class="num">32,4</td><td class="num">2.349</td><td class="num">400</td><td class="num pos">1.038</td><td class="num">5.855</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Todo <span class="chip chip--estimate">Estimate</span>. El año factura 14.877 € con IVA,
+    12.295 € sin él, y deja 4.768 € de resultado <span class="chip chip--estimate">Estimate</span>.
+    Octubre pierde 137 € y es el único mes con la caja en negativo, −91 €; noviembre ya es
+    positivo y en febrero el acumulado deja de ser negativo. Los 5.855 € de caja de
+    septiembre incluyen 1.087 € de IVA del último trimestre que se ingresan en octubre; la
+    caja real del negocio al cerrar el año es la misma que el resultado, 4.768 €. En julio
+    el resultado baja aunque suba la facturación, porque ese mes la cuota de autónomo pasa
+    de 80 € a 250 € en el supuesto del modelo <span class="chip chip--hypothesis">Hypothesis</span>. La caja de enero, abril y julio
+    recoge el pago del IVA del trimestre anterior; el de enero es el de octubre a diciembre.
+  </p>
+
   <!-- chart:y1-result --><span class="chip chip--estimate">Estimate</span><!-- /chart -->
-  <!-- chart:cash-scenarios --><span class="chip chip--estimate">Estimate</span><!-- /chart -->
+
+  <p>
+    Con la misma demanda, la estrategia A deja 2.097 € en el año y su caja baja hasta −318 €
+    en enero; la C deja 6.517 € con un mínimo de −54 € en octubre
+    <span class="chip chip--estimate">Estimate</span>. La diferencia entre A y C son 4.420 €
+    en un año con las mismas visitas <span class="chip chip--estimate">Estimate</span>; es el coste de entrar barato.
+  </p>
+
+  <h3>Si la demanda es otra</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 10.2. Año uno según estrategia y demanda. Resultado y punto más bajo de la caja, con el ingreso del IVA de octubre de 2027 incluido.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Estrategia × demanda</th>
+        <th scope="col" class="num">Facturado</th>
+        <th scope="col" class="num">Resultado</th>
+        <th scope="col" class="num">Caja mínima</th>
+        <th scope="col">Acumulado positivo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">A · conservador</th><td class="num">4.852</td><td class="num neg">−974</td><td class="num neg">−974 (oct. 2027, IVA)</td><td>No en el año uno</td></tr>
+      <tr><th scope="row">A · realista</th><td class="num">11.645</td><td class="num pos">2.097</td><td class="num neg">−318 (ene. 2027)</td><td>Mayo 2027</td></tr>
+      <tr><th scope="row">A · optimista</th><td class="num">20.884</td><td class="num pos">7.654</td><td class="num">nunca negativa</td><td>Noviembre 2026</td></tr>
+      <tr><th scope="row">B · conservador</th><td class="num">6.199</td><td class="num pos">139</td><td class="num neg">−548 (ene. 2027)</td><td>Septiembre 2027</td></tr>
+      <tr><th scope="row">B · realista</th><td class="num">14.877</td><td class="num pos">4.768</td><td class="num neg">−91 (oct. 2026)</td><td>Febrero 2027</td></tr>
+      <tr><th scope="row">B · optimista</th><td class="num">26.680</td><td class="num pos">12.444</td><td class="num">nunca negativa</td><td>Octubre 2026</td></tr>
+      <tr><th scope="row">C · conservador</th><td class="num">7.080</td><td class="num pos">868</td><td class="num neg">−425 (ene. 2027)</td><td>Junio 2027</td></tr>
+      <tr><th scope="row">C · realista</th><td class="num">16.993</td><td class="num pos">6.517</td><td class="num neg">−54 (oct. 2026)</td><td>Enero 2027</td></tr>
+      <tr><th scope="row">C · optimista</th><td class="num">30.474</td><td class="num pos">15.579</td><td class="num">nunca negativa</td><td>Octubre 2026</td></tr>
+    </tbody>
+  </table>
+
   <!-- chart:sensitivity --><span class="chip chip--estimate">Estimate</span><!-- /chart -->
+
+  <p>
+    Todo <span class="chip chip--estimate">Estimate</span>. La fila que hay que mirar es B
+    conservador: el año se salda con 139 € y la caja llega a −548 € en enero, cuando se paga
+    el IVA de octubre a diciembre con pocas visitas detrás. Sin colchón de caja, 548 € es lo
+    que hay que poder poner si el arranque es lento. El peor caso de la tabla, A conservador,
+    cubre los fijos pero no los 1.800 € de anuncios del año y cierra en −974 €, que es la
+    caja de septiembre menos el IVA que se ingresa en octubre. La estrategia no cambia el signo del
+    año salvo en ese caso; lo que lo cambia es la demanda, y la demanda, en el primer año,
+    es captación.
+  </p>
+
+  <!-- chart:cash-scenarios --><span class="chip chip--estimate">Estimate</span><!-- /chart -->
+
+  <h3>Años dos y tres</h3>
+  <p>
+    A partir del segundo año el modelo pasa a cifras anuales. Con la estrategia B y demanda
+    realista, 24 visitas al mes en el año dos y 34 en el tres, 43 y 61 piezas, dan 37.584 €
+    y 53.244 € de facturación y 19.028 € y 30.386 € de resultado
+    <span class="chip chip--estimate">Estimate</span>, con la cuota ya en 250 € y 450–500 €
+    al mes de anuncios. En el conservador, 5.154 € y 8.496 €; en el optimista, 36.025 € en el
+    año dos y 26.837 € en el tres, menos que el anterior porque ese año se contrata al
+    primer operario y se paga su sueldo y su máquina
+    <span class="chip chip--estimate">Estimate</span>. En el tercer año realista el operador
+    está al 70 % de su capacidad.
+  </p>
+
+  <h3>Del año cuatro al ocho</h3>
+  <table class="cmp-table cmp-table--zebra">
+    <caption>Tabla 10.3. Trayectoria a ocho años, estrategia B, demanda realista. Euros anuales.</caption>
+    <thead>
+      <tr>
+        <th scope="col">Año</th>
+        <th scope="col" class="num">Piezas / mes</th>
+        <th scope="col" class="num">Operarios</th>
+        <th scope="col" class="num">Facturado</th>
+        <th scope="col" class="num">Resultado</th>
+        <th scope="col">El fundador deja de operar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">2</th><td class="num">43,2</td><td class="num">1</td><td class="num">37.584</td><td class="num">19.028</td><td>—</td></tr>
+      <tr><th scope="row">3</th><td class="num">61,2</td><td class="num">1</td><td class="num">53.244</td><td class="num">30.386</td><td>—</td></tr>
+      <tr><th scope="row">4</th><td class="num">74,0</td><td class="num">1</td><td class="num">64.337</td><td class="num">38.856</td><td>Se decide contratar</td></tr>
+      <tr><th scope="row">5</th><td class="num">81,7</td><td class="num">2</td><td class="num">71.038</td><td class="num">19.354</td><td>Sí</td></tr>
+      <tr><th scope="row">6</th><td class="num">85,9</td><td class="num">2</td><td class="num">74.738</td><td class="num">24.479</td><td>Sí</td></tr>
+      <tr><th scope="row">7</th><td class="num">88,1</td><td class="num">2</td><td class="num">76.684</td><td class="num">25.965</td><td>No: la demanda supera a un operario</td></tr>
+      <tr><th scope="row">8</th><td class="num">89,3</td><td class="num">2</td><td class="num">77.683</td><td class="num">26.728</td><td>No</td></tr>
+    </tbody>
+  </table>
+
   <!-- chart:trajectory --><span class="chip chip--hypothesis">Hypothesis</span><!-- /chart -->
+
+  <p>
+    Los años dos y tres son <span class="chip chip--estimate">Estimate</span>; del cuarto
+    en adelante el crecimiento sigue una regla fijada en el modelo, la mitad del ritmo del
+    año anterior y ese ritmo a la mitad cada año, así que todo lo que sigue es una hipótesis
+    <span class="chip chip--hypothesis">Hypothesis</span>. En el cuarto año el operador
+    trabaja al 84 % de su capacidad y la caja acumulada cubre con holgura tres meses de la
+    nueva estructura, así que el modelo contrata para el quinto. Ese año el resultado baja
+    de 38.856 € a 19.354 €, porque entra un sueldo de 1.860 € al mes con cargas y una
+    segunda máquina de 2.300 € <span class="chip chip--hypothesis">Hypothesis</span>, y a
+    cambio el fundador puede dejar de hacer servicios. En el séptimo la demanda vuelve a
+    superar lo que cubre un operario contratado y habría que decidir otra vez. El capítulo
+    11 trata esa decisión. La caja acumulada que da el modelo para esos años, 189.562 € al
+    cierre del octavo <span class="chip chip--hypothesis">Hypothesis</span>, está inflada: no descuenta ni
+    el IRPF ni lo que el fundador retire para vivir, y hay que leerla como "lo que el negocio
+    genera", no como dinero en el banco.
+  </p>
+
+  <h3>Cuánto hay que vender para no perder</h3>
   <!-- chart:break-even --><span class="chip chip--estimate">Estimate</span><!-- /chart -->
+  <p>
+    Con la estrategia B, 3,4 piezas al mes cubren los fijos con tarifa plana, 8,8 cubren
+    fijos y 300 € de anuncios, y 11,8 lo mismo cuando la cuota suba
+    <span class="chip chip--estimate">Estimate</span>; A necesita 4,4, 11,5 y 15,5, C 2,9,
+    7,6 y 10,3. Frente a 88 de capacidad, el equilibrio está en la décima parte de lo que
+    puede hacer una persona. Cuatro ratios resumen la estrategia B en el escenario
+    realista: el 92,4 % del precio neto de cada pieza es contribución, un cliente de
+    anuncio se amortiza con 1,3 piezas, el resultado es el 38,8 % de la facturación neta y
+    los anuncios se llevan el 25,9 % de la facturación bruta del primer año
+    <span class="chip chip--estimate">Estimate</span>.
+  </p>
+
+  <h3>Lo que el modelo no dice</h3>
+  <p>
+    No sabe cuántos clientes habrá; las tres curvas son el rango razonable, no una
+    medición de Murcia. No incluye ninguna venta a empresas, que solo podría mejorarlo. No
+    descuenta el IRPF ni lo que el fundador necesite retirar. Supone que la tarifa plana
+    acaba en junio de 2027, cuando lo probable es que se prorrogue. Y supone que la oferta
+    de dos piezas funciona, 1,8 piezas por visita; si se queda en 1,5, el año realista
+    pierde unas 34 piezas y unos 2.000 € de resultado <span class="chip chip--estimate">Estimate</span>.
+  </p>
+
+  <aside class="callout">
+    <p class="callout__label">Lo que importa de este capítulo</p>
+    <p>
+      Con precio de mercado y demanda realista, el primer año deja 4.768 € y solo en octubre
+      la caja está en negativo. Si el arranque es lento, hay que poder cubrir 548 € en enero.
+      El segundo año deja 19.028 € antes de IRPF; el quinto permite dejar de operar.
+    </p>
+  </aside>
 </section>
