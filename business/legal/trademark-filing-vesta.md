@@ -130,8 +130,14 @@ If they do not answer within two or three weeks, file anyway: the OEPM will noti
 What Nelson needs at hand: Cl@ve or digital certificate, DNI, real address, the JPG from
 `assets/`, the service list from §2, a card for 127,88 €.
 
-1. https://sede.oepm.gob.es → Marcas → "Solicitud de marcas, nombres comerciales y
-   transformaciones" → marca nacional, nueva solicitud. Identify with Cl@ve/certificate.
+1. Direct link to the wizard (ProtegeO):
+   https://sede.oepm.gob.es/ProtegeOWeb/inicio.html?tipoTramite=Marcas_NLM → Aceptar →
+   "Nueva presentación". Checked 2026-10-19: the wizard opens without logging in and gives
+   a draft code (`Cod. Ref.`) so the form can be saved and resumed; identification and
+   signature come at the end (Cl@ve or certificate). Accepted image formats per the OEPM
+   manual (Jan 2024): gif, bmp, png, tif, tiff, jpg, jpeg. Payment inside the form: card,
+   Caixabank gateway or AEAT gateway; the final PDF carries the M-number, date/time and the
+   registry entry code.
 2. Solicitante: persona física, Nelson Gil, NIF, domicilio real, e-mail (notifications are
    electronic; use an inbox someone reads). No representative.
 3. Tipo de marca: Figurativa. Denominación: VESTA. Upload the JPG. Do not claim colour
