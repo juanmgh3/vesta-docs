@@ -18,7 +18,8 @@ Moved out of the vesta-web repo on 2026-07-08 to keep the web repo code-only.
   - `build-report.mjs` — assembles the chapter fragments into the self-contained report HTML
 - `business/reports/_src/` — chapter fragments per report (`_src/murcia/ch-*.html`, `charts.html`)
 - `business/research/` — sourced research inputs + reproducible model scripts
-  (`murcia-market.md`, `murcia-model.mjs`, `founder-inputs.md`, `pricing-decision.md`)
+  (`murcia-market.md`, `murcia-model.mjs`, `founder-inputs.md`, `pricing-decision.md`,
+  `trademark-clearance-vesta.md` — búsqueda de anterioridades de la marca "Vesta" en OEPM/EUIPO/TMview)
 - `business/bank/` — bank financing dossier (superseded)
 - `briefs/` — the original assignment brief + starter prompts
 
