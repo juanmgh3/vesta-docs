@@ -19,6 +19,9 @@ Moved out of the vesta-web repo on 2026-07-08 to keep the web repo code-only.
 - `business/reports/_src/` — chapter fragments per report (`_src/murcia/ch-*.html`, `charts.html`)
 - `business/research/` — sourced research inputs + reproducible model scripts
   (`murcia-market.md`, `murcia-model.mjs`, `founder-inputs.md`, `pricing-decision.md`)
+- `business/visibility/` — the visibility playbook: `plan-visibilidad.html` (orientation + roadmap,
+  published as a claude.ai artifact whose checkboxes keep their state there) and one numbered
+  step per file (Google Business Profile, web, Ads, measurement), with paste-ready copy
 - `business/bank/` — bank financing dossier (superseded)
 - `briefs/` — the original assignment brief + starter prompts
 

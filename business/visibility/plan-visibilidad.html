@@ -1,0 +1,599 @@
+<title>Plan de visibilidad Vesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: one reading column on Vesta's cream paper; the four entry doors and the roadmap phases widen into their own blocks inside it */
+:root {
+  --bg: #f5f1e8;
+  --surface: #fbf9f2;
+  --well: #ede7d9;
+  --ink: #1a1a1a;
+  --ink-soft: #4d4b45;
+  --line: rgba(26, 26, 26, 0.14);
+  --accent: #1b5252;
+  --accent-tint: #dfebe7;
+  --gold: #6e5626;
+  --gold-tint: #efe5cf;
+  --ok: #275a42;
+  --ok-tint: #dcebe2;
+  --warn: #7a4f0e;
+  --warn-tint: #f3e3c6;
+  --crit: #863927;
+  --crit-tint: #f2ddd6;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101918; --surface: #162221; --well: #1c2a29; --ink: #ece7dc; --ink-soft: #b3aea3;
+    --line: rgba(236, 231, 220, 0.14); --accent: #8cc4bb; --accent-tint: #1d3533;
+    --gold: #d6b674; --gold-tint: #2d2717; --ok: #86c9a3; --ok-tint: #17302a;
+    --warn: #e2b66b; --warn-tint: #33280f; --crit: #e59581; --crit-tint: #3a211c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101918; --surface: #162221; --well: #1c2a29; --ink: #ece7dc; --ink-soft: #b3aea3;
+  --line: rgba(236, 231, 220, 0.14); --accent: #8cc4bb; --accent-tint: #1d3533;
+  --gold: #d6b674; --gold-tint: #2d2717; --ok: #86c9a3; --ok-tint: #17302a;
+  --warn: #e2b66b; --warn-tint: #33280f; --crit: #e59581; --crit-tint: #3a211c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-inline: 20px;
+  padding-block: 40px 72px;
+}
+.page { max-width: 780px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.2rem); letter-spacing: -0.01em; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.15rem; font-family: var(--body); font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+code { font-family: var(--mono); font-size: 0.86em; background: var(--well); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.lede { font-size: 1.13rem; color: var(--ink-soft); max-width: 62ch; }
+.muted { color: var(--ink-soft); }
+section { display: grid; gap: 20px; }
+.section-head { display: grid; gap: 8px; }
+.section-head p { color: var(--ink-soft); max-width: 64ch; }
+
+.tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; padding: 1px 7px; border-radius: 999px; vertical-align: 0.12em; white-space: nowrap; }
+.t-fact { background: var(--ok-tint); color: var(--ok); }
+.t-est { background: var(--gold-tint); color: var(--gold); }
+.t-sup { background: var(--warn-tint); color: var(--warn); }
+.t-prop { background: var(--accent-tint); color: var(--accent); }
+.t-pend { background: var(--crit-tint); color: var(--crit); }
+
+header.top { display: grid; gap: 16px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 0.85rem; color: var(--ink-soft); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+
+.status { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 20px; }
+.progress-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.progress-num { font-family: var(--display); font-size: 2rem; font-variant-numeric: tabular-nums; }
+.bar { height: 8px; background: var(--well); border-radius: 999px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.4s ease; }
+.status-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.status-cols > div { min-width: 0; display: grid; gap: 8px; align-content: start; }
+.status ul, .status ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.sync { font-size: 0.82rem; color: var(--ink-soft); }
+
+.doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.door { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.door-num { font-family: var(--display); font-size: 1.6rem; color: var(--gold); line-height: 1; }
+.door dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 0.9rem; }
+.door dt { color: var(--ink-soft); }
+.door dd { margin: 0; font-weight: 600; }
+.door p { font-size: 0.92rem; color: var(--ink-soft); }
+
+.flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.92rem; }
+.flow span.step { background: var(--accent-tint); color: var(--accent); font-weight: 600; padding: 6px 12px; border-radius: 999px; }
+.flow span.arrow { color: var(--ink-soft); }
+
+.rule { background: var(--accent); color: var(--bg); border-radius: 14px; padding: 22px 24px; display: grid; gap: 8px; }
+.rule .eyebrow { color: var(--gold-tint); }
+.rule .tag { background: rgba(255,255,255,0.16); color: inherit; }
+:root[data-theme="dark"] .rule .tag { background: rgba(0,0,0,0.18); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rule .tag { background: rgba(0,0,0,0.18); } }
+.rule p { font-size: 1.02rem; }
+
+.pieces { display: grid; border-top: 1px solid var(--line); }
+.piece { display: grid; grid-template-columns: minmax(150px, 0.32fr) 1fr; gap: 6px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.piece > * { min-width: 0; }
+.piece-name { display: grid; gap: 4px; align-content: start; }
+.piece-name strong { font-size: 1.02rem; }
+.piece-name .cost { font-size: 0.84rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.piece-body { display: grid; gap: 6px; font-size: 0.96rem; }
+.piece-body .what { color: var(--ink-soft); font-size: 0.9rem; }
+.piece-body .discarded { font-size: 0.88rem; color: var(--ink-soft); border-left: 2px solid var(--line); padding-left: 10px; }
+
+.phases { display: grid; gap: 18px; }
+.phase { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 10px; display: grid; gap: 4px; }
+.phase-head { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: baseline; padding-bottom: 10px; }
+.phase-head h3 { font-family: var(--display); font-size: 1.3rem; font-weight: 600; }
+.phase-head h3 small { font-family: var(--body); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 2px; }
+.phase-count { font-variant-numeric: tabular-nums; font-size: 0.88rem; color: var(--ink-soft); white-space: nowrap; }
+.phase-meta { grid-column: 1 / -1; font-size: 0.88rem; color: var(--ink-soft); }
+.tasks { list-style: none; margin: 0; padding: 0; display: grid; }
+.task { display: grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
+.task input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--accent); cursor: pointer; }
+.task input:disabled { cursor: default; }
+.task input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.task label { display: grid; gap: 3px; cursor: pointer; min-width: 0; }
+.task .t-text { font-size: 0.97rem; }
+.task .t-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 0.8rem; color: var(--ink-soft); }
+.owner { font-weight: 700; letter-spacing: 0.02em; }
+.owner.o-socio { color: var(--crit); }
+.owner.o-web { color: var(--accent); }
+.owner.o-claude { color: var(--gold); }
+.task input:checked + label .t-text { text-decoration: line-through; text-decoration-color: var(--ink-soft); color: var(--ink-soft); }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+tfoot td { border-bottom: none; font-weight: 700; padding-top: 14px; }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+.two > div { min-width: 0; display: grid; gap: 10px; align-content: start; }
+.plain { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.who { display: grid; gap: 14px; }
+.who div { display: grid; gap: 2px; }
+
+footer { font-size: 0.85rem; color: var(--ink-soft); display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 18px; }
+
+@media (max-width: 560px) {
+  body { padding-block: 28px 56px; padding-inline: 16px; }
+  .piece { grid-template-columns: 1fr; }
+  .status, .phase { padding-inline: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<main class="page">
+
+  <header class="top">
+    <p class="eyebrow">Vesta · Murcia · Documento interno</p>
+    <h1>Plan de visibilidad</h1>
+    <p class="lede">Qué hay que montar para que alguien de Murcia que necesita limpiar un colchón o un sofá encuentre a Vesta, en qué orden, cuánto cuesta y quién hace cada cosa. Es la guía de quien lo ejecuta y, a la vez, el parte de situación para el socio fundador.</p>
+    <div class="legend">
+      <span><span class="tag t-fact">HECHO</span> comprobado, con fuente</span>
+      <span><span class="tag t-est">ESTIMACIÓN</span> sale de un cálculo</span>
+      <span><span class="tag t-sup">SUPOSICIÓN</span> sin comprobar</span>
+      <span><span class="tag t-prop">PROPUESTA</span> falta decidir</span>
+    </div>
+    <p class="muted" style="font-size:0.85rem">Actualizado el 12 de octubre de 2026.</p>
+  </header>
+
+  <section class="status" aria-labelledby="st-h">
+    <div class="progress-row">
+      <h2 id="st-h" style="font-size:1.35rem">Dónde estamos</h2>
+      <span><span class="progress-num" id="done-total">0</span> <span class="muted">de <span id="all-total">37</span> tareas hechas</span></span>
+    </div>
+    <div class="bar" aria-hidden="true"><i id="bar-fill"></i></div>
+    <div class="status-cols">
+      <div>
+        <h3>Lo que bloquea ahora</h3>
+        <ol>
+          <li>Las decisiones de la fase 0, sobre todo el dominio y la tarifa interna. Sin ellas no se publica la web ni se lanzan anuncios.</li>
+          <li>La ficha de Google, porque su verificación tarda hasta cinco días hábiles y no depende de nada más. <span class="tag t-fact">HECHO</span></li>
+          <li>La web sigue sin publicar y sus textos no están validados. Por ejemplo, prometen precios publicados.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Hecho antes de este plan</h3>
+        <ul>
+          <li>Estudio de mercado de Murcia: competencia, precios, zonas.</li>
+          <li>Web diseñada, todavía sin publicar.</li>
+          <li>WhatsApp de empresa conectado a la web.</li>
+          <li>Dominios libres comprobados.</li>
+          <li>Guía paso a paso de la ficha de Google.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="sync" id="sync" role="status">Las casillas de la hoja de ruta guardan su estado al abrir esta página con la sesión iniciada en Claude.</p>
+  </section>
+
+  <section aria-labelledby="doors-h">
+    <div class="section-head">
+      <h2 id="doors-h">Cómo llega un cliente</h2>
+      <p>Hay cuatro puertas de entrada y todas acaban en el mismo sitio, un WhatsApp pidiendo presupuesto. Lo que cambia entre ellas es cuánto cuestan y cuánto tardan en dar fruto.</p>
+    </div>
+    <div class="doors">
+      <article class="door">
+        <span class="door-num">1</span>
+        <h3>Google y Maps</h3>
+        <dl><dt>Coste</dt><dd>0 €</dd><dt>Tarda</dt><dd>semanas o meses</dd></dl>
+        <p>Necesita la ficha de Google verificada, la web publicada y reseñas. En Maps, el especialista de Murcia con más reseñas tiene 68. <span class="tag t-fact">HECHO</span></p>
+      </article>
+      <article class="door">
+        <span class="door-num">2</span>
+        <h3>Anuncios de Google</h3>
+        <dl><dt>Coste</dt><dd>1–3 € por clic</dd><dt>Tarda</dt><dd>desde el primer día</dd></dl>
+        <p>Rellena el hueco mientras arranca la puerta 1. El precio por clic es la banda nacional del sector, porque de Murcia no hay dato. <span class="tag t-est">ESTIMACIÓN</span></p>
+      </article>
+      <article class="door">
+        <span class="door-num">3</span>
+        <h3>Recomendación</h3>
+        <dl><dt>Coste</dt><dd>0 €</dd><dt>Tarda</dt><dd>crece con cada cliente</dd></dl>
+        <p>Cuatro de cada diez españoles encuentran a un profesional para su casa a través de un conocido, según una encuesta de 2018 sobre reparaciones, no sobre limpieza. <span class="tag t-fact">HECHO</span></p>
+      </article>
+      <article class="door">
+        <span class="door-num">4</span>
+        <h3>Asistentes de IA</h3>
+        <dl><dt>Coste</dt><dd>0 €</dd><dt>Tarda</dt><dd>lo mismo que la 1</dd></dl>
+        <p>ChatGPT, Gemini o Perplexity responden con lo que encuentran en la ficha de Google, en Bing, en la web y en las reseñas. Si las otras puertas están bien montadas, esta se abre casi sola. <span class="tag t-sup">SUPOSICIÓN</span></p>
+      </article>
+    </div>
+    <div class="flow" aria-label="Recorrido del cliente">
+      <span class="step">Cualquier puerta</span><span class="arrow">→</span>
+      <span class="step">WhatsApp</span><span class="arrow">→</span>
+      <span class="step">Presupuesto</span><span class="arrow">→</span>
+      <span class="step">Servicio</span><span class="arrow">→</span>
+      <span class="step">Reseña</span><span class="arrow">→</span>
+      <span class="muted">que vuelve a alimentar las puertas 1, 3 y 4</span>
+    </div>
+    <div class="rule">
+      <p class="eyebrow">La regla que decide si los anuncios salen a cuenta</p>
+      <p>Captar un cliente con anuncios cuesta unos 71 €. Con eso, un cliente que pide un colchón de matrimonio deja 26 € de pérdida y uno que pide colchón y sofá de tres plazas deja 47 € de ganancia. <span class="tag">ESTIMACIÓN</span></p>
+      <p>Por eso la tarifa interna lleva packs y cada presupuesto empuja a dos piezas por visita.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="pieces-h">
+    <div class="section-head">
+      <h2 id="pieces-h">Las piezas, y lo decidido sobre cada una</h2>
+      <p>Lo que hay que tener montado, para qué sirve y qué se ha decidido. Lo descartado queda escrito con su motivo, para no volver a discutirlo.</p>
+    </div>
+    <div class="pieces">
+
+      <div class="piece">
+        <div class="piece-name"><strong>Dominio</strong><span class="cost">7–9 € al año</span></div>
+        <div class="piece-body">
+          <p class="what">La dirección de la web.</p>
+          <p><span class="tag t-prop">PROPUESTA</span> Tres finalistas, y recomiendo la primera. vestahogar.es, porque Vesta es la diosa del hogar y se dicta fácil por teléfono. vestahigiene.es, que lleva el posicionamiento en el nombre y tiene libre también el .com. vestaencasa.es, que dice «a domicilio» sin decirlo.</p>
+          <p>Las dos primeras estaban libres en el registro el 6 de octubre <span class="tag t-fact">HECHO</span>; la tercera solo se comprobó por DNS. El titular tiene que ser el socio fundador, porque el titular de un dominio es su dueño legal. Precio de referencia en OVH, 7,25 € el primer año y 8,46 € la renovación, IVA incluido. <span class="tag t-fact">HECHO</span></p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Alojamiento</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">El servidor donde vive la web.</p>
+          <p>Cloudflare Pages, en su plan gratuito. La web es estática, sin servidor ni base de datos, así que no necesita más. El plan gratuito permite 500 publicaciones al mes. <span class="tag t-fact">HECHO</span></p>
+          <p class="discarded">Descartado el plan gratuito de Vercel, porque sus normas lo reservan a uso personal y anunciar un servicio cuenta como uso comercial <span class="tag t-fact">HECHO</span>. Descartado también un hosting de pago o WordPress, porque se paga cada mes por cosas que una web estática no usa.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Base de datos</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">Dónde se guardan los clientes y los trabajos.</p>
+          <p>Ahora no hace falta. La web no guarda nada y los clientes entran por WhatsApp. El registro es una hoja de cálculo en la cuenta de Google del negocio, con fecha, zona, piezas, precio, de qué puerta vino, si se pidió la reseña y cuándo toca repetir.</p>
+          <p>Se replantea si llegan las reservas online o un segundo operario, o si la hoja se queda corta. La hoja también tiene datos personales, así que no se comparte y la web avisa de ello en su política de privacidad.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Ficha de Google</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">Lo que aparece en Maps y en los resultados locales.</p>
+          <p>Se llama «Vesta», sin palabras clave, y lleva como categoría «Servicio de limpieza de tapicería», la que usan los dos especialistas que salen primero en Murcia <span class="tag t-fact">HECHO</span>. No muestra dirección y su zona es Murcia más el cinturón. Los pasos están en <code>business/visibility/01-google-business-profile.md</code>.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>WhatsApp Business</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">Donde acaban todas las puertas.</p>
+          <p>Perfil de empresa, catálogo de servicios sin precios, respuestas rápidas para presupuestos, packs y zonas, y etiquetas por estado (nuevo, presupuesto enviado, reservado, hecho, reseña pedida). La rapidez es lo que más valora quien contrata a un profesional para su casa, un 35 % según la misma encuesta de 2018. <span class="tag t-fact">HECHO</span></p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Precios</strong><span class="cost">decisión del socio</span></div>
+        <div class="piece-body">
+          <p>Presupuesto por WhatsApp, sin tabla pública, porque el precio cambia con las piezas y con la distancia. De ahí salen dos tareas. Hace falta una tarifa interna para presupuestar rápido y siempre igual (precio por pieza, packs de dos o más piezas y suplemento por zona). Y la web tiene que dejar de prometer «precios publicados».</p>
+          <p><span class="tag t-prop">PROPUESTA</span> Poner una sola cifra «desde» en los anuncios. Así quien solo busca lo más barato se filtra antes de costar un clic.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Medición</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">Cómo sabemos qué puerta trae clientes.</p>
+          <p>Se empieza sin cookies. Las visitas se cuentan con Cloudflare Web Analytics, que no usa cookies <span class="tag t-sup">SUPOSICIÓN</span> (se confirma antes de prescindir del banner). El botón de WhatsApp manda un mensaje distinto según de dónde llega el cliente (web, anuncio o ficha), y la hoja de clientes tiene la columna «¿cómo nos conoció?».</p>
+          <p>El banner de cookies y la etiqueta de conversión de Google llegan solo si los anuncios funcionan y queremos que Google ajuste las pujas por su cuenta.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Google Ads</strong><span class="cost">250–300 €, una vez</span></div>
+        <div class="piece-body">
+          <p><span class="tag t-prop">PROPUESTA</span> Una prueba con techo, no una cuota mensual. Unos 5 € al día durante seis a ocho semanas, con un tope total de 250–300 € y reglas de corte escritas antes de lanzarla. Solo anuncios de búsqueda, solo en Murcia y el cinturón y solo en horario de atención. La cifra final la pone el socio fundador.</p>
+        </div>
+      </div>
+
+      <div class="piece">
+        <div class="piece-name"><strong>Páginas legales</strong><span class="cost">0 €</span></div>
+        <div class="piece-body">
+          <p class="what">Obligatorias en la web de cualquier negocio en España.</p>
+          <p>Aviso legal (la LSSI exige identificar al titular con nombre, NIF y domicilio), política de privacidad y política de cookies. Los textos se repasan con el gestor antes de publicar. <span class="tag t-sup">SUPOSICIÓN</span></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="road-h">
+    <div class="section-head">
+      <h2 id="road-h">Hoja de ruta</h2>
+      <p>Las fases van en orden porque cada una depende de la anterior, salvo la ficha de Google, que conviene enviar cuanto antes. Cada fase dice cuándo se da por cerrada.</p>
+    </div>
+    <div class="phases">
+
+      <article class="phase" data-phase="p0">
+        <div class="phase-head">
+          <h3><small>Fase 0 · esta semana</small>Decisiones del socio fundador</h3>
+          <span class="phase-count" data-count="p0">0 de 7</span>
+          <p class="phase-meta">Se cierra cuando las siete están decididas y apuntadas. Todo lo demás espera a alguna de ellas. Se responden en el <a href="https://claude.ai/artifact/5LtyeTWa5ZnBpYtyrhSPG1">cuestionario de decisiones de arranque</a>.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-d1" data-task="d1" disabled><label for="t-d1"><span class="t-text">Elegir el dominio entre las tres finalistas.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d2" data-task="d2" disabled><label for="t-d2"><span class="t-text">Tarifa interna para presupuestar, con precio por pieza, packs de dos o más piezas y suplemento por zona.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span><span>bloquea WhatsApp Business y los anuncios</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d3" data-task="d3" disabled><label for="t-d3"><span class="t-text">Confirmar la zona de servicio (Murcia y cinturón) y qué se hace con Cartagena y la costa.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d4" data-task="d4" disabled><label for="t-d4"><span class="t-text">Horario en que se contesta WhatsApp y teléfono.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d5" data-task="d5" disabled><label for="t-d5"><span class="t-text">Validar lo que se dice del servicio: método, qué quita, cuánto tarda en secar y qué no se hace.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span><span>bloquea los textos de la web y de la ficha</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d6" data-task="d6" disabled><label for="t-d6"><span class="t-text">Techo de gasto de la prueba de Google Ads.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-d7" data-task="d7" disabled><label for="t-d7"><span class="t-text">Datos para el aviso legal: nombre, NIF y domicilio.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase" data-phase="p1">
+        <div class="phase-head">
+          <h3><small>Fase 1 · unos días</small>Cuentas e identidad</h3>
+          <span class="phase-count" data-count="p1">0 de 5</span>
+          <p class="phase-meta">Se cierra con la ficha enviada a verificación, el dominio comprado y WhatsApp Business listo.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-a1" data-task="a1" disabled><label for="t-a1"><span class="t-text">Crear la cuenta de Google del negocio, con verificación en dos pasos.</span><span class="t-meta"><span class="owner o-web">Responsable web</span><span>la misma cuenta tendrá la ficha, los anuncios y Search Console</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-a2" data-task="a2" disabled><label for="t-a2"><span class="t-text">Comprar el dominio a nombre del socio fundador.</span><span class="t-meta"><span class="owner o-web">Responsable web</span><span>espera a la decisión del dominio</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-a3" data-task="a3" disabled><label for="t-a3"><span class="t-text">Crear la ficha de Google y grabar el vídeo de verificación.</span><span class="t-meta"><span class="owner o-web">Responsable web</span><span>guía 01 · la revisión tarda hasta 5 días hábiles</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-a4" data-task="a4" disabled><label for="t-a4"><span class="t-text">Configurar WhatsApp Business: perfil, catálogo, respuestas rápidas y etiquetas.</span><span class="t-meta"><span class="owner o-web">Responsable web</span><span>espera a la tarifa, la zona y el horario</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-a5" data-task="a5" disabled><label for="t-a5"><span class="t-text">Crear la hoja de clientes.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase" data-phase="p2">
+        <div class="phase-head">
+          <h3><small>Fase 2 · una semana, más o menos</small>Web publicada</h3>
+          <span class="phase-count" data-count="p2">0 de 8</span>
+          <p class="phase-meta">Se cierra cuando la web está en su dominio, Google y Bing la han indexado y carga bien en un móvil normal.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-w1" data-task="w1" disabled><label for="t-w1"><span class="t-text">Reescribir los textos de la web con lo validado y quitar «precios publicados».</span><span class="t-meta"><span class="owner o-claude">Con Claude</span><span>espera a la validación del servicio</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w2" data-task="w2" disabled><label for="t-w2"><span class="t-text">Aviso legal, política de privacidad y política de cookies.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span><span>repasar con el gestor</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w3" data-task="w3" disabled><label for="t-w3"><span class="t-text">SEO técnico: títulos, descripción, datos estructurados de negocio local, sitemap, robots.txt sin bloquear a las IAs e imagen para compartir.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w4" data-task="w4" disabled><label for="t-w4"><span class="t-text">Botón de WhatsApp con un mensaje distinto según de dónde llega el cliente.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w5" data-task="w5" disabled><label for="t-w5"><span class="t-text">Publicar en Cloudflare Pages con el dominio y HTTPS.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span><span>espera al dominio</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w6" data-task="w6" disabled><label for="t-w6"><span class="t-text">Activar la analítica sin cookies.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w7" data-task="w7" disabled><label for="t-w7"><span class="t-text">Probar la web en un Android de gama media con 4G.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-w8" data-task="w8" disabled><label for="t-w8"><span class="t-text">Dar de alta la web en Search Console y Bing Webmaster y enviar el sitemap.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase" data-phase="p3">
+        <div class="phase-head">
+          <h3><small>Fase 3 · semanas 2 a 4</small>Presencia local</h3>
+          <span class="phase-count" data-count="p3">0 de 5</span>
+          <p class="phase-meta">Se cierra cuando Vesta aparece con los mismos datos en Google, Bing y Apple y tiene sus primeras reseñas.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-l1" data-task="l1" disabled><label for="t-l1"><span class="t-text">Añadir la web a la ficha de Google y subir fotos reales del trabajo.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-l2" data-task="l2" disabled><label for="t-l2"><span class="t-text">Bing Places, importando la ficha de Google.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-l3" data-task="l3" disabled><label for="t-l3"><span class="t-text">Apple Business Connect.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-l4" data-task="l4" disabled><label for="t-l4"><span class="t-text">Perfiles en Cronoshare, Habitissimo y Páginas Amarillas, con el mismo nombre, teléfono y web.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-l5" data-task="l5" disabled><label for="t-l5"><span class="t-text">Primeras diez reseñas de clientes reales.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span><span>meta orientativa</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase" data-phase="p4">
+        <div class="phase-head">
+          <h3><small>Fase 4 · seis a ocho semanas</small>Prueba de Google Ads</h3>
+          <span class="phase-count" data-count="p4">0 de 6</span>
+          <p class="phase-meta">Empieza con la web publicada, WhatsApp Business listo y la tarifa y el techo decididos. Se cierra cuando hay datos para decidir si seguir, escalar o parar.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-g1" data-task="g1" disabled><label for="t-g1"><span class="t-text">Crear la cuenta en modo experto, con la facturación a nombre del socio fundador.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-g2" data-task="g2" disabled><label for="t-g2"><span class="t-text">Preparar la campaña de búsqueda: palabras, negativas, anuncios, zona y horario.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-g3" data-task="g3" disabled><label for="t-g3"><span class="t-text">Desactivar lo que gasta por defecto: red de display, partners de búsqueda, segmentación por «presencia o interés» y recomendaciones automáticas.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-g4" data-task="g4" disabled><label for="t-g4"><span class="t-text">Escribir las reglas de corte antes de lanzar.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-g5" data-task="g5" disabled><label for="t-g5"><span class="t-text">Revisión semanal de quince minutos con el informe de términos de búsqueda.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-g6" data-task="g6" disabled><label for="t-g6"><span class="t-text">Decidir al final de la prueba si seguir, escalar o parar.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+        </ul>
+      </article>
+
+      <article class="phase" data-phase="p5">
+        <div class="phase-head">
+          <h3><small>Fase 5 · meses 2 a 6</small>Crecer sin pagar</h3>
+          <span class="phase-count" data-count="p5">0 de 6</span>
+          <p class="phase-meta">Va en paralelo a la prueba de anuncios y no tiene final; es el trabajo de mantenimiento.</p>
+        </div>
+        <ul class="tasks">
+          <li class="task"><input type="checkbox" id="t-c1" data-task="c1" disabled><label for="t-c1"><span class="t-text">Páginas propias para colchones y para sofás, con las preguntas frecuentes respondidas en claro.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span><span>sirve a Google y a las IAs a la vez</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-c2" data-task="c2" disabled><label for="t-c2"><span class="t-text">Una publicación en la ficha de Google cada dos semanas.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-c3" data-task="c3" disabled><label for="t-c3"><span class="t-text">Avisar a cada cliente cuando le toca repetir, entre los seis y los doce meses.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span><span>plazo a validar</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-c4" data-task="c4" disabled><label for="t-c4"><span class="t-text">Comprobar una vez al mes si Vesta sale cuando se pregunta a ChatGPT, Gemini y Perplexity.</span><span class="t-meta"><span class="owner o-web">Responsable web</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-c5" data-task="c5" disabled><label for="t-c5"><span class="t-text">Si los anuncios funcionan, banner de cookies, etiqueta de conversión y puja automática a partir de 30–50 conversiones.</span><span class="t-meta"><span class="owner o-claude">Con Claude</span></span></label></li>
+          <li class="task"><input type="checkbox" id="t-c6" data-task="c6" disabled><label for="t-c6"><span class="t-text">Probar el canal de negocios: viviendas turísticas y hoteles de Murcia.</span><span class="t-meta"><span class="owner o-socio">Socio fundador</span></span></label></li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-labelledby="cost-h">
+    <div class="section-head">
+      <h2 id="cost-h">Lo que cuesta</h2>
+      <p>Hasta que empiecen los anuncios, todo el montaje cuesta menos de un euro al mes.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Concepto</th><th>Coste</th><th>Base</th></tr></thead>
+        <tbody>
+          <tr><td>Dominio .es</td><td class="num">7–9 € al año</td><td><span class="tag t-fact">HECHO</span> precio de OVH</td></tr>
+          <tr><td>Alojamiento en Cloudflare Pages</td><td class="num">0 €</td><td><span class="tag t-fact">HECHO</span> plan gratuito</td></tr>
+          <tr><td>Ficha de Google, Bing Places y Apple Business Connect</td><td class="num">0 €</td><td>gratuitos</td></tr>
+          <tr><td>WhatsApp Business</td><td class="num">0 €</td><td>gratuito</td></tr>
+          <tr><td>Analítica sin cookies y hoja de clientes</td><td class="num">0 €</td><td>gratuitos</td></tr>
+          <tr><td>Prueba de Google Ads</td><td class="num">250–300 €</td><td><span class="tag t-prop">PROPUESTA</span> una vez, en seis a ocho semanas</td></tr>
+        </tbody>
+        <tfoot><tr><td>Fijo mensual antes de anuncios</td><td class="num">≈ 0,70 €</td><td>la renovación del dominio repartida en doce meses</td></tr></tfoot>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="week-h">
+    <div class="two">
+      <div>
+        <h2 id="week-h">Qué miramos cada semana</h2>
+        <ul class="plain">
+          <li>Contactos por WhatsApp, y de qué puerta viene cada uno.</li>
+          <li>Presupuestos enviados y cuántos acaban en servicio.</li>
+          <li>Piezas por visita, con la meta de dos o más.</li>
+          <li>Gasto en anuncios dividido entre los clientes que llegaron por anuncios.</li>
+          <li>Reseñas nuevas y nota media.</li>
+          <li>Búsquedas que gastaron dinero sin traer a nadie, que pasan a la lista de negativas.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Quién hace qué</h2>
+        <div class="who">
+          <div><strong class="owner o-socio">Socio fundador</strong><span>Decide la fase 0 y pone su identidad donde la ley lo pide (titular del dominio, facturación de anuncios y aviso legal). Hace el servicio, contesta rápido y pide la reseña al terminar.</span></div>
+          <div><strong class="owner o-web">Responsable de web y marketing</strong><span>Ejecuta todo lo demás: cuentas, web, ficha, directorios, anuncios y la revisión semanal.</span></div>
+          <div><strong class="owner o-claude">Claude</strong><span>Ayuda al responsable con el código, los textos, el archivo de la campaña y el análisis de los informes. No crea cuentas, no paga y no escribe reseñas.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rules-h">
+    <h2 id="rules-h">Reglas que no se saltan</h2>
+    <ul class="plain">
+      <li>Las reseñas son solo de clientes reales, se piden a todos por igual y nunca a cambio de un descuento. Las falsas o escritas con IA son ilegales en España por el Real Decreto-ley 24/2021. <span class="tag t-fact">HECHO</span></li>
+      <li>La ficha se llama «Vesta», sin palabras clave añadidas, que son la causa típica de suspensión.</li>
+      <li>El mismo nombre, el mismo teléfono y la misma web en todos los sitios.</li>
+      <li>Ningún texto dice nada que el socio fundador no haya validado. Los textos actuales de la web no cuentan como validados.</li>
+      <li>Los datos de los clientes no salen de la hoja.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Fuentes y detalle en el repositorio: <code>business/research/murcia-market.md</code>, <code>business/research/pricing-decision.md</code>, <code>business/research/marketing-research-addendum.md</code> y <code>business/visibility/01-google-business-profile.md</code>.</p>
+    <p>Las casillas se guardan para todos los que abren esta página con la sesión iniciada. Solo pueden marcarlas el propietario y quien tenga permiso de colaborador.</p>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('input[data-task]'));
+  var syncEl = document.getElementById('sync');
+  var readOnly = false;
+  var col = null;
+
+  function setSync(text) { syncEl.textContent = text; }
+
+  function refresh() {
+    var done = 0;
+    boxes.forEach(function (b) { if (b.checked) done++; });
+    document.getElementById('done-total').textContent = String(done);
+    document.getElementById('all-total').textContent = String(boxes.length);
+    document.getElementById('bar-fill').style.width = (boxes.length ? (done / boxes.length) * 100 : 0) + '%';
+    document.querySelectorAll('.phase').forEach(function (ph) {
+      var items = ph.querySelectorAll('input[data-task]');
+      var d = 0;
+      items.forEach(function (i) { if (i.checked) d++; });
+      var c = ph.querySelector('.phase-count');
+      if (c) c.textContent = d + ' de ' + items.length;
+    });
+  }
+
+  function lock(message) {
+    readOnly = true;
+    boxes.forEach(function (b) { b.disabled = true; });
+    if (message) setSync(message);
+  }
+
+  function onToggle(e) {
+    var b = e.target;
+    if (!col || readOnly) return;
+    var wanted = b.checked;
+    b.dataset.pending = '1';
+    b.disabled = true;
+    refresh();
+    col.doc(b.dataset.task).set({ done: wanted, at: new Date().toISOString() })
+      .then(function () { setSync('Guardado. Quien abra la página verá el mismo estado.'); })
+      .catch(function (err) {
+        b.checked = !wanted;
+        if (err && (err.code === 'invalid_argument' || err.code === 'not_granted' || err.code === 'revoked')) {
+          lock('Esta vista es de solo lectura. Las casillas las marca el propietario o un colaborador.');
+        } else if (err && err.code === 'quota_exceeded') {
+          setSync('No se pudo guardar porque el almacenamiento de la página está lleno.');
+        } else {
+          setSync('No se guardó el cambio. Vuelve a marcar la casilla en unos segundos.');
+        }
+      })
+      .then(function () {
+        delete b.dataset.pending;
+        if (!readOnly) b.disabled = false;
+        refresh();
+      });
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', onToggle); });
+  refresh();
+
+  if (!window.claude || typeof window.claude.use !== 'function') return;
+
+  window.claude.use('db').then(function (db) {
+    if (!db) {
+      setSync('El estado de las casillas solo se ve al abrir esta página con la sesión iniciada en Claude.');
+      return;
+    }
+    col = db.collection('roadmap');
+    col.onSnapshot(function (snap) {
+      var state = {};
+      snap.docs.forEach(function (d) { var v = d.data(); state[d.id] = !!(v && v.done); });
+      boxes.forEach(function (b) { if (!b.dataset.pending) b.checked = !!state[b.dataset.task]; });
+      refresh();
+    }, function () {
+      lock('No se pudo leer el estado de las casillas. Recarga la página.');
+    });
+
+    return window.claude.use('user').then(function (user) {
+      return user ? user.can('data.write') : null;
+    }).catch(function () { return null; }).then(function (canWrite) {
+      if (canWrite === false) {
+        lock('Vista de solo lectura. Las casillas las marca el propietario o un colaborador.');
+      } else {
+        boxes.forEach(function (b) { b.disabled = false; });
+        setSync('Marca cada tarea al terminarla. El estado se guarda para todos.');
+      }
+    });
+  }).catch(function () {
+    setSync('El estado de las casillas no está disponible en esta vista.');
+  });
+})();
+</script>

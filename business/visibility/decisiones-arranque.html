@@ -1,0 +1,555 @@
+<title>Decisiones de arranque Vesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<style>
+/* Layout: a single phone-first column of question cards on Vesta's cream paper, with a sticky action bar at the bottom */
+:root {
+  --bg: #f5f1e8;
+  --surface: #fbf9f2;
+  --well: #ede7d9;
+  --ink: #1a1a1a;
+  --ink-soft: #4d4b45;
+  --line: rgba(26, 26, 26, 0.14);
+  --line-strong: rgba(26, 26, 26, 0.34);
+  --accent: #1b5252;
+  --accent-tint: #dfebe7;
+  --on-accent: #f5f1e8;
+  --gold: #6e5626;
+  --crit: #863927;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101918; --surface: #162221; --well: #1c2a29; --ink: #ece7dc; --ink-soft: #b3aea3;
+    --line: rgba(236, 231, 220, 0.14); --line-strong: rgba(236, 231, 220, 0.36);
+    --accent: #8cc4bb; --accent-tint: #1d3533; --on-accent: #101918; --gold: #d6b674; --crit: #e59581;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101918; --surface: #162221; --well: #1c2a29; --ink: #ece7dc; --ink-soft: #b3aea3;
+  --line: rgba(236, 231, 220, 0.14); --line-strong: rgba(236, 231, 220, 0.36);
+  --accent: #8cc4bb; --accent-tint: #1d3533; --on-accent: #101918; --gold: #d6b674; --crit: #e59581;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; padding-inline: 16px; padding-block: 32px 0; }
+.page { max-width: 680px; margin: 0 auto; display: grid; gap: 36px; padding-bottom: 32px; }
+h1, h2 { font-family: var(--display); font-weight: 600; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 7vw, 2.7rem); }
+h2 { font-size: 1.5rem; }
+p { margin: 0; }
+.eyebrow { font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+.intro { display: grid; gap: 14px; }
+.intro .lede { font-size: 1.08rem; color: var(--ink-soft); }
+.intro ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; color: var(--ink-soft); }
+
+form { display: grid; gap: 40px; }
+.block { display: grid; gap: 16px; }
+.block-head { display: grid; gap: 6px; }
+.block-head .num { font-family: var(--display); color: var(--gold); font-size: 1rem; }
+.block-head p { color: var(--ink-soft); font-size: 0.95rem; }
+
+fieldset.q { margin: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); padding: 18px 16px; display: grid; gap: 12px; min-width: 0; }
+fieldset.q legend { float: left; width: 100%; padding: 0; font-weight: 700; font-size: 1.02rem; }
+fieldset.q legend + * { clear: both; }
+.why { font-size: 0.88rem; color: var(--ink-soft); }
+.choices { display: grid; gap: 8px; }
+.choices.grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.choices.days { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.choice { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px 12px; cursor: pointer; min-height: 46px; background: var(--bg); }
+.choice:has(input:checked) { border-color: var(--accent); background: var(--accent-tint); }
+.choices.days .choice { justify-content: center; padding: 10px 4px; gap: 0; flex-direction: column; font-weight: 600; font-size: 0.9rem; }
+.choices.days .choice input { margin: 0 0 4px; }
+.choice input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); flex: none; }
+.choice input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.opt { min-width: 0; }
+.opt em { font-style: normal; font-size: 0.78rem; font-weight: 700; color: var(--accent); margin-left: 6px; letter-spacing: 0.02em; }
+
+input[type="text"], input[type="number"], input[type="time"], textarea {
+  font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px 12px; width: 100%; min-width: 0;
+}
+input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+textarea { min-height: 96px; resize: vertical; }
+.other { margin-top: 2px; }
+.inline { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.inline label { display: flex; align-items: center; gap: 8px; }
+.inline input[type="time"] { width: auto; }
+
+.tariff { display: grid; gap: 0; }
+.trow { display: grid; grid-template-columns: 1fr 112px; gap: 4px 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.trow:first-child { border-top: none; padding-top: 0; }
+.trow label { display: grid; gap: 1px; min-width: 0; }
+.trow .name { font-weight: 600; }
+.trow .hint { font-size: 0.8rem; color: var(--ink-soft); }
+.euro { position: relative; }
+.euro input { padding-right: 28px; text-align: right; font-variant-numeric: tabular-nums; }
+.euro::after { content: "€"; position: absolute; right: 11px; top: 50%; transform: translateY(-50%); color: var(--ink-soft); pointer-events: none; }
+
+.bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--line); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); margin-inline: -16px; display: grid; gap: 8px; }
+.bar-inner { max-width: 680px; margin: 0 auto; width: 100%; display: grid; gap: 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+button { font: inherit; font-weight: 700; border-radius: 10px; padding: 12px 18px; cursor: pointer; border: 1px solid var(--accent); min-height: 46px; }
+button.primary { background: var(--accent); color: var(--on-accent); flex: 1 1 200px; }
+button.secondary { background: transparent; color: var(--accent); flex: 1 1 160px; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[hidden] { display: none !important; }
+.status { font-size: 0.86rem; color: var(--ink-soft); min-height: 1.3em; }
+.status.warn { color: var(--crit); }
+#out { font-size: 0.85rem; min-height: 160px; }
+</style>
+
+<main class="page">
+  <header class="intro">
+    <p class="eyebrow">Vesta · Fase 0 del plan de visibilidad</p>
+    <h1>Decisiones de arranque</h1>
+    <p class="lede">Para publicar la web, abrir la ficha de Google y lanzar los anuncios necesitamos unas cuantas cosas que solo puedes decidir tú. Son unos diez minutos.</p>
+    <ul>
+      <li>Casi todo viene rellenado con nuestra propuesta. Cambia solo lo que no te encaje.</li>
+      <li>Las preguntas sobre el servicio vienen en blanco a propósito, porque solo tú sabes la respuesta.</li>
+      <li>No se publica nada que no hayas confirmado aquí.</li>
+      <li>Al terminar, pulsa «Copiar para WhatsApp» y pégalo en el chat conmigo.</li>
+    </ul>
+  </header>
+
+  <form id="f" autocomplete="off">
+
+    <section class="block">
+      <div class="block-head"><span class="num">1 de 5</span><h2>Nombre y dominio</h2></div>
+
+      <fieldset class="q" data-req>
+        <legend>¿Con qué nombre salimos?</legend>
+        <p class="why">Tiene que ser exactamente el mismo en la web, la ficha de Google, WhatsApp y los directorios.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="nombre" value="Vesta" checked><span class="opt">Vesta</span></label>
+          <label class="choice"><input type="radio" name="nombre" value="Grupo Vesta"><span class="opt">Grupo Vesta</span></label>
+          <label class="choice"><input type="radio" name="nombre" value="otro"><span class="opt">Otro</span></label>
+        </div>
+        <input type="text" class="other" id="nombre_otro" name="nombre_otro" data-label="Otro nombre" placeholder="Si es otro, ¿cuál?">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Qué dominio registramos?</legend>
+        <p class="why">Los tres estaban libres en la última comprobación. Irá a tu nombre, porque quien registra un dominio es su dueño legal, y cuesta unos 8 € al año.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="dominio" value="vestahogar.es" checked><span class="opt">vestahogar.es<em>RECOMENDADO</em></span></label>
+          <label class="choice"><input type="radio" name="dominio" value="vestahigiene.es"><span class="opt">vestahigiene.es</span></label>
+          <label class="choice"><input type="radio" name="dominio" value="vestaencasa.es"><span class="opt">vestaencasa.es</span></label>
+          <label class="choice"><input type="radio" name="dominio" value="otro"><span class="opt">Otro</span></label>
+        </div>
+        <input type="text" class="other" id="dominio_otro" name="dominio_otro" data-label="Otro dominio" placeholder="Si es otro, ¿cuál?">
+      </fieldset>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <span class="num">2 de 5</span><h2>Tarifa interna</h2>
+        <p>No se publica. Sirve para que cada presupuesto salga rápido y siempre igual. Precios con IVA incluido; la propuesta está al nivel de lo que cobran los competidores de Murcia.</p>
+      </div>
+
+      <fieldset class="q" data-req>
+        <legend>Precio por pieza</legend>
+        <div class="tariff">
+          <div class="trow"><label for="p_colchon_ind"><span class="name">Colchón individual</span><span class="hint">Murcia, unos 53–57 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_colchon_ind" name="p_colchon_ind" data-label="Colchón individual" data-suffix=" €" value="55"></span></div>
+          <div class="trow"><label for="p_colchon_mat"><span class="name">Colchón de matrimonio</span><span class="hint">Murcia, unos 67–71 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_colchon_mat" name="p_colchon_mat" data-label="Colchón de matrimonio" data-suffix=" €" value="69"></span></div>
+          <div class="trow"><label for="p_colchon_king"><span class="name">Colchón king</span><span class="hint">Entre 69 y 120 €, con pocos datos</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_colchon_king" name="p_colchon_king" data-label="Colchón king" data-suffix=" €" value="89"></span></div>
+          <div class="trow"><label for="p_sofa_2"><span class="name">Sofá de 2 plazas</span><span class="hint">Murcia, unos 79 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_sofa_2" name="p_sofa_2" data-label="Sofá de 2 plazas" data-suffix=" €" value="79"></span></div>
+          <div class="trow"><label for="p_sofa_3"><span class="name">Sofá de 3 plazas</span><span class="hint">Murcia, unos 100 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_sofa_3" name="p_sofa_3" data-label="Sofá de 3 plazas" data-suffix=" €" value="95"></span></div>
+          <div class="trow"><label for="p_chaise"><span class="name">Chaise longue o rinconera</span><span class="hint">Murcia, unos 110 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_chaise" name="p_chaise" data-label="Chaise longue o rinconera" data-suffix=" €" value="110"></span></div>
+          <div class="trow"><label for="p_sillon"><span class="name">Sillón o butaca</span><span class="hint">Murcia, unos 40 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_sillon" name="p_sillon" data-label="Sillón o butaca" data-suffix=" €" value="40"></span></div>
+          <div class="trow"><label for="p_silla"><span class="name">Silla tapizada</span><span class="hint">Murcia, unos 10 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_silla" name="p_silla" data-label="Silla tapizada" data-suffix=" €" value="10"></span></div>
+          <div class="trow"><label for="p_cabecero"><span class="name">Cabecero tapizado</span><span class="hint">Un solo dato, «desde 15 €»</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_cabecero" name="p_cabecero" data-label="Cabecero tapizado" data-suffix=" €" placeholder="—"></span></div>
+          <div class="trow"><label for="p_minimo"><span class="name">Pedido mínimo por visita</span><span class="hint">En Murcia casi nadie lo publica; en Madrid, 60–70 €</span></label><span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="p_minimo" name="p_minimo" data-label="Pedido mínimo por visita" data-suffix=" €" value="70"></span></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>Descuento por varias piezas en la misma visita</legend>
+        <p class="why">Con anuncios, un cliente que pide una sola pieza cuesta más de lo que deja, y con dos piezas sale a cuenta. El descuento es su razón para pedir la segunda.</p>
+        <div class="choices grid">
+          <label class="choice"><input type="radio" name="pack" value="Sin descuento"><span class="opt">Sin descuento</span></label>
+          <label class="choice"><input type="radio" name="pack" value="−10 % desde la 2.ª pieza" checked><span class="opt">−10 % desde la 2.ª pieza<em>PROPUESTA</em></span></label>
+          <label class="choice"><input type="radio" name="pack" value="−15 % desde la 2.ª pieza"><span class="opt">−15 % desde la 2.ª pieza</span></label>
+          <label class="choice"><input type="radio" name="pack" value="−20 % desde la 2.ª pieza"><span class="opt">−20 % desde la 2.ª pieza</span></label>
+          <label class="choice"><input type="radio" name="pack" value="otro"><span class="opt">Otra fórmula</span></label>
+        </div>
+        <input type="text" class="other" id="pack_otro" name="pack_otro" data-label="Otra fórmula" placeholder="Por ejemplo, packs cerrados por habitación">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>Trabajos fuera de Murcia y el cinturón</legend>
+        <p class="why">Cartagena, la costa o Lorca quedan a más de 30 minutos, y un viaje así se come casi un hueco de trabajo.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="fuera" value="No vamos fuera de la zona"><span class="opt">No vamos fuera de la zona</span></label>
+          <label class="choice"><input type="radio" name="fuera" value="Caso a caso, intentando juntar varios trabajos el mismo día" checked><span class="opt">Caso a caso, intentando juntar varios trabajos el mismo día<em>PROPUESTA</em></span></label>
+          <label class="choice"><input type="radio" name="fuera" value="Suplemento fijo"><span class="opt">Suplemento fijo</span></label>
+        </div>
+        <span class="euro"><input type="number" inputmode="decimal" min="0" step="1" id="fuera_importe" name="fuera_importe" data-label="Importe del suplemento" data-suffix=" €" placeholder="Si es suplemento fijo, ¿cuánto?" style="text-align:left"></span>
+      </fieldset>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span class="num">3 de 5</span><h2>Zona y horario</h2></div>
+
+      <fieldset class="q" data-req>
+        <legend>Zona de servicio sin coste extra</legend>
+        <p class="why">Son los sitios a 22 minutos o menos del centro, sin tráfico. Desmarca los que no quieras cubrir.</p>
+        <div class="choices grid">
+          <label class="choice"><input type="checkbox" name="zona" value="Murcia capital y pedanías" checked><span class="opt">Murcia y pedanías</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Molina de Segura" checked><span class="opt">Molina de Segura</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Alcantarilla" checked><span class="opt">Alcantarilla</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Las Torres de Cotillas" checked><span class="opt">Las Torres de Cotillas</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Santomera" checked><span class="opt">Santomera</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Beniel" checked><span class="opt">Beniel</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Alguazas" checked><span class="opt">Alguazas</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Ceutí" checked><span class="opt">Ceutí</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Lorquí" checked><span class="opt">Lorquí</span></label>
+          <label class="choice"><input type="checkbox" name="zona" value="Archena" checked><span class="opt">Archena</span></label>
+        </div>
+        <input type="text" class="other" id="zona_otro" name="zona_otro" data-label="Otros sitios" placeholder="¿Añadirías algún sitio?">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Cuándo contestas WhatsApp y teléfono?</legend>
+        <p class="why">Sale en la ficha de Google, y los anuncios solo se muestran en ese horario.</p>
+        <div class="choices days">
+          <label class="choice"><input type="checkbox" name="dias" value="L" checked><span class="opt">L</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="M" checked><span class="opt">M</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="X" checked><span class="opt">X</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="J" checked><span class="opt">J</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="V" checked><span class="opt">V</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="S" checked><span class="opt">S</span></label>
+          <label class="choice"><input type="checkbox" name="dias" value="D"><span class="opt">D</span></label>
+        </div>
+        <div class="inline">
+          <label for="hora_desde">De <input type="time" id="hora_desde" name="hora_desde" data-label="Desde" value="09:00"></label>
+          <label for="hora_hasta">a <input type="time" id="hora_hasta" name="hora_hasta" data-label="Hasta" value="20:00"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>El número de WhatsApp de la web</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="telefono" value="También coge llamadas" checked><span class="opt">También coge llamadas</span></label>
+          <label class="choice"><input type="radio" name="telefono" value="Solo WhatsApp, sin llamadas"><span class="opt">Solo WhatsApp, sin llamadas</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="block">
+      <div class="block-head">
+        <span class="num">4 de 5</span><h2>Cómo es el servicio</h2>
+        <p>Los textos actuales de la web no los escribimos nosotros y tienen errores. Solo publicaremos lo que confirmes aquí, así que contesta como se lo dirías a un cliente.</p>
+      </div>
+
+      <fieldset class="q" data-req>
+        <legend>¿Cómo queda el tejido al terminar?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="humedad" value="Seco, no se moja"><span class="opt">Seco, no se moja</span></label>
+          <label class="choice"><input type="radio" name="humedad" value="Algo húmedo"><span class="opt">Algo húmedo</span></label>
+          <label class="choice"><input type="radio" name="humedad" value="Bastante húmedo"><span class="opt">Bastante húmedo</span></label>
+          <label class="choice"><input type="radio" name="humedad" value="Depende de la pieza"><span class="opt">Depende de la pieza</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Cuánto hay que esperar para usarlo?</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="secado" value="No hace falta esperar"><span class="opt">No hace falta esperar</span></label>
+          <label class="choice"><input type="radio" name="secado" value="Menos de 2 horas"><span class="opt">Menos de 2 horas</span></label>
+          <label class="choice"><input type="radio" name="secado" value="Entre 2 y 6 horas"><span class="opt">Entre 2 y 6 horas</span></label>
+          <label class="choice"><input type="radio" name="secado" value="Más de 6 horas"><span class="opt">Más de 6 horas</span></label>
+          <label class="choice"><input type="radio" name="secado" value="Depende de la pieza y de la época"><span class="opt">Depende de la pieza y de la época</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Usas algún producto?</legend>
+        <p class="why">Algunos desinfectantes de uso profesional exigen un curso oficial. Si usas alguno, lo miramos antes de anunciarlo.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="productos" value="Ninguno, solo la máquina"><span class="opt">Ninguno, solo la máquina</span></label>
+          <label class="choice"><input type="radio" name="productos" value="Champú o detergente para tapicería"><span class="opt">Champú o detergente para tapicería</span></label>
+          <label class="choice"><input type="radio" name="productos" value="Desinfectante o antiácaros"><span class="opt">Desinfectante o antiácaros</span></label>
+          <label class="choice"><input type="radio" name="productos" value="Varios"><span class="opt">Varios</span></label>
+        </div>
+        <input type="text" class="other" id="productos_cuales" name="productos_cuales" data-label="Cuáles" placeholder="Si usas alguno, ¿cuál? (marca o nombre)">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Qué puedes prometer que quita?</legend>
+        <p class="why">Marca solo lo que le prometerías a un cliente sin dudar.</p>
+        <div class="choices grid">
+          <label class="choice"><input type="checkbox" name="quita" value="Polvo"><span class="opt">Polvo</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Ácaros y sus restos"><span class="opt">Ácaros y sus restos</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Pelo de mascota"><span class="opt">Pelo de mascota</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Olores"><span class="opt">Olores</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Manchas recientes"><span class="opt">Manchas recientes</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Manchas antiguas"><span class="opt">Manchas antiguas</span></label>
+          <label class="choice"><input type="checkbox" name="quita" value="Orina de mascota"><span class="opt">Orina de mascota</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q">
+        <legend>¿Qué no haces?</legend>
+        <div class="choices grid">
+          <label class="choice"><input type="checkbox" name="no_hace" value="Coches" checked><span class="opt">Coches</span></label>
+          <label class="choice"><input type="checkbox" name="no_hace" value="Alfombras"><span class="opt">Alfombras</span></label>
+          <label class="choice"><input type="checkbox" name="no_hace" value="Sofás de piel"><span class="opt">Sofás de piel</span></label>
+          <label class="choice"><input type="checkbox" name="no_hace" value="Tejidos delicados (seda, terciopelo)"><span class="opt">Tejidos delicados</span></label>
+        </div>
+        <input type="text" class="other" id="no_hace_otro" name="no_hace_otro" data-label="Otras cosas que no haces" placeholder="¿Algo más que no hagas?">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>Si un cliente no queda contento</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="garantia" value="Vuelvo gratis a repasarlo"><span class="opt">Vuelvo gratis a repasarlo</span></label>
+          <label class="choice"><input type="radio" name="garantia" value="Sin garantía"><span class="opt">Sin garantía</span></label>
+          <label class="choice"><input type="radio" name="garantia" value="otro"><span class="opt">Otra cosa</span></label>
+        </div>
+        <input type="text" class="other" id="garantia_otro" name="garantia_otro" data-label="Qué ofreces" placeholder="Si es otra cosa, ¿cuál?">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Cada cuánto recomiendas repetir la limpieza?</legend>
+        <p class="why">Lo usaremos para avisar a cada cliente cuando le toque.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="repetir" value="Cada 6 meses"><span class="opt">Cada 6 meses</span></label>
+          <label class="choice"><input type="radio" name="repetir" value="Cada año"><span class="opt">Cada año</span></label>
+          <label class="choice"><input type="radio" name="repetir" value="otro"><span class="opt">Otro plazo</span></label>
+        </div>
+        <input type="text" class="other" id="repetir_otro" name="repetir_otro" data-label="Otro plazo" placeholder="Si es otro, ¿cuál?">
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Cómo te pueden pagar?</legend>
+        <div class="choices grid">
+          <label class="choice"><input type="checkbox" name="pago" value="Efectivo"><span class="opt">Efectivo</span></label>
+          <label class="choice"><input type="checkbox" name="pago" value="Bizum"><span class="opt">Bizum</span></label>
+          <label class="choice"><input type="checkbox" name="pago" value="Transferencia"><span class="opt">Transferencia</span></label>
+          <label class="choice"><input type="checkbox" name="pago" value="Tarjeta"><span class="opt">Tarjeta</span></label>
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="block">
+      <div class="block-head"><span class="num">5 de 5</span><h2>Anuncios, fotos y papeles</h2></div>
+
+      <fieldset class="q" data-req>
+        <legend>Techo de gasto para probar Google Ads</legend>
+        <p class="why">Es el total de una prueba de seis a ocho semanas, no un gasto mensual. Si a los 100 € no ha llegado ningún contacto, se para y se corrige antes de seguir.</p>
+        <div class="choices grid">
+          <label class="choice"><input type="radio" name="ads_techo" value="150 €"><span class="opt">150 €</span></label>
+          <label class="choice"><input type="radio" name="ads_techo" value="250 €" checked><span class="opt">250 €<em>PROPUESTA</em></span></label>
+          <label class="choice"><input type="radio" name="ads_techo" value="300 €"><span class="opt">300 €</span></label>
+          <label class="choice"><input type="radio" name="ads_techo" value="otro"><span class="opt">Otra cifra</span></label>
+        </div>
+        <span class="euro"><input type="number" inputmode="decimal" min="0" step="10" id="ads_otro" name="ads_otro" data-label="Otra cifra" data-suffix=" €" placeholder="Si es otra, ¿cuánto?" style="text-align:left"></span>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>¿Ponemos una cifra «desde» en los anuncios?</legend>
+        <p class="why">Una cifra «desde» espanta a quien solo busca lo más barato antes de que nos cueste un clic. Sin ella, el anuncio dice «presupuesto por WhatsApp».</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="ads_desde" value="Sí, una cifra «desde»"><span class="opt">Sí, una cifra «desde»</span></label>
+          <label class="choice"><input type="radio" name="ads_desde" value="No, solo «presupuesto por WhatsApp»" checked><span class="opt">No, solo «presupuesto por WhatsApp»</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>Fotos reales de trabajos</legend>
+        <p class="why">La ficha de Google necesita fotos de verdad: la máquina, el trabajo y el antes y después, sin caras de clientes.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="fotos" value="Tengo y te las mando por WhatsApp"><span class="opt">Tengo y te las mando por WhatsApp</span></label>
+          <label class="choice"><input type="radio" name="fotos" value="Las haré en los próximos trabajos"><span class="opt">Las haré en los próximos trabajos</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-req>
+        <legend>Datos personales que pide la ley</legend>
+        <p class="why">El aviso legal de la web tiene que mostrar el nombre, el NIF y el domicilio fiscal del titular, y Google pide una dirección (que no se muestra) para verificar la ficha. No los escribas aquí; me los das en persona.</p>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="datos" value="De acuerdo, te los paso en persona"><span class="opt">De acuerdo, te los paso en persona</span></label>
+          <label class="choice"><input type="radio" name="datos" value="Prefiero hablarlo antes"><span class="opt">Prefiero hablarlo antes</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q">
+        <legend>¿Algo más que debamos saber?</legend>
+        <textarea id="comentarios" name="comentarios" data-label="Comentarios" placeholder="Dudas, cosas que no te convencen, ideas…"></textarea>
+      </fieldset>
+    </section>
+
+  </form>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <div class="actions">
+        <button type="button" class="primary" id="copy">Copiar para WhatsApp</button>
+        <button type="button" class="secondary" id="save" hidden>Guardar respuestas</button>
+      </div>
+      <p class="status" id="status" role="status">Tus respuestas se quedan en este dispositivo mientras rellenas.</p>
+      <textarea id="out" readonly hidden aria-label="Respuestas para copiar"></textarea>
+    </div>
+  </div>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('f');
+  var statusEl = document.getElementById('status');
+  var saveBtn = document.getElementById('save');
+  var copyBtn = document.getElementById('copy');
+  var out = document.getElementById('out');
+  var DRAFT_KEY = 'vesta-decisiones-arranque';
+  var docRef = null;
+
+  function setStatus(text, warn) {
+    statusEl.textContent = text;
+    statusEl.classList.toggle('warn', !!warn);
+  }
+
+  function multiNames() {
+    var names = {};
+    form.querySelectorAll('input[type="checkbox"]').forEach(function (el) { names[el.name] = true; });
+    return names;
+  }
+  var MULTI = multiNames();
+
+  function collect() {
+    var data = {};
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name) return;
+      if (el.type === 'checkbox') {
+        if (!data[el.name]) data[el.name] = [];
+        if (el.checked) data[el.name].push(el.value);
+      } else if (el.type === 'radio') {
+        if (!(el.name in data)) data[el.name] = '';
+        if (el.checked) data[el.name] = el.value;
+      } else {
+        data[el.name] = el.value;
+      }
+    });
+    return data;
+  }
+
+  function apply(data) {
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || !(el.name in data)) return;
+      var v = data[el.name];
+      if (el.type === 'checkbox') el.checked = Array.isArray(v) && v.indexOf(el.value) !== -1;
+      else if (el.type === 'radio') el.checked = v === el.value;
+      else el.value = v == null ? '' : String(v);
+    });
+  }
+
+  function optText(input) {
+    var span = input.closest('label').querySelector('.opt');
+    var clone = span.cloneNode(true);
+    clone.querySelectorAll('em').forEach(function (e) { e.remove(); });
+    return clone.textContent.trim();
+  }
+
+  function answered(fs) {
+    if (fs.querySelector('input[type="radio"]:checked, input[type="checkbox"]:checked')) return true;
+    var fields = fs.querySelectorAll('input[type="text"], input[type="number"], input[type="time"], textarea');
+    for (var i = 0; i < fields.length; i++) { if (fields[i].value.trim()) return true; }
+    return false;
+  }
+
+  function toText() {
+    var lines = ['*Decisiones de arranque Vesta*', ''];
+    var missing = 0;
+    form.querySelectorAll('fieldset.q').forEach(function (fs) {
+      var title = fs.querySelector('legend').textContent.trim();
+      var parts = [];
+      fs.querySelectorAll('input[type="radio"]:checked, input[type="checkbox"]:checked').forEach(function (el) {
+        if (el.value !== 'otro') parts.push(optText(el));
+      });
+      fs.querySelectorAll('input[type="text"], input[type="number"], input[type="time"], textarea').forEach(function (el) {
+        var v = el.value.trim();
+        if (v) parts.push((el.dataset.label ? el.dataset.label + ': ' : '') + v + (el.dataset.suffix || ''));
+      });
+      if (!parts.length) {
+        if (fs.hasAttribute('data-req')) { missing++; parts.push('(sin responder)'); }
+        else return;
+      }
+      lines.push('*' + title + '*');
+      parts.forEach(function (p) { lines.push('- ' + p); });
+      lines.push('');
+    });
+    return { text: lines.join('\n').trim(), missing: missing };
+  }
+
+  var draftTimer = null;
+  function saveDraft() {
+    clearTimeout(draftTimer);
+    draftTimer = setTimeout(function () {
+      try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ t: Date.now(), data: collect() })); } catch (e) {}
+    }, 400);
+  }
+  form.addEventListener('input', saveDraft);
+  form.addEventListener('change', saveDraft);
+
+  var draft = null;
+  try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null'); } catch (e) { draft = null; }
+  if (draft && draft.data) apply(draft.data);
+
+  copyBtn.addEventListener('click', function () {
+    var r = toText();
+    var note = r.missing ? 'Copiado. Quedan ' + r.missing + ' preguntas sin responder; puedes mandarlo igual.' : 'Copiado. Pégalo en el chat de WhatsApp.';
+    function fallback() {
+      out.hidden = false;
+      out.value = r.text;
+      out.focus();
+      out.select();
+      setStatus('Tu dispositivo no deja copiar directamente. El texto está seleccionado abajo: cópialo y pégalo en WhatsApp.', true);
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(r.text).then(function () { out.hidden = true; setStatus(note, r.missing > 0); }, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  });
+
+  saveBtn.addEventListener('click', function () {
+    if (!docRef) return;
+    saveBtn.disabled = true;
+    var data = collect();
+    data.savedAt = new Date().toISOString();
+    docRef.set(data).then(function () {
+      setStatus('Guardado. Ya lo podemos leer desde nuestro lado.');
+    }, function (err) {
+      if (err && (err.code === 'invalid_argument' || err.code === 'not_granted' || err.code === 'revoked')) {
+        saveBtn.hidden = true;
+        setStatus('Desde esta vista no se puede guardar. Usa «Copiar para WhatsApp».', true);
+      } else {
+        setStatus('No se pudo guardar. Prueba otra vez en unos segundos o usa «Copiar para WhatsApp».', true);
+      }
+    }).then(function () { saveBtn.disabled = false; });
+  });
+
+  if (!window.claude || typeof window.claude.use !== 'function') return;
+  window.claude.use('db').then(function (db) {
+    if (!db) return;
+    docRef = db.collection('respuestas').doc('fase0');
+    return window.claude.use('user').then(function (user) {
+      return user ? user.can('data.write') : null;
+    }).catch(function () { return null; }).then(function (canWrite) {
+      return docRef.get().then(function (snap) {
+        if (snap.exists) {
+          var saved = snap.data();
+          var savedT = Date.parse(saved.savedAt || '') || 0;
+          if (!draft || !draft.t || draft.t < savedT) apply(saved);
+          if (saved.savedAt) setStatus('Hay respuestas guardadas del ' + new Date(saved.savedAt).toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' }) + '.');
+        }
+      }, function () {}).then(function () {
+        if (canWrite !== false) saveBtn.hidden = false;
+      });
+    });
+  }).catch(function () {});
+})();
+</script>

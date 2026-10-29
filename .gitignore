@@ -1,2 +1,5 @@
 # private founder calibration — sensitive personal data; never commit
 *.private.md
+
+# torq-flow runtime state
+.torq-flow/
